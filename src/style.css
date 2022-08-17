@@ -1,5 +1,5 @@
 html {
-    font-size: 10px;
+    font-size: 14px;
     font-family: 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -15,7 +15,6 @@ html {
     margin: 0 auto;
     padding: 0 20px 0 20px;
     max-width: 1100px;
-    /* background-color: rgb(218, 222, 198); */
 }
 
 .header-wrapper {
@@ -69,9 +68,9 @@ html {
 .big-text {
     display: flex;
     justify-content: center;
-    font-size: 2.5rem;
+    font-size: 2.7rem;
     font-weight: 600;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .text {
@@ -93,8 +92,9 @@ html {
 }
 
 .style-h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     text-align: center;
+    margin-top: 40px;
 }
 
 .wrapper-man-and-lang {
@@ -123,6 +123,10 @@ html {
     border: none;
     cursor: pointer;
     font-size: 1rem;
+}
+
+.button:hover{
+    opacity: 0.8;
 }
 
 .svg-on-main {
@@ -154,11 +158,15 @@ html {
     justify-content: space-around;
 }
 
+.posibilities-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-
-
-
-
+.video{
+    margin-top: 40px;
+}
 
 .svg-main-page {
     fill: rgb(2, 82, 204);
@@ -166,12 +174,98 @@ html {
     height: 56px;
 }
 
+.button-wrapper{
+   display: flex;
+   justify-content: center;
+}
+
+.small{
+    width: 90px;
+    margin: 40px 20px;
+}
+
+.new-color{
+    background-color:  rgb(2, 82, 204);
+}
+
+.img-saze-computer{
+   width: 450px;
+   height: 315px;
+   margin-top: 20px;
+   }
+
+.not-forget-wrapper{
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.person{
+    display: flex;
+    max-width: 670px;
+    min-height: 240px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-top: 30px;
+    border-radius: 8px;
+}
+
+.foto{
+    /* display: flex; */
+    width: 220px;
+    height: 240px;
+    background-color: antiquewhite;
+}
+
+.information{
+    padding: 25px 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    max-width: 450px;
+}
+
+.our-team{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.github-logo{
+    margin-top: 10px;
+}
+
+.indent{
+    margin: 0px;
+}
+
+.footer-link{
+    text-decoration: none;
+    padding: 0 10px;
+    color: black;
+    font-weight: 600;
+}
+
+
+.footer-link:hover{
+    color:  rgb(2, 82, 204);
+}
+
+.footer-wrapper{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 50px 0 20px 0;
+}
+
+.footer-text{
+    text-align: center;
+}
+
 @media (max-width: 1000px) {
     .rs-lang-wrapper {
         display: flex;
         flex-direction: column;
-        /* justify-content: center; */
-        align-items: center;
+                align-items: center;
     }
 
     .text {

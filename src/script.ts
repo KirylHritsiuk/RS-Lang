@@ -1,6 +1,4 @@
-import './reset.css';
-import './style.css';
-import {arrAdvantages, team} from './arrAdvantages';
+import {arrAdvantages, team} from './arrAdvantages.js';
 const placeAdvantag = <HTMLElement>document.querySelector('.advantag-wrap')
 const nameLink = <HTMLElement>document.querySelector('.name-link')
 const ourTeam = <HTMLElement>document.querySelector('.our-team')
