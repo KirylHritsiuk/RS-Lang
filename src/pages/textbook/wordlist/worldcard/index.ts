@@ -39,34 +39,60 @@ export class WordCard {
     <div class="card-content">
       <div class="card-title">
         <div class="title-word">
-          <div class="title-word">
-            <span class="title-word__item">${this.data.word.slice(0, 1).toUpperCase()}${this.data.word.slice(1)}</span>
-            <span class="title-word__transcription">${this.data.transcription}</span>
+          <div class="word-group">
+            <span class="title-word__item">${this.data.word}</span>
+            <span class="title-word__item title-word__item_transcription">${this.data.transcription}</span>
           </div>
-          <div class="title-word__translate title-word__translate_translate">${this.data.wordTranslate}</div>
+          <span class="title-word__item title-word__item_translate translate">${this.data.wordTranslate}</span>
         </div>
         <div class="word-audio word-audio_title">
-          <audio src="${backendData.url}${this.data.audio}" controls>click</audio>
-        </div>
+            <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24"
+              width="1.5em" height="1.5em">
+              <path d="M2,6A2,2,0,0,0,0,8v8a2,2,0,0,0,2,2H4.8L12,23.977V.017L4.8,6Z"/>
+              <path d="M20,12a5.006,5.006,0,0,0-5-5H14V9h1a3,3,0,0,1,0,6H14v2h1A5.006,5.006,0,0,0,20,12Z"/>
+              <path d="M15,3H14V5h1a7,7,0,0,1,0,14H14v2h1A9,9,0,0,0,15,3Z"/>
+            </svg>
+              <audio src="${backendData.url}${this.data.audio}"></audio>
+            </div>
       </div>
-      <div class="card-main">
-      <div class="word-meaning word-meaning_definition">
-        <div>
-          <div class="word-meaning__sentence">${this.data.textMeaning}</div>
-            <div class="word-audio word-audio_main">
-              <audio src="${backendData.url}${this.data.audioMeaning}" controls>click</audio>
+      <div class="card-meaning">
+          <div class="word-text">
+            <div class="word-meaning__sentence">${this.data.textMeaning}</div>
+              <div class="word-audio word-audio_main">
+                <svg xmlns="http://www.w3.org/2000/svg" data-name="meaning-play" style="display: block" viewBox="0 0 24 24"
+                width="1em" height="1em">
+                <path d="M2,6A2,2,0,0,0,0,8v8a2,2,0,0,0,2,2H4.8L12,23.977V.017L4.8,6Z"/>
+                <path d="M20,12a5.006,5.006,0,0,0-5-5H14V9h1a3,3,0,0,1,0,6H14v2h1A5.006,5.006,0,0,0,20,12Z"/>
+                <path d="M15,3H14V5h1a7,7,0,0,1,0,14H14v2h1A9,9,0,0,0,15,3Z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="meaning-stop" style="display: none" viewBox="0 0 24 24" 
+                width="1em" height="1em"><rect width="24" height="24"/></svg>
+              <audio src="${backendData.url}${this.data.audioMeaning}">    
+            </audio>
             </div>
           </div>
-          <div class="word-meaning__translate word-meaning__translate_translate">${this.data.textMeaningTranslate}</div>
-        </div>
-        <div class="word-example word-example_">
-          <div class="">
+          <div class="word-meaning__translate translate">${this.data.textMeaningTranslate}</div>
+      </div>
+        <div class="card-example">
+          <div class="word-text">
             <div class="word-example__sentence">${this.data.textExample}</div>
               <div class="word-audio word-audio_main">
-                <audio src="${backendData.url}${this.data.audioExample}" controls>click</audio>
+                <svg xmlns="http://www.w3.org/2000/svg" data-name="example-play" style="display: block" viewBox="0 0 24 24"
+                  width="1em" height="1em">
+                  <path d="M2,6A2,2,0,0,0,0,8v8a2,2,0,0,0,2,2H4.8L12,23.977V.017L4.8,6Z"/>
+                  <path d="M20,12a5.006,5.006,0,0,0-5-5H14V9h1a3,3,0,0,1,0,6H14v2h1A5.006,5.006,0,0,0,20,12Z"/>
+                  <path d="M15,3H14V5h1a7,7,0,0,1,0,14H14v2h1A9,9,0,0,0,15,3Z"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" data-name="example-stop" style="display: none" viewBox="0 0 24 24" 
+                width="1em" height="1em"><rect width="24" height="24"/></svg>
+                <audio src="${backendData.url}${this.data.audioExample}"></audio>
               </div>
             </div>
-            <div class="word_example__translate word_example__translate_translate">${this.data.textExampleTranslate}</div>
+            <div class="word_example__translate translate">${this.data.textExampleTranslate}</div>
+          </div>
+          <div class="card-buttons">
+          <button class="button-card button-card_large button-card-dif" name="difficult" >Difficult</button>
+          <button class="button-card button-card_large button-card-del name="delete"">Delete</button>
           </div>
         </div>
       </div>
