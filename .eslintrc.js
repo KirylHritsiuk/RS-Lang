@@ -18,5 +18,4 @@ module.exports = {
     'no-console': 'warn',
     'no-plusplus': 'off',
   },
-
 };
