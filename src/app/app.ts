@@ -1,15 +1,13 @@
-import {MainHeader} from '../components/header' 
+import { MainHeader } from '../components/header';
 
 export class App {
+  private initialPage: MainHeader;
 
-private initialPage: MainHeader;
+  constructor() {
+    this.initialPage = new MainHeader();
+  }
 
-constructor(){ 
-    this.initialPage = new MainHeader()
-}
-
-run(){
-    const mainHeaderHtml = this.initialPage.rander()
-}
-
+  run() {
+    const mainHeaderHtml = this.initialPage.rander();
+  }
 }

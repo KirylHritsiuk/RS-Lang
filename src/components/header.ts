@@ -1,8 +1,8 @@
-
 export class MainHeader {
-    private  containerHeader: HTMLElement;
-    static TextObject = {
-        MailContent: `<div class="login-wrapper">
+  private containerHeader: HTMLElement;
+
+  static TextObject = {
+    MailContent: `<div class="login-wrapper">
         <h1 class="style-h1">Main</h1>
         <button class="login">
             <div class="plase-login">
@@ -16,20 +16,20 @@ export class MainHeader {
                 <span class="login-text">LOGIN</span>
             </div>
         </button>
-    </div>`
-    }
+    </div>`,
+  };
 
-    constructor(){
-        this.containerHeader = document.querySelector('.header-wrapper') as HTMLElement;
-    }
+  constructor() {
+    this.containerHeader = document.querySelector('.header-wrapper') as HTMLElement;
+  }
 
-    private createHeader(text: string){
-           const header = this.containerHeader.insertAdjacentHTML('beforebegin', text)
-            return header
-        }
+  private createHeader(text: string) {
+    const header = this.containerHeader.insertAdjacentHTML('beforebegin', text);
+    return header;
+  }
 
-    rander(){
-        const header = this.createHeader(MainHeader.TextObject.MailContent);
-        return header
-    }
+  rander() {
+    const header = this.createHeader(MainHeader.TextObject.MailContent);
+    return header;
+  }
 }
