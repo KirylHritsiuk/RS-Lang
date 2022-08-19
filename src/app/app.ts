@@ -1,4 +1,4 @@
-import { MainHeader } from '../components/header';
+import { MainHeader } from '../pages/components/header';
 
 export class App {
   private initialPage: MainHeader;
@@ -8,6 +8,7 @@ export class App {
   }
 
   run() {
-    const mainHeaderHtml = this.initialPage.rander();
+    const header = this.initialPage.render();
+    return header;
   }
 }
