@@ -1,4 +1,4 @@
-import {MainHeader} from '../../core/templates/header' 
+import {MainHeader} from '../components/header' 
 
 export class App {
 
