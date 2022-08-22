@@ -14,10 +14,10 @@ export class Modal {
           <h1 class="modal-header">Login</h1>
 
           <div class="input_form">
-              <input type="email" name="email" placeholder="Email" class="input">
+              <input type="email" value="" name="email" placeholder="Email" class="input input_email">
           </div>
           <div class="input_form">
-              <input type="password" name="password" minlength="6" placeholder="Password" class="input input_password">
+              <input type="password" value="" name="password" minlength="6" placeholder="Password" class="input input_password">
           </div>
           <div class="checkbox_form">
               <input name="checkbox" class="checkbox_input" id="checkbox" type="checkbox">
@@ -53,11 +53,10 @@ export class Modal {
         }
       })
     }
-    let forms = document.querySelectorAll('.input_form') as NodeListOf<Element>
     
     const checkbox = document.querySelector('#checkbox') as HTMLInputElement
     const password = document.querySelector('.input_password') as HTMLInputElement
-
+    
     checkbox.addEventListener('click', () => {
       if (password.type === 'password') {
         password.type = 'text'
@@ -67,8 +66,38 @@ export class Modal {
     })
     
     const form = document.querySelector('.modal') as HTMLFormElement
+    let forms = document.querySelectorAll('.input_form') as NodeListOf<Element>
+    let inputName: HTMLInputElement | null = document.querySelector('.input_name')
+    let inputEmail = document.querySelector('.input_email') as HTMLInputElement
+    let inputPassword = document.querySelector('.input_password') as HTMLInputElement
     form.onsubmit = (ev) => {
       const temp = ev.target as HTMLElement
+      let emailVal = inputEmail.value
+      let passwordVal = inputPassword.value
+      let nameVal = null
+      if (inputName) {
+        nameVal = inputName.value
+        if (nameVal === '') {
+          inputName.classList.add('error')
+        } else {
+          inputName.classList.remove('error')
+        }
+      }
+      forms.forEach((line) => {
+        const temp = line as HTMLInputElement
+        console.log(temp);
+        
+      })
+      if (emailVal === '') {
+        inputEmail.classList.add('error')
+      } else {
+        inputEmail.classList.remove('error')
+      }
+      if (passwordVal === '') {
+        inputPassword.classList.add('error')
+      } else {
+        inputPassword.classList.remove('error')
+      }
 
       console.log(temp.children);
       return false
@@ -90,13 +119,15 @@ export class Modal {
         modalContainer.firstElementChild?.remove()
         const nameElement = document.createElement('div')
         nameElement.classList.add('input_form')
-        nameElement.innerHTML = `<input id="name" type="text" name="name" placeholder="Name" class="input">`
+        nameElement.innerHTML = `<input id="name" type="text" value="" name="name" placeholder="Name" class="input input_name">`
         const titleElement = document.createElement('h1')
         titleElement.classList.add('modal-header')
         titleElement.innerText = `Register`
         modalContainer.prepend(titleElement,nameElement)
         signUp.innerHTML = `<a href=#>Do you have an account? Sign In<a>`
         btnLogin.textContent = 'SIGN UP'
+        inputName = document.querySelector('.input_name')
+
       } else if (forms.length === 3) {
         modalContainer.firstElementChild?.remove()
         modalContainer.firstElementChild?.remove()
@@ -106,7 +137,7 @@ export class Modal {
         modalContainer.prepend(titleElement)
         signUp.innerHTML = `<a href=#>Don't have an account? Sign Up<a>`
         btnLogin.textContent = 'SIGN IN'
-
+        inputName = null
       }
 
       forms = document.querySelectorAll('.input_form') as NodeListOf<Element>
