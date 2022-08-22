@@ -38,9 +38,19 @@ export class Modal {
 
     if (login) {
       login.addEventListener('click', () => {
-        this.modal.classList.add('open-modal')
-
+        this.modal.classList.add('transition-open-modal')
         this.body.classList.add('no-scroll')
+      })
+      this.modal.addEventListener('animationend', (e) => {
+        if (e.animationName === 'close-modal') {
+          this.modal.classList.remove('open-modal')
+          this.modal.classList.remove('transition-close-modal')
+          this.body.classList.remove('no-scroll')
+        } 
+        if (e.animationName === 'open-modal') {
+          this.modal.classList.add('open-modal')
+          this.modal.classList.remove('transition-open-modal')
+        }
       })
     }
     let forms = document.querySelectorAll('.input_form') as NodeListOf<Element>
@@ -66,8 +76,7 @@ export class Modal {
     this.modal.addEventListener('click', (ev) => {
       const temp = ev.target as HTMLElement
       if(temp.classList[0] === 'modal-overlay') {
-        this.modal.classList.remove('open-modal')
-        this.body.classList.remove('no-scroll')
+        this.modal.classList.add('transition-close-modal')
       }      
     })
 
