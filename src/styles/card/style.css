@@ -16,10 +16,9 @@ img {
   width: 100%;
 }
 
-.words-list {
+.list_container {
   display: grid;
-  justify-content: center;
-  gap: 1em;
+  gap: 20px;
   width: 100%;
 }
 
@@ -133,7 +132,7 @@ img {
 }
 
 .button-card-dif {
-  background: palevioletred;
+  background: red;
 }
 
 .button-card-del {

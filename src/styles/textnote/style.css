@@ -1,4 +1,13 @@
-.textbook {
+a {
+  text-decoration: none;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.main_content {
   display: grid;
   grid-template-areas: "games games" "pagination-top pagination-top" "words-list groups" "pagination-bottom pagination-bottom";
   grid-template-rows: -webkit-max-content -webkit-max-content 1fr 110px;
@@ -9,15 +18,51 @@
   padding: 2%;
 }
 
-.games {
-  grid-area: games;
-}
-
-.game-bar {
+.game_bar {
   display: flex;
+  align-items: center;
   justify-content: center;
   -moz-column-gap: 2%;
        column-gap: 2%;
+}
+
+.game_link {
+  text-decoration: none;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  height: auto;
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game_link-hover-red:hover {
+  box-shadow: 0px 0px 10px red;
+}
+
+.game__icon {
+  width: 32px;
+  height: 32px;
+}
+
+.game__title {
+  font-size: 1.5em;
+}
+
+.game {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -moz-column-gap: 5%;
+       column-gap: 5%;
+  width: 100%;
+  height: 2.5em;
+}
+
+.games {
+  grid-area: games;
 }
 
 .words-list {
@@ -26,8 +71,7 @@
 
 .groups {
   grid-area: groups;
-  display: flex;
-  flex-direction: column;
+  position: relative;
 }
 
 .pagination-top {
@@ -40,12 +84,176 @@
 
 .pagination {
   display: flex;
+  align-items: center;
   justify-content: center;
   -moz-column-gap: 2%;
        column-gap: 2%;
 }
 
 .game-button {
-  width: 9em;
-  height: 2em;
+  width: 100%;
+  height: 3em;
+}
+
+.pag-item {
+  width: 40px;
+  height: 40px;
+  border: 3px solid transparent;
+  border-radius: 10px;
+  font-size: larger;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s linear;
+}
+.pag-item:hover {
+  color: red;
+  border-color: red;
+}
+.pag-item:hover svg {
+  fill: palevioletred;
+}
+
+.pag-item-active {
+  color: red;
+  border-color: red;
+}
+
+.pag-item-disabled {
+  cursor: auto;
+}
+.pag-item-disabled svg {
+  fill: gray;
+}
+.pag-item-disabled:hover {
+  border-color: transparent;
+  fill: gray;
+}
+.pag-item-disabled:hover svg {
+  fill: gray;
+}
+
+.groups_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 10px;
+  flex-direction: column;
+  row-gap: 2%;
+}
+
+.groups_title {
+  font-size: 1.3em;
+  font-weight: 500;
+  margin-bottom: 10%;
+}
+
+.groups_list {
+  position: -webkit-sticky;
+  position: sticky;
+  margin-left: 0;
+  padding-left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 3%;
+}
+
+.groups_item {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  width: 70px;
+  height: 70px;
+  margin-bottom: 11%;
+}
+
+.groups__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  font-size: 1.7em;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+  color: bisque;
+}
+
+.bg-red {
+  background: red !important;
+}
+
+.bg-orange {
+  background: orange !important;
+}
+
+.bg-palevioletred {
+  background: palevioletred !important;
+}
+
+.bg-slateblue {
+  background: slateblue !important;
+}
+
+.bg-darkslateblue {
+  background: darkslateblue !important;
+}
+
+.bg-purple {
+  background: purple !important;
+}
+
+.border-red {
+  border-color: red !important;
+}
+
+.border-orange {
+  border-color: orange !important;
+}
+
+.border-palevioletred {
+  border-color: palevioletred !important;
+}
+
+.border-slateblue {
+  border-color: slateblue !important;
+}
+
+.border-darkslateblue {
+  border-color: darkslateblue !important;
+}
+
+.color-purple {
+  color: purple !important;
+}
+
+.color-red {
+  color: red !important;
+}
+
+.color-orange {
+  color: orange !important;
+}
+
+.color-palevioletred {
+  color: palevioletred !important;
+}
+
+.color-slateblue {
+  color: slateblue !important;
+}
+
+.color-darkslateblue {
+  color: darkslateblue !important;
+}
+
+.color-purple {
+  color: purple !important;
 }/*# sourceMappingURL=style.css.map */
