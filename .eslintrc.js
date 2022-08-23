@@ -17,8 +17,15 @@ module.exports = {
   rules: {
     'no-console': 'warn',
     'no-plusplus': 'off',
+    'no-multi-assign': 'off',
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
     'import/no-unresolved': 'off',
+    'no-shadow': 'off',
+    'class-methods-use-this': 'warn',
+    'import/extensions': 'off',
+    'import/prefer-default-export': 'off',
+    'import/no-unresolved': 'off',
+
   },
 };
