@@ -1,0 +1,145 @@
+.modal-overlay {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -10;
+  visibility: hidden;
+}
+.open-modal {
+  visibility: visible;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.5);
+}
+.transition-open-modal {
+  background-color: rgba(0,0,0,0);
+  visibility: visible;
+  z-index: 10;
+  opacity: 0;
+  animation-name: open-modal;
+  animation-duration: 0.7s;
+}
+.transition-close-modal {
+  background-color: rgba(0,0,0,0);
+  visibility: visible;
+  z-index: 10;
+  opacity: 0;
+  animation-name: close-modal;
+  animation-duration: 0.7s;
+}
+@keyframes open-modal {
+  from {
+    opacity: 0;
+    background-color: rgba(0,0,0,0);
+  }
+  to {
+    opacity: 1;
+    background-color: rgba(0,0,0,0.5);
+  }
+}
+@keyframes close-modal {
+  from {
+    opacity: 1;
+    background-color: rgba(0,0,0,0.5);
+  }
+  to {
+    opacity: 0;
+    background-color: rgba(0,0,0,0);
+  }
+}
+.modal {
+  background-color: #fff;
+  width: 500px;
+  margin: 30px;
+  border-radius: 4px;
+  gap: 20px;
+  display: flex;
+  flex-flow: column;
+  padding: 30px;
+  z-index: 11;
+}
+.modal-header {
+  margin: 0 auto;
+  font-size: 1.5rem;
+}
+.btn-login {
+  height: 40px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #3f51b5;
+  color: #fff;
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-top: 30px;
+}
+.input {
+  font-size: 20px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  border: solid;
+  border-color: #b3b3b3;
+  border-width: 2px;
+  border-radius: 3px;
+  padding: 5px;
+}
+.input:hover {
+  border-color: #817f7f;
+}
+.input.error:hover {
+  border-color: red;
+}
+
+
+.checkbox {
+  height: 20px;
+  width: auto;
+  box-sizing: border-box;
+  display: flex;
+  font-size: 20px;
+}
+.checkbox_label {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.05rem;
+}
+.checkbox_form {
+  display: flex;
+  align-items: center;
+}
+input[type="checkbox"] {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin: 0 5px;
+}
+
+.register {
+  margin-top: -10px;
+  font-size: 1rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+}
+.register a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #3f51b5;
+}
+.register a:hover {
+  text-decoration: underline;
+}
+.no-scroll {
+  overflow-y: hidden;
+}
+.error {
+  border-color: red;
+}
