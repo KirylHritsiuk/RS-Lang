@@ -1,14 +1,14 @@
-import { MainHeader } from '../pages/components/header';
+import { Textbook } from '../pages/textbook/index';
 
 export class App {
-  private initialPage: MainHeader;
+  protected textBook: Textbook;
 
   constructor() {
-    this.initialPage = new MainHeader();
+    this.textBook = new Textbook();
   }
 
-  run() {
-    const header = this.initialPage.render();
-    return header;
+  async run() {
+    const textBook = document.body.append(await this.textBook.render());
+    return textBook;
   }
 }
