@@ -29,7 +29,7 @@ export class MainHeader {
             return this.container;
         }
 
-    rander(){
+    render(){
         const pageContent = <HTMLDivElement>document.querySelector('.page-content');
         pageContent.prepend(this.createHeader());
         return pageContent;

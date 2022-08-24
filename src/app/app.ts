@@ -1,19 +1,18 @@
 import {MainHeader} from '../components/header'; 
 import {Main} from '../pages/main/main';
 import {Footer} from '../components/footer';
-import {burger} from '../components/burger';
+import {Burger} from '../components/burger';
 import {Body} from '../components/createBody';
 import {Statistics} from '../pages/statistics/statistics';
-import {StartMain} from '../pages/main/startMain'
+
 
 export class App {
-
 private initialHeader: MainHeader;
 private initialMain: Main;
 private initialFooter: Footer;
 private initialBody: Body;
 private initianStatistics: Statistics;
-private initialStartMain: StartMain
+private initialBurger: Burger;
 
 
 constructor(){ 
@@ -22,19 +21,16 @@ constructor(){
     this.initialFooter = new Footer();
     this.initialBody = new Body();
     this.initianStatistics = new Statistics();
-    this.initialStartMain = new StartMain();
+    this.initialBurger = new Burger();
 }
 
 run(){
-    const bodyHTML = this.initialBody.render()
-    
-    const headerHtml = this.initialHeader.rander();
-    const mainStartMainHTML = this.initialStartMain.render()
-    const mainPageContent = this.initialMain.rander();
-    const footerHTML = this.initialFooter.render()
-    
-    // const statisticsHTML = this.initianStatistics.render()
-    burger()
+    const bodyHTML = this.initialBody.render();
+    const headerHtml = this.initialHeader.render();
+    const mainPageContent = this.initialMain.render();
+    const footerHTML = this.initialFooter.render();
+    // const statisticsHTML = this.initianStatistics.render();
+    const initialBurgerHTML = this.initialBurger.controlBurger();
 }
 
 }
