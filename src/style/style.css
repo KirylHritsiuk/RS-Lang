@@ -1,5 +1,5 @@
 html {
-    font-size: 14px;
+    font-size: 10px;
     font-family: 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -10,6 +10,7 @@ html {
 .body {
     width: 100%;
     display: flex;
+    /* flex-direction: column; */
 }
 
 .page-content {
@@ -22,9 +23,12 @@ html {
     display: flex;
     flex-direction: column;
     width: 50px;
+    /* height: 1000px; */
+    /* height: 100%; */
     background: #474965;
     transition: 1s;
     overflow-x: hidden;
+    /* position: fixed; */
 }
 
 
@@ -42,6 +46,8 @@ html {
 
 .ul-wrapper {
     width: 100%;
+    height: 1000px;
+    /* display: inline-block; */
 }
 
 .li-wrapper{
@@ -100,6 +106,7 @@ html {
     height: 50px;
     margin-left: 10px;
     /* background-color: #F79928; */
+    z-index: 2;
 }
 
 .hide-plase-burger {
@@ -132,8 +139,23 @@ html {
     margin-top: 0px;
     background: #474965;
 }
+/* ----------------------------------------------------- */
+.scroll-modal{
+    width: 240px;
+    overflow:visible;
+    position: fixed;
+    transition: 2s;
+}
+/* --------------------------------------------------------- */
+.scroll-modal-end{
+    width: 50px;
+    overflow:hidden;
+    position: static;
+    transition: 2s;
+}
 
 
+/* --------------------------------------------------------- */
 
 .scroll{
     width: 240px;
@@ -141,15 +163,15 @@ html {
     /* transition: 3s; */
 }
 
-.hide-big-burger {
+/* .hide-big-burger {
     transform: translateX(-300px);
     transition: 2s;
-}
+} */
 
-.show-big-burger {
+/* .show-big-burger {
     transform: translateX(0px);
     transition: 2s;
-}
+} */
 
 .login-wrapper {
     display: flex;
@@ -285,12 +307,8 @@ html {
 }
 
 .video {
-    /* display: flex;
-    justify-content: center; */
-    /* margin: 0 auto; */
     margin-top: 40px;
     width: 100%;
-    /* height: 100%; */
 }
 
 .svg-main-page {
@@ -377,13 +395,17 @@ html {
 
 .footer-wrapper {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding: 50px 0 20px 0;
 }
 
 .footer-text {
     text-align: center;
+}
+
+.name-link {
+    display: flex;
 }
 
 .span-rs {
@@ -412,9 +434,27 @@ html {
     height: 100%;
 }
 
+.modal{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
 .hide {
     display: none;
  }
+
+
+ .red{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+ }
+
+
 
 @media (max-width: 1140px) {
 
@@ -430,13 +470,17 @@ html {
         background-color: white;
     }
 
-    .svg-burger1 {
+    .svg-burger {
         fill: black;
     }
 
     .nav-text {
         font-size: 1.8rem;
         text-decoration: none;
+    }
+
+    .span-rs{
+        display: none;
     }
 }
 
@@ -472,6 +516,8 @@ html {
     @media (max-width: 660px) {
         .name-link {
             text-align: center;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .text {
