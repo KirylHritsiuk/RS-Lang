@@ -1,11 +1,3 @@
-a {
-  text-decoration: none;
-}
-* {
-  padding: 0;
-  margin: 0;
-}
-
 @mixin flexCenter {
   display: flex;
   align-items: center;
@@ -19,7 +11,7 @@ a {
     "pagination-top pagination-top"
     "words-list groups"
     "pagination-bottom pagination-bottom";
-  grid-template-rows: max-content max-content 1fr 110px;
+  grid-template-rows: max-content max-content 1fr 50px;
   grid-template-columns: 1fr 72px;
   grid-row-gap: 32px;
   grid-column-gap: 32px;
@@ -27,15 +19,14 @@ a {
 }
 .game_bar {
   @include flexCenter();
-  column-gap: 2%;
+  column-gap: 5%;
 }
 .game_link {
-  text-decoration: none;
   border-radius: 10px;
   border: 1px solid transparent;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  height: auto;
-  width: 25%;
+  height: 5em;
+  width: 270px;
   @include flexCenter();
 }
 .game_link-hover-red {
@@ -44,11 +35,16 @@ a {
   }
 }
 .game__icon {
-  width: 32px;
-  height: 32px;
+  width: 45px;
+  height: 45px;
 }
 .game__title {
-  font-size: 1.5em;
+  font-size: 1.6em;
+  font-family: 'Droid', sans-serif;
+  font-style: italic;
+  font-weight: 600;
+  text-decoration: none;
+  color: black
 }
 .game {
   @include flexCenter();
@@ -78,7 +74,7 @@ a {
 }
 .game-button {
   width: 100%;
-  height: 3em;
+  height: 4em;
 }
 .pag-item {
   width: 40px;

@@ -1,6 +1,6 @@
 html {
-    font-size: 10px;
-    font-family: 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;
+    font-family: 'Roboto', Arial, sans-serif;
 }
 
 * {
@@ -8,30 +8,26 @@ html {
 }
 
 .body {
-    width: 100%;
     display: flex;
-    /* flex-direction: column; */
 }
 
 .page-content {
+    display: grid;
+    grid-template-areas: "header" "main" "footer";
+    grid-template-rows: 80px minmax(80vh, max-content) 80px;
     margin: 0 auto;
-    padding: 0 20px 0 20px;
-    max-width: 1100px;
+    padding: 0 20px;
+    width: 100%;
 }
 
 .naw-wrapper {
     display: flex;
     flex-direction: column;
-    width: 50px;
-    /* height: 1000px; */
-    /* height: 100%; */
+    width: 300px;
     background: #474965;
-    transition: 1s;
+    transition: 0.8s;
     overflow-x: hidden;
-    /* position: fixed; */
 }
-
-
 
 .svg-nav {
     width: 28px;
@@ -40,9 +36,10 @@ html {
     margin: 10px 0;
 }
 
-
-
-
+.main {
+    grid-area: main;
+    padding: 0 5% ;
+}
 
 .container-cross-burger{
     display: flex;
@@ -51,10 +48,10 @@ html {
 
 .container-line-burger{
     display: flex;
-    width: 240px;
+    align-items: center;
+    width: 300px;
+    margin-bottom: 3%;
 }
-
-
 
 .nav-text {
     font-size: 1.8rem;
@@ -69,9 +66,10 @@ html {
 }
 
 .header-wrapper {
+    grid-area: header;
     display: flex;
     align-items: center;
-    padding-top: 10px;
+    padding: 10px;
 }
 
 /* .burger-wrapper {
@@ -82,14 +80,6 @@ html {
     background: #474965;
     height: 46px;
 } */
-
-
-
-
-
-
-
-
 
 
 
@@ -135,8 +125,10 @@ html {
 }
 
 .style-h1 {
-    font-size: 2rem;
-    font-weight: 100;
+    font-size: 3em;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: capitalize;
 }
 
 .svg-man-wrapper {
@@ -174,7 +166,6 @@ html {
 .style-h2 {
     font-size: 2.2rem;
     text-align: center;
-    margin-top: 40px;
 }
 
 .wrapper-man-and-lang {
@@ -320,7 +311,12 @@ html {
 .indent {
     margin: 0px;
 }
-
+.footer {
+    grid-area: footer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .footer-link {
     text-decoration: none;
     padding: 0 10px;
@@ -335,9 +331,9 @@ html {
 
 .footer-wrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    padding: 50px 0 20px 0;
+    width: 100%;
 }
 
 .footer-text {
