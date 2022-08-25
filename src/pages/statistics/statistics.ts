@@ -1,26 +1,23 @@
 import '../../style/statistics.css';
 
+export class Statistics {
+  protected container: HTMLElement;
 
-export class Statistics{
-    protected container: HTMLElement;
-    protected containerTitle: HTMLElement;
-    protected containerCard: HTMLElement
-    static TextObject = {
-        containerWrapperName: 'statistics-wrapper',
-        // containerToday: 'today-wrapper',
-        containerAll: 'today-wrapper'
-    }
+  static TextObject = {
+    containerWrapperName: 'statistics-wrapper',
+    containerToday: 'today-wrapper',
+    containerAll: 'today-wrapper',
+  };
 
-    constructor(){
-        this.container = <HTMLElement>document.createElement('div');
-        this.container.className = Statistics.TextObject.containerWrapperName;
+  constructor() {
+    this.container = <HTMLElement>document.createElement('div');
+    this.container.className = Statistics.TextObject.containerWrapperName;
+  }
 
-    }
-
-    protected createContainerToday(){
-        const container = <HTMLDivElement>document.createElement('div');
-        container.className = Statistics.TextObject.containerAll
-        container.innerHTML = `
+  static createContainerToday() {
+    const container = <HTMLDivElement>document.createElement('div');
+    container.className = Statistics.TextObject.containerAll;
+    container.innerHTML = `
             <div class="today">
                 <div class="title-h3 title-today">Today</div>
             </div>
@@ -41,7 +38,6 @@ export class Statistics{
                     </div>
                 </div>
                 <div class="container-games-card">
-                    
                     <div class="card">
                         <div class="name-game">
                             <img src="./assets/img/headphones.png" class="img" alt="lion">
@@ -52,7 +48,6 @@ export class Statistics{
                             <div class="amount all-text">0</div>
                             <div class="all-text">words</div>
                         </div>
-    
                         <div class="accuracy-game">
                             <div class="amount all-text">0%</div>
                             <div class="all-text">accuracy</div>
@@ -62,7 +57,6 @@ export class Statistics{
                             <div class="all-text">in a row</div>
                         </div>
                     </div>
-    
                     <div class="card">
                         <div class="name-game">
                             <img src="./assets/img/shoes.png" class="img" alt="lion">
@@ -73,7 +67,6 @@ export class Statistics{
                             <div class="amount all-text">0</div>
                             <div class="all-text">words</div>
                         </div>
-    
                         <div class="accuracy-game">
                             <div class="amount all-text">0%</div>
                             <div class="all-text">accuracy</div>
@@ -83,17 +76,15 @@ export class Statistics{
                             <div class="all-text">in a row</div>
                         </div>
                     </div>
-                        
                 </div>
-            
-    </div>`
-        return container
-    }
+    </div>`;
+    return container;
+  }
 
-    protected createContainerAlltime(){
-        const container = <HTMLDivElement>document.createElement('div');
-        container.className = Statistics.TextObject.containerAll
-        container.innerHTML = `
+  static createContainerAllTime() {
+    const container = <HTMLDivElement>document.createElement('div');
+    container.className = Statistics.TextObject.containerAll;
+    container.innerHTML = `
             <div class="today">
                 <div class="title-h3 title-today">All time</div>
             </div>
@@ -114,7 +105,6 @@ export class Statistics{
                     </div>
                 </div>
                 <div class="container-games-card">
-                    
                     <div class="card">
                         <div class="name-game">
                             <img src="./assets/img/headphones.png" class="img" alt="lion">
@@ -125,7 +115,6 @@ export class Statistics{
                             <div class="amount all-text">0</div>
                             <div class="all-text">words</div>
                         </div>
-    
                         <div class="accuracy-game">
                             <div class="amount all-text">0%</div>
                             <div class="all-text">accuracy</div>
@@ -135,7 +124,6 @@ export class Statistics{
                             <div class="all-text">in a row</div>
                         </div>
                     </div>
-    
                     <div class="card">
                         <div class="name-game">
                             <img src="./assets/img/shoes.png" class="img" alt="lion">
@@ -146,7 +134,6 @@ export class Statistics{
                             <div class="amount all-text">0</div>
                             <div class="all-text">words</div>
                         </div>
-    
                         <div class="accuracy-game">
                             <div class="amount all-text">0%</div>
                             <div class="all-text">accuracy</div>
@@ -156,19 +143,13 @@ export class Statistics{
                             <div class="all-text">in a row</div>
                         </div>
                     </div>
-                        
                 </div>
-            
-    </div>`
-        return container
-    }
+    </div>`;
+    return container;
+  }
 
-
-    render(){
-        this.container.append(this.createContainerToday())
-        this.container.append(this.createContainerAlltime())
-        const pageContainer = <HTMLDivElement>document.querySelector('.footer')
-        pageContainer.before(this.container)
-    }
+  render() {
+    this.container.append(Statistics.createContainerToday(), Statistics.createContainerAllTime());
+    return this.container;
+  }
 }
-

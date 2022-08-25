@@ -16,7 +16,7 @@ export class Groups {
           <a class="groups__link bg-orange" href="#">2</a>
         </li>
         <li class="groups_item">
-          <a class="groups__link bg-palevioletred href="#">3</a>
+          <a class="groups__link bg-palevioletred" href="#">3</a>
         </li>
         <li class="groups_item">
           <a class="groups__link bg-slateblue" href="#">4</a>
