@@ -23,6 +23,7 @@ export class Burger {
         } else {
             btnBurger.addEventListener('click', e => {
                 if (btnBurger.className === 'plase-burger') {
+                    nawWrapper.classList.remove('scroll-modal-end')
                     nawWrapper.classList.add('scroll-modal')
                     icon.innerHTML = ''
                     icon.innerHTML = `<path
@@ -42,6 +43,7 @@ export class Burger {
                 } else {
                     modal.classList.add('hide')
                     nawWrapper.classList.remove('scroll-modal')
+                    nawWrapper.classList.add('scroll-modal-end')
                     icon.innerHTML = ''
                     icon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>'
                     btnBurger.classList.remove('a');

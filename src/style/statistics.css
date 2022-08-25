@@ -142,13 +142,12 @@
 
 .title-today {
     color: #C4C4C4;
-    /* margin-bottom: 32px; */
-    /* text-align: start; */
+   margin-top: 56px;
+    
 }
 
 .container-card {
     display: flex;
-    /* background-color: #0252CC; */
     justify-content: center;
 
 }
@@ -156,12 +155,11 @@
 .container-games-card {
     display: flex;
     flex-wrap: wrap;
-    max-width: 800px;
+    max-width: 360px;
 }
 
 .global-wrap {
     height: 502px;
-    /* background-color: #F79928; */
 }
 
 .today-wrapper {
@@ -179,16 +177,6 @@
     display: flex;
     justify-content: start;
     width: 100%;
-}
-
-@media (max-width: 1280px) {
-    .container-card {
-        max-width: 356px;
-    }
-
-    .today {
-        justify-content: center;
-    }
 }
 
 @media (max-width: 960px) {

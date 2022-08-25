@@ -1,8 +1,8 @@
-import {MainHeader} from '../components/header'; 
+import {MainHeader} from '../pages/components/header'; 
 import {Main} from '../pages/main/main';
-import {Footer} from '../components/footer';
-import {Burger} from '../components/burger';
-import {Body} from '../components/createBody';
+import {Footer} from '../pages/components/footer';
+import {Burger} from '../pages/components/burger';
+import {Body} from '../pages/components/createBody';
 import {Statistics} from '../pages/statistics/statistics';
 
 

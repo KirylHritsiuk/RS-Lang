@@ -1,4 +1,4 @@
-import { arrAdvantages, team, IArrAdvantages, ITeam } from "../../components/dataPageMain";
+import { arrAdvantages, team, IArrAdvantages, ITeam } from "../components/dataPageMain";
 
 export class Main{
     protected container: HTMLElement;
