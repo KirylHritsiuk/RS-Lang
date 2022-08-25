@@ -1,0 +1,123 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic);
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2em;
+}
+img {
+  height: auto;
+  width: 100%;
+}
+.list_container {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+}
+.card {
+  display: flex;
+  column-gap: 2%;
+  padding: 2%;
+  border-radius: 10px;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
+}
+
+.card_image {
+  width: 240px;
+  height: 280px;
+  border-radius: 10px;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.card-content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-title {
+  display: flex;
+  justify-content: space-between;
+  border-left: 4px solid black;
+  margin-bottom: 1%;
+}
+
+.word-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-word__item {
+  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 2em;
+  line-height: 28px;
+  margin-left: 20px;
+  margin-bottom: 3%;
+}
+
+.title-word__item_transcription {
+  text-transform: none;
+  font-size: 1.6em;
+  margin-left: 10px;
+}
+
+.title-word__item_translate {
+  text-transform: none;
+  font-size: 1.4em;
+}
+.word-text {
+    display: flex;
+    font-size: 1.4rem;
+    justify-content: space-between;
+}
+.translate {
+  font-family: "Droid Serif", serif;
+  font-style: italic;
+  line-height: 18px;
+  color: gray;
+}
+.word-audio_title {
+  justify-content: center;
+}
+.word-audio {
+  cursor: pointer;
+}
+.word-audio_main {
+  margin-left: 1%;
+}
+.word-meaning {
+  display: flex;
+}
+.card-buttons{
+    display: flex;
+    column-gap: 3%;
+}
+.button-card{
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    color: antiquewhite;
+    font-size: medium;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-align: center;
+} 
+.button-card_large{
+    width: 7rem;
+    height: 3rem;
+}
+.button-card-dif{
+   background: red; 
+}
+.button-card-del{
+    background: grey;
+}
