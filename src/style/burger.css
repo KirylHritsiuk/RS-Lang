@@ -5,9 +5,12 @@
     /* background-color: #F79928; */
     z-index: 2;
 }
-
+.burger-wrapper {
+    position: sticky;
+    top: 10px;
+}
 .hide-plase-burger {
-    display: none;
+    /* display: none; */
     transition: 2s;
 }
 
@@ -55,11 +58,8 @@
 }
 
 .span-rs {
-    margin-top: 15px;
     color: #C4C4C4;
-    /* background: #474965; */
     word-wrap: normal;
-    width: 120px;
 }
 
 .ul-wrapper {

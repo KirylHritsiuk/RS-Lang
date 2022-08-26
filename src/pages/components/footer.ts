@@ -1,41 +1,47 @@
-import {team, ITeam} from './dataPageMain'
+import '../../style/footer.css';
+import { team, ITeam } from './dataPageMain';
 
-export class Footer{
-protected container: HTMLDivElement;
-static TextOject = {
+export class Footer {
+  protected container: HTMLElement;
+
+  static TextOject = {
+    footerClassName: 'footer',
     nameLinkClassName: 'link-person',
-    nameFooterContent: 'footer-wrapper'
-}
+    nameFooterContent: 'footer-wrapper',
+    textFooterContent: 'footer-link text',
+  };
 
-
-protected createFooter (){
+  static createFooter(data: HTMLDivElement) {
     const container = document.createElement('div');
     container.className = Footer.TextOject.nameFooterContent;
-    container.innerHTML = `<a href="https://rs.school/js/"><img src="./assets/rs_school_js.svg" alt="rs" width="90"></a>
-    <div class="name-link"></div>
-    <div class="footer-text">
-        <span class="text ">© 2022</span>
-    </div>`
-    return container  
-}
+    container.insertAdjacentHTML('afterbegin', '<a href="https://rs.school/js/"><img class="rss__logo"src="./assets/svg/rs_school_js.svg" alt="rs"></a>');
+    container.append(data);
+    container.insertAdjacentHTML('beforeend', '<div class="footer-text"><span class="text">© 2022</span></div>');
+    return container;
+  }
 
-protected createLink (data: ITeam){
+  static renderLink() {
     const container = document.createElement('div');
     container.className = Footer.TextOject.nameLinkClassName;
-    container.innerHTML = `<a class="footer-link text" href="${data.github}">${data.nickName}</a>`
-    return container  
-}
+    team.forEach((el) => container.append(Footer.createLink(el)));
+    return container;
+  }
 
-render(){
-    const footerHTML = <HTMLDivElement>document.querySelector('.footer')
-   
-    // console.log(footerHTML)
-    console.log('rrrrrrrrrrrrrr')
-    footerHTML.append(this.createFooter())
-    const footerLinkHTML = <HTMLDivElement>document.querySelector('.name-link')
-  
-    team.forEach(el => footerLinkHTML.append(this.createLink(el)))
+  static createLink(data: ITeam) {
+    const link = document.createElement('a');
+    link.className = Footer.TextOject.textFooterContent;
+    link.href = data.github;
+    link.textContent = data.nickName;
+    return link;
+  }
 
-    
-}
+  constructor() {
+    this.container = <HTMLDivElement>document.createElement('footer');
+    this.container.className = Footer.TextOject.footerClassName;
+  }
+
+  render() {
+    this.container.append(Footer.createFooter(Footer.renderLink()));
+    return this.container;
+  }
 }

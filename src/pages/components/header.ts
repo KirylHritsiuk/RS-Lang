@@ -1,18 +1,18 @@
-export class MainHeader {
-    protected container: HTMLHeadElement;
-    static TextObject = {
-        headerClassName: 'header-wrapper',
-    }
+export class Header {
+  protected container: HTMLHeadElement;
 
-    constructor(){
-        this.container = document.createElement('header');
-        this.container.className = MainHeader.TextObject.headerClassName;
-    }
+  static TextObject = {
+    ClassName: 'header-wrapper',
+  };
 
-    protected createHeader(){
-        this.container.innerHTML = 
-           `<div class="login-wrapper">
-        <h1 id="headerTitle" class="style-h1">Main</h1>
+  constructor() {
+    this.container = document.createElement('header');
+    this.container.className = Header.TextObject.ClassName;
+  }
+
+  render() {
+    this.container.innerHTML = `<div class="login-wrapper">
+        <h1 id="headerTitle" class="style-h1"></h1>
         <button class="login">
             <div class="plase-login">
                 <svg class="svg-login" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
@@ -25,13 +25,7 @@ export class MainHeader {
                 <span class="login-text">LOGIN</span>
             </div>
         </button>
-    </div>`
-            return this.container;
-        }
-
-    render(){
-        const pageContent = <HTMLDivElement>document.querySelector('.page-content');
-        pageContent.prepend(this.createHeader());
-        return pageContent;
-    }
+    </div>`;
+    return this.container;
+  }
 }
