@@ -1,0 +1,190 @@
+import {
+  IUserSchema, 
+  IStatisticSchema, 
+  ISettingSchema, 
+  IWord, 
+  IQueryParameters,
+  IGetUserToken,
+  IUserWordSchema } from '../../types/types'
+
+export const enum urlData {
+  baseUrl = 'https://new-learnword.herokuapp.com/',
+  totalCount = 'X-Total-Count',
+}
+
+export class Api {
+  protected url: string;
+  protected totalCount: string;
+
+  constructor() {
+    this.url = urlData.baseUrl,
+    this.totalCount = urlData.totalCount  
+  }
+
+  static generateQueryString(queryParameters: IQueryParameters[] = []): string {
+    return queryParameters.length ? `${queryParameters.map(el => el.key + '=' + el.value).join('&')}` : '';
+  };
+
+  async getWords(query: IQueryParameters[] = []): Promise<IWord[]> {
+    const res = await fetch(`${this.url}words/?${Api.generateQueryString(query)}`)
+    const words: IWord[] = await res.json()
+    return words
+  }
+
+  async getWordOnId(id: string): Promise<IWord> {
+    const res = await fetch(`${this.url}words/${id}`)
+    const word: IWord = await res.json()
+    return word 
+  }
+
+  async createUser(user: IUserSchema): Promise<IUserSchema> {
+    const res = await fetch(`${this.url}users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user)
+    })
+    const newUser: IUserSchema = await res.json()
+    return newUser
+  }
+
+  async getUser(id: string): Promise<IUserSchema> {
+    const res = await fetch(`${this.url}users/${id}`)
+    const user: IUserSchema = await res.json()
+    return user
+  }
+  
+  async updateUser(id: string, user: IUserSchema): Promise<IUserSchema> {
+    const res = await fetch(`${this.url}users/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user)
+    })
+    const updateUser: IUserSchema = await res.json()
+    return updateUser
+  }
+    
+  async deleteUser(id: string): Promise<boolean> {
+    const res = await fetch(`${this.url}users/${id}`, {
+      method: 'DELETE'
+    })
+    return res.status === 204 ? true : false
+  }
+
+  async getUserToken(id: string): Promise<IGetUserToken> {
+    const res = await fetch(`${this.url}users/${id}`)
+    const token: IGetUserToken = await res.json()
+    return token
+  }
+
+  async getUserWords(id: string): Promise<IUserWordSchema> {
+    const res = await fetch(`${this.url}users/${id}/words`)
+    const userWord: IUserWordSchema = await res.json()
+    return userWord
+  }
+
+  async createUserWord(userId: string, wordId: string, word: IUserWordSchema): Promise<IUserWordSchema> {
+    const res = await fetch(`${this.url}users/${userId}/words/${wordId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(word)
+    })
+    const newUserWord: IUserWordSchema = await res.json()
+    return newUserWord
+  }
+  
+  async getUserWordById(userId: string, wordId: string): Promise<IUserWordSchema> {
+    const res = await fetch(`${this.url}users/${userId}/words/${wordId}`)
+    const userWord: IUserWordSchema = await res.json()
+    return userWord
+  }
+  
+  async updateUserWord(userId: string, wordId: string, word: IUserWordSchema): Promise<IUserWordSchema> {
+    const res = await fetch(`${this.url}users/${userId}/words/${wordId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(word)
+    })
+    const updateWord: IUserWordSchema = await res.json()
+    return updateWord
+  }
+
+  async deleteUserWord(userId: string, wordId: string) {
+    try {
+      const res = await fetch(`${this.url}users/${userId}/words/${wordId}`, {
+        method: 'DELETE'
+      })
+      //todo what response?
+      return res.status === 204 ? true : false
+    } catch (error) {
+      console.error(error, this.url, userId, wordId)
+    }
+  }
+
+  async getUserAgregatedWords(id: string, query: IQueryParameters[]): Promise<IWord> {    
+    const res = await fetch(`${this.url}users/${id}/aggregatedWords/${Api.generateQueryString(query)}`)
+    const aggregatedWords: IWord = await res.json()
+    return aggregatedWords
+  }
+
+  async getUserAgregatedWordById(userId: string, wordId: string): Promise<IUserWordSchema> {
+    const res = await fetch(`${this.url}users/${userId}/aggregatedWords/${wordId}`)
+    const aggregatedWord: IUserWordSchema = await res.json()
+    return aggregatedWord
+  }
+
+  async getUserStatistics(id: string): Promise<IStatisticSchema> {
+    const res = await fetch(`${this.url}users/${id}/statistics`)
+    const statistics: IStatisticSchema = await res.json()
+    return statistics
+  }
+
+  async updateUserStatistics(id: string, statistic: IStatisticSchema): Promise<IStatisticSchema> {
+    const res = await fetch(`${this.url}users/${id}/statistics`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(statistic)
+    })
+    const statistics: IStatisticSchema = await res.json()
+    return statistics
+  }
+
+  async getUserSetting(id: string): Promise<ISettingSchema> {
+    const res = await fetch(`${this.url}users/${id}/settings`)
+    const settings: ISettingSchema = await res.json()
+    return settings
+  }
+
+  async updateUserSetting(id: string, setting: ISettingSchema): Promise<ISettingSchema> {
+    const res = await fetch(`${this.url}users/${id}/settings`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(setting)
+    })
+    const settings: ISettingSchema = await res.json()
+    return settings
+  }
+
+  async signin(user: IUserSchema): Promise<IGetUserToken> {
+    const res = await fetch(`${this.url}signin`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user)
+    })
+    const tokenObject: IGetUserToken = await res.json()
+    return tokenObject
+  }
+}

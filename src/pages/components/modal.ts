@@ -1,3 +1,4 @@
+import {Api} from '../../utils/api/api'
 export class Modal {
   protected modal: HTMLDivElement;
   protected body: HTMLElement;
@@ -99,6 +100,19 @@ export class Modal {
         inputPassword.classList.remove('error')
       }
 
+      const a = new Api()
+      const y = a.getWords([
+        {
+          key: 'group',
+          value: 0 
+        },
+        {
+          key: 'page',
+          value: 1
+        }
+      ])
+      console.log(y);
+      
       console.log(temp.children);
       return false
     }
