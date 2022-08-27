@@ -1,3 +1,27 @@
+interface IObject {
+  color: string
+}
+
+interface IObjectStatistic {
+  wordsStudied: string | number,
+  accuracy: string | number,
+  maxInARow: string | number,
+  date: string | number
+}
+
+interface ICount {
+  count: string
+}
+
+interface IStatisticsWord {
+  correct: string | number,
+  incorrect: string | number
+}
+
+interface IWordUser {
+  statistics: IStatisticsWord
+}
+
 export interface IUserSchema {
   name?: string,
   email: string,
@@ -5,8 +29,16 @@ export interface IUserSchema {
 }
 
 export interface IStatisticSchema {
+  id: string,
   learnedWords: number | string,
-  optional: IObject
+  optional: {
+    learnedWordsDays: {
+      [ key: string ]: string | number
+    },
+    games: {
+      [ key: string ]: IObjectStatistic
+    }
+  }
 }
 
 export interface ISettingSchema {
@@ -31,6 +63,15 @@ export interface IWord {
   textExampleTranslate: string,
 }
 
+export interface IAggregatedWords {
+  wordsResult: [
+    IWord
+  ],
+  wordsTotal: [
+    ICount
+  ]
+}
+
 export interface IQueryParameters {
   key: number | string,
   value: number | string,
@@ -44,15 +85,16 @@ export interface IGetUserToken {
   name: string
 }
 
-export interface IObject {
-  color: string
-}
-
 export interface IUserWordSchema {
   wordId?: string,
   userId?: string,
   difficulty: string,
-  optional: IObject
+  optional: IWordUser
+}
+
+export interface IError {
+  message: string,
+  optional?: string
 }
 
 export interface IArrAdvantages{
