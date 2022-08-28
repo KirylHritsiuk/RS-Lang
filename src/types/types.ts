@@ -22,8 +22,16 @@ interface IWordUser {
   statistics: IStatisticsWord
 }
 
+export const enum IUserSchemaTemplate {
+  name = '',
+  complete = '',
+  email = '',
+  password = ''
+}
+
 export interface IUserSchema {
   name?: string,
+  complete?: boolean,
   email: string,
   password: string
 }

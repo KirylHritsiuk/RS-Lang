@@ -1,12 +1,20 @@
-import {Api} from '../../utils/api/api'
+import { User } from '../../modules/user'
 export class Modal {
   protected modal: HTMLDivElement;
   protected body: HTMLElement;
+  user: User
+  protected name: string
+  protected password: string
+  protected email: string
 
   constructor () {
     this.modal = document.createElement('div')
     this.body = document.querySelector('.body')!
     this.modal.className = 'modal-overlay'
+    this.name = ''
+    this.password = ''
+    this.email = ''
+    this.user = new User()
   }
 
   protected createModalElement() {
@@ -32,6 +40,23 @@ export class Modal {
           </div>
       </form>`
     return this.modal
+  }
+
+  errorMesssageInModal(message: string, mess: string) {
+    if (message === 'open') {
+      const err: HTMLElement | null = document.querySelector('.error-message-modal')
+      if (!err) {
+        const btnModal = document.querySelector('.btn-login') as HTMLButtonElement
+        btnModal.insertAdjacentHTML('afterend', `
+        <div class="error-message-modal" style="color:red;">${mess}</div>`
+        )
+      }
+    } else {
+      const errorMessage: HTMLElement | null = document.querySelector('.error-message-modal')
+      if (errorMessage) {
+        errorMessage.remove()
+      }
+    }
   }
 
   addModalListener() {
@@ -71,7 +96,13 @@ export class Modal {
     let inputName: HTMLInputElement | null = document.querySelector('.input_name')
     let inputEmail = document.querySelector('.input_email') as HTMLInputElement
     let inputPassword = document.querySelector('.input_password') as HTMLInputElement
-    form.onsubmit = (ev) => {
+
+    const modalContainer = document.querySelector('.modal') as HTMLElement
+    const signUp = document.querySelector('.register') as HTMLElement
+    const btnLogin = document.querySelector('.btn-login') as HTMLButtonElement
+
+    form.onsubmit = async (ev) => {
+      ev.preventDefault()
       const temp = ev.target as HTMLElement
       let emailVal = inputEmail.value
       let passwordVal = inputPassword.value
@@ -80,41 +111,54 @@ export class Modal {
         nameVal = inputName.value
         if (nameVal === '') {
           inputName.classList.add('error')
+          this.name = nameVal
         } else {
           inputName.classList.remove('error')
+          this.name = nameVal
         }
       }
-      forms.forEach((line) => {
-        const temp = line as HTMLInputElement
-        console.log(temp);
-        
-      })
+      
       if (emailVal === '') {
         inputEmail.classList.add('error')
       } else {
         inputEmail.classList.remove('error')
+        this.email = emailVal
       }
       if (passwordVal === '') {
         inputPassword.classList.add('error')
       } else {
         inputPassword.classList.remove('error')
+        this.password = passwordVal
       }
-
-      const a = new Api()
-      const y = a.getWords([
-        {
-          key: 'group',
-          value: 0 
-        },
-        {
-          key: 'page',
-          value: 1
-        }
-      ])
-      console.log(y);
-      
-      console.log(temp.children);
-      return false
+      if (btnLogin.textContent === 'sign up') {
+        const newUser = this.user.registerUser({
+          email: this.email,
+          name: this.name,
+          password: this.password,
+        })
+        newUser.then(data => {
+          if (data) {
+            this.errorMesssageInModal('del', '')
+            this.modal.classList.add('transition-close-modal')
+          } else {
+            this.errorMesssageInModal('open', 'user email already exists')
+          }
+        })
+      }
+      if (btnLogin.textContent === 'sign in') {
+        const loginUser = this.user.loginUser({
+          email: this.email,
+          password: this.password,
+        })
+        loginUser.then(data => {          
+          if (data.message === 'Authenticated') {
+            this.errorMesssageInModal('del', '')
+            this.modal.classList.add('transition-close-modal')
+          } else {
+            this.errorMesssageInModal('open', data.message)
+          }
+        })
+      }
     }
     this.modal.addEventListener('click', (ev) => {
       const temp = ev.target as HTMLElement
@@ -123,12 +167,7 @@ export class Modal {
       }      
     })
 
-    const modalContainer = document.querySelector('.modal') as HTMLElement
-    const signUp = document.querySelector('.register') as HTMLElement
-    const btnLogin = document.querySelector('.btn-login') as HTMLButtonElement
-
-
-    signUp.addEventListener('click', () => {
+    signUp.addEventListener('click', () => {      
       if (forms.length === 2) {
         modalContainer.firstElementChild?.remove()
         const nameElement = document.createElement('div')
@@ -139,9 +178,9 @@ export class Modal {
         titleElement.innerText = `Register`
         modalContainer.prepend(titleElement,nameElement)
         signUp.innerHTML = `<a href=#>Do you have an account? Sign In<a>`
-        btnLogin.textContent = 'SIGN UP'
+        btnLogin.textContent = 'sign up'
         inputName = document.querySelector('.input_name')
-
+        
       } else if (forms.length === 3) {
         modalContainer.firstElementChild?.remove()
         modalContainer.firstElementChild?.remove()
@@ -150,13 +189,11 @@ export class Modal {
         titleElement.innerText = `Login`
         modalContainer.prepend(titleElement)
         signUp.innerHTML = `<a href=#>Don't have an account? Sign Up<a>`
-        btnLogin.textContent = 'SIGN IN'
-        inputName = null
+        btnLogin.textContent = 'sign in'
+        inputName = null        
       }
-
       forms = document.querySelectorAll('.input_form') as NodeListOf<Element>
     })
-
   }
 
   render():void {

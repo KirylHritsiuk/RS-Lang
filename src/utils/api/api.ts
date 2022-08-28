@@ -8,21 +8,32 @@ import {
   IGetUserToken,
   IUserWordSchema,
   IError,
+  IUserSchemaTemplate
 } from '../../types/types';
 
 const baseUrl = 'https://new-learnword.herokuapp.com/';
 
 export class Api {
   protected url: string;
+  protected client: IUserSchema
 
   constructor() {
     this.url = baseUrl;
+    this.client = {
+      name: '',
+      email: '',
+      password: '',
+      complete: false,
+    }
   }
 
   static generateQueryString(queryParameters: IQueryParameters[] = []): string {
     return queryParameters.length ? `${queryParameters.map((el) => `${el.key}=${el.value}`).join('&')}` : '';
   }
 
+  getUrl(): string {
+    return this.url
+  }
   async getWords(query: IQueryParameters[] = []): Promise<IWord[]> {
     const res = await fetch(`${this.url}words/?${Api.generateQueryString(query)}`);
     const words: IWord[] = await res.json();
@@ -43,12 +54,23 @@ export class Api {
       },
       body: JSON.stringify(user),
     });
-    const newUser: IUserSchema = await res.json();
-    return newUser;
+    if (res.ok) {
+      const newUser: IUserSchema = await res.json();
+      this.client = {...newUser}
+      this.client.complete = true
+      return this.client;
+    } else {
+      this.client.complete = false
+      return this.client
+    }
   }
 
-  async getUser(id: string): Promise<IUserSchema> {
-    const res = await fetch(`${this.url}users/${id}`);
+  async getUser(id: string, token: string): Promise<IUserSchema> {
+    const res = await fetch(`${this.url}users/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
     const user: IUserSchema = await res.json();
     return user;
   }
@@ -178,7 +200,7 @@ export class Api {
     return settings;
   }
 
-  async signin(user: IUserSchema): Promise<IGetUserToken | IError> {
+  async signin(user: IUserSchema): Promise<IGetUserToken> {
     const res = await fetch(`${this.url}signin`, {
       method: 'POST',
       headers: {
@@ -190,7 +212,13 @@ export class Api {
       const tokenObject: IGetUserToken = await res.json();
       return tokenObject;
     }
-    const err: IError = { message: 'Incorrect e-mail or password' };
+    const err: IGetUserToken = { 
+      message: 'Incorrect e-mail or password',
+      token: '',
+      refreshToken: '',
+      userId: '',
+      name: ''
+    };
     return err;
   }
 }
