@@ -11,8 +11,8 @@ export class GameBar extends Block {
     modificationClass: 'hover-',
   };
 
-  constructor(tag: string, color: string) {
-    super(tag, color);
+  constructor(color: string) {
+    super(color);
     this.container.className = GameBar.textObject.mainContainerClass;
   }
 
@@ -30,7 +30,7 @@ export class GameBar extends Block {
     return element;
   }
 
-  render(): HTMLElement {
+  render() {
     gamesData.forEach((game) => this.container.insertAdjacentHTML('afterbegin', this.create(game)));
     return this.container;
   }

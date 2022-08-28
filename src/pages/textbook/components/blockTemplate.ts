@@ -7,7 +7,7 @@ export abstract class Block {
     containerClass: '',
   };
 
-  constructor(tag: string, color: string) {
+  constructor(color: string, tag: string = 'div') {
     this.container = document.createElement(tag);
     this.container.className = Block.textObject.containerClass;
     this.color = color;

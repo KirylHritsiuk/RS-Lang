@@ -1,3 +1,5 @@
+import { Block } from './blockTemplate';
+
 /* eslint-disable no-unused-vars */
 export interface IWord {
     id: string,
@@ -19,25 +21,26 @@ export interface IWord {
 export const enum backendData {
   url = 'https://new-learnword.herokuapp.com/',
 }
-export class WordCard {
+export class WordCard extends Block {
   static ClassNameData = {
     container: 'word-card',
   };
 
-  protected container: HTMLDivElement;
+  protected group: number;
 
-  constructor(protected data: IWord) {
-    this.container = document.createElement('div');
+  constructor(protected data: IWord, color: string) {
+    super(color);
     this.container.className = WordCard.ClassNameData.container;
     this.container.id = data.id;
     this.data = data;
+    this.group = data.group;
   }
 
   protected createCard() {
     this.container.innerHTML = `
     <img class="word-card_image" src="${backendData.url}${this.data.image}" alt="${this.data.word}">
     <div class="word-card-content">
-      <div class="word-card-title">
+      <div class="word-card-title border-left-color-${this.color}">
         <div class="title-word">
           <div class="word-group">
             <span class="title-word__item">${this.data.word}</span>
@@ -91,7 +94,7 @@ export class WordCard {
             <div class="word_example__translate translate">${this.data.textExampleTranslate}</div>
           </div>
           <div class="card-buttons">
-          <button class="button-card button-card_large button-card-dif" name="difficult" >Difficult</button>
+          <button class="button-card button-card_large bg-${this.color}" name="difficult" >Difficult</button>
           <button class="button-card button-card_large button-card-del name="delete"">Delete</button>
           </div>
         </div>

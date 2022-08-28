@@ -1,0 +1,90 @@
+.bg-red {
+    background: red !important;
+  }
+  .bg-orange {
+    background: orange !important;
+  }
+  .bg-palevioletred {
+    background: palevioletred !important;
+  }
+  .bg-slateblue {
+    background: slateblue !important;
+  }
+  .bg-darkslateblue {
+    background: darkslateblue !important;
+  }
+  .bg-purple {
+    background: purple !important;
+  }
+  .border-red {
+    border-color: red !important;
+  }
+  .border-orange {
+    border-color: orange !important;
+  }
+  .border-palevioletred {
+    border-color: palevioletred !important;
+  }
+  .border-slateblue {
+    border-color: slateblue !important;
+  }
+  .border-darkslateblue {
+    border-color: darkslateblue !important;
+  }
+  .color-purple {
+    color: purple !important;
+  }
+  .color-red {
+    color: red !important;
+  }
+  .color-orange {
+    color: orange !important;
+  }
+  .color-palevioletred {
+    color: palevioletred !important;
+  }
+  .color-slateblue {
+    color: slateblue !important;
+  }
+  .color-darkslateblue {
+    color: darkslateblue !important;
+  }
+  .color-purple {
+    color: purple !important;
+  }
+  .active-red {
+    color: red;
+    border-color: red;
+  }
+  .active-orange {
+    color: orange;
+    border-color: orange;
+  }
+  .active-palevioletred {
+    color: palevioletred;
+    border-color: palevioletred;
+  }
+  .active-slateblue {
+    color: slateblue;
+    border-color: slateblue;
+  }
+  .active-darkslateblue {
+    color: darkslateblue;
+    border-color: darkslateblue;
+  }
+  .active-purple {
+    color: purple;
+    border-color: purple;
+  }
+  
+  .hover-red {
+    &:hover {
+      box-shadow: 0px 0px 10px red;
+    }
+  }
+  .hover-purple {
+    &:hover {
+      box-shadow: 0px 0px 10px purple;
+    }
+  }
+  

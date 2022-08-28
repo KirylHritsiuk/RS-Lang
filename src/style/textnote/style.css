@@ -1,12 +1,50 @@
 .main_content {
   display: grid;
+  grid-row-gap: 32px;
+  grid-column-gap: 32px;
+  padding: 2%;
+}
+
+.textbook {
   grid-template-areas: "games games" "pagination-top pagination-top" "words-list groups" "pagination-bottom pagination-bottom";
   grid-template-rows: -webkit-max-content -webkit-max-content 1fr 50px;
   grid-template-rows: max-content max-content 1fr 50px;
   grid-template-columns: 1fr 72px;
   grid-row-gap: 32px;
   grid-column-gap: 32px;
-  padding: 2%;
+}
+
+.dictionary {
+  grid-template-areas: "games games" "pagination-top pagination-top" "filter filter" "words-list groups" "pagination-bottom pagination-bottom";
+  grid-template-rows: -webkit-max-content -webkit-max-content -webkit-max-content 1fr 50px;
+  grid-template-rows: max-content max-content max-content 1fr 50px;
+  grid-template-columns: 1fr 72px;
+}
+
+.filters {
+  grid-area: filter;
+}
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -moz-column-gap: 5%;
+       column-gap: 5%;
+  font-size: x-large;
+}
+
+.filter__block {
+  position: relative;
+  border-left: 5px solid grey;
+  padding: 1%;
+  cursor: pointer;
+}
+
+.filter__block_radio {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
 }
 
 .game_bar {
@@ -28,10 +66,6 @@
   justify-content: center;
 }
 
-.game_link-hover-red:hover {
-  box-shadow: 0px 0px 10px red;
-}
-
 .game__icon {
   width: 45px;
   height: 45px;
@@ -44,6 +78,7 @@
   font-weight: 600;
   text-decoration: none;
   color: black;
+  text-transform: capitalize;
 }
 
 .game {
@@ -62,6 +97,8 @@
 
 .words-list {
   grid-area: words-list;
+  min-height: 50vh;
+  position: relative;
 }
 
 .groups {
@@ -100,30 +137,11 @@
   cursor: pointer;
   transition: 0.2s linear;
 }
-.pag-item:hover {
-  color: red;
-  border-color: red;
-}
-.pag-item:hover svg {
-  fill: palevioletred;
-}
-
-.pag-item-active {
-  color: red;
-  border-color: red;
-}
 
 .pag-item-disabled {
   cursor: auto;
 }
 .pag-item-disabled svg {
-  fill: gray;
-}
-.pag-item-disabled:hover {
-  border-color: transparent;
-  fill: gray;
-}
-.pag-item-disabled:hover svg {
   fill: gray;
 }
 
@@ -177,8 +195,8 @@
   height: 55px;
   font-size: 1.7em;
   font-weight: 700;
-  font-family: "Roboto", sans-serif;
   color: bisque;
+  border-color: transparent;
 }
 
 .bg-red {
@@ -251,4 +269,109 @@
 
 .color-purple {
   color: purple !important;
+}
+
+.active-red {
+  color: red;
+  border-color: red;
+}
+
+.active-orange {
+  color: orange;
+  border-color: orange;
+}
+
+.active-palevioletred {
+  color: palevioletred;
+  border-color: palevioletred;
+}
+
+.active-slateblue {
+  color: slateblue;
+  border-color: slateblue;
+}
+
+.active-darkslateblue {
+  color: darkslateblue;
+  border-color: darkslateblue;
+}
+
+.active-purple {
+  color: purple;
+  border-color: purple;
+}
+
+.hover-red:hover {
+  box-shadow: 0px 0px 10px red;
+}
+
+.hover-purple:hover {
+  box-shadow: 0px 0px 10px purple;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+          animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.border-top-red {
+  border-top: 16px solid red;
+}
+
+.border-top-orange {
+  border-top: 16px solid orange;
+}
+
+.border-top-palevioletred {
+  border-top: 16px solid palevioletred;
+}
+
+.border-top-slateblue {
+  border-top: 16px solid slateblue;
+}
+
+.border-top-darkslateblue {
+  border-top: 16px solid darkslateblue;
+}
+
+.border-top-purple {
+  border-top: 16px solid purple;
+}
+
+.ds-none {
+  display: none;
+}
+
+.border-left-color-red {
+  border-left-color: red !important;
+}
+
+.border-left-color-purple {
+  border-left-color: purple !important;
 }/*# sourceMappingURL=style.css.map */
