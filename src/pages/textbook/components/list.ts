@@ -1,20 +1,31 @@
+import { Block } from './blockTemplate';
 import { IWord, WordCard } from './card';
 
-export class WorldList {
-  container: HTMLElement;
+export class WorldList extends Block {
+  protected data: Promise<IWord[]>;
 
-  constructor() {
-    this.container = document.createElement('div');
+  constructor(color: string) {
+    super(color);
     this.container.className = 'list_container';
+    this.data = (async function getData() {
+      const response = await fetch('https://new-learnword.herokuapp.com/words?group=3&page=0');
+      const data:IWord[] = await response.json();
+      return data;
+    }());
   }
 
-  async render() {
-    const response = await fetch('https://new-learnword.herokuapp.com/words?group=2&page=2');
-    const data:IWord[] = await response.json();
-    data.forEach((data) => {
-      const card = new WordCard(data);
-      this.container.append(card.render());
-    });
+  render() {
+    const wordsData = this.data;
+    this.container.innerHTML = '';
+    wordsData
+      .then((val) => {
+        const loader = <HTMLDivElement>document.querySelector('.loader');
+        loader.remove();
+        val.forEach((wordData) => {
+          const card = new WordCard(wordData, this.color);
+          this.container.append(card.render());
+        });
+      });
     return this.container;
   }
 }

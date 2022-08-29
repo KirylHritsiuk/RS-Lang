@@ -1,0 +1,169 @@
+.wrapper-minigames {
+    display: flex;
+}
+
+.minigame {
+    max-width: 364px;
+    min-height: 315px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.87);
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.minigame__icon {
+    margin: 32px 0 16px 0;
+}
+
+.minigame__img {
+    width: 55px;
+    height: 55px;
+}
+
+.minigames__title {
+    height: 36px;
+    margin: 8px;
+}
+
+.minigames__h2 {
+    text-align: center;
+    font-size: 2.4rem;
+}
+
+.game-text-wrapper {
+    margin: 0 35px;
+}
+
+.game-text {
+    font-size: 1.6rem;
+    text-align: center;
+    line-height: 150%;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.game-btn {
+    margin: 8px;
+    border: none;
+    width: 110px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.game-btn:hover {
+    opacity: 0.8;
+}
+
+.game-btn-text {
+    color: rgb(250, 252, 254);
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.audio-btn-color {
+    background-color: #0252CC;
+}
+
+.sprint-btn-color {
+    background-color: #FA5833;
+}
+
+
+
+
+.wrapper-level{
+    max-width: 430px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 100px;
+}
+
+.name-game{
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+    
+}
+
+.level-text{
+    color: #8D8D8D;
+    font-size: 35px;
+    font-weight: 400;
+    line-height: 35px;
+    margin-bottom: 32px;
+}
+
+.wrapper-select{
+    width: 430px;
+    height: 85px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.87);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin-bottom: 32px;
+}
+
+.circle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+   margin: 0 8px;
+   cursor: pointer;
+}
+
+.one-color{
+    background-color: #F2695C;
+}
+
+.circle-select{
+    color: #FAFCFE;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 21px;
+    
+}
+
+.two-color{
+    background-color: #F2A663;
+}
+
+.three-color{
+    background-color: #FAAAFA;
+}
+
+.four-color{
+    background-color: #88BFB0;
+}
+
+.five-color{
+    background-color: #60A4BF;
+}
+
+.six-color{
+    background-color: #59484D;
+}
+
+.btn-back{
+    width: 175px;
+    height: 48px;
+    border: none;
+}
+
+.btn-back-text{
+    color: rgb(250, 252, 254);
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+@media (max-width: 940px) {
+    .wrapper-games {
+        flex-direction: column;
+    }
+}

@@ -1,33 +1,55 @@
-export class Groups {
-  protected container: HTMLDivElement;
+import { groupData } from '../../../common/groups';
+import { Block } from './blockTemplate';
 
-  constructor() {
-    this.container = document.createElement('div');
-    this.container.className = 'groups_container';
+export class Groups extends Block {
+  static classNames = {
+    mainContainer: 'groups_container',
+    listClass: 'groups_list',
+    titleClass: 'groups_title',
+    itemClass: 'groups_item',
+    itemLinkClass: 'groups__link',
+    bgModificationClass: 'bg-',
+    colorModificationClass: 'color-',
+  };
+
+  constructor(protected color: string) {
+    super(color);
+    this.container.className = Groups.classNames.mainContainer;
   }
 
-  render(color: string = 'red') {
-    this.container.innerHTML = `<div class="groups_title color-${color}">Groups</div>
-      <ul class="groups_list">
-        <li class="groups_item border-${color}">
-          <a class="groups__link bg-red" href="#">1</a>
-        </li>
-        <li class="groups_item">
-          <a class="groups__link bg-orange" href="#">2</a>
-        </li>
-        <li class="groups_item">
-          <a class="groups__link bg-palevioletred" href="#">3</a>
-        </li>
-        <li class="groups_item">
-          <a class="groups__link bg-slateblue" href="#">4</a>
-        </li>
-        <li class="groups_item">
-          <a class="groups__link bg-darkslateblue" href="#">5</a>
-        </li>
-        <li class="groups_item">
-          <a class="groups__link bg-purple" href="#">6</a>
-        </li>
-      </ul>`;
+  createTitle() {
+    const container = document.createElement('div');
+    container.className = `${Groups.classNames.titleClass} ${Groups.classNames.colorModificationClass + this.color}`;
+    container.textContent = 'Groups';
+    return container;
+  }
+
+  createGroup() {
+    const container = document.createElement('ul');
+    container.className = Groups.classNames.listClass;
+    for (let i = 0; i < groupData.length; i++) {
+      container.append(this.createItem(i + 1, groupData[i]));
+    }
+    return container;
+  }
+
+  createItem(group: number, color: string) {
+    const item = document.createElement('li');
+    item.className = Groups.classNames.itemClass;
+    item.append(this.createLink(group, color));
+    return item;
+  }
+
+  createLink(group: number, color: string) {
+    const container = document.createElement('button');
+    container.className = `${Groups.classNames.itemLinkClass} ${Groups.classNames.bgModificationClass}${color}`;
+    container.textContent = group.toString();
+    container.dataset.group = group.toString();
+    return container;
+  }
+
+  render() {
+    this.container.append(this.createTitle(), this.createGroup());
     return this.container;
   }
 }

@@ -13,11 +13,14 @@ img {
   padding: 2%;
   border-radius: 10px;
   box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
+  font-size: 1.3rem;
 }
 
 .word-card_image {
-  width: 240px;
-  height: 280px;
+  width: 300px;
+  height: 400px;
+  // width: 100%;
+  // height: 100%;
   border-radius: 10px;
   object-fit: cover;
   object-position: center center;
@@ -40,6 +43,7 @@ img {
 .word-group {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 1%;
 }
 
 .title-word__item {
@@ -59,12 +63,13 @@ img {
 
 .title-word__item_translate {
   text-transform: none;
-  font-size: 1.4em;
+  font-size: 1.6em;
 }
 .word-text {
     display: flex;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     justify-content: space-between;
+    margin-bottom: 1%;
 }
 .translate {
   font-family: "Droid Serif", serif;
@@ -84,6 +89,12 @@ img {
 .word-meaning {
   display: flex;
 }
+.word-meaning__translate {
+  font-size: 1.3rem;
+}
+.word_example__translate {
+  
+}
 .card-buttons{
     display: flex;
     column-gap: 3%;
@@ -101,9 +112,6 @@ img {
 .button-card_large{
     width: 7rem;
     height: 3rem;
-}
-.button-card-dif{
-   background: red; 
 }
 .button-card-del{
     background: grey;

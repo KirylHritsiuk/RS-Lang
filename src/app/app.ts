@@ -1,8 +1,11 @@
 /* eslint-disable no-unused-vars */
 // import { Burger } from '../pages/components/burger';
 import { PageContent } from '../pages/components/pageContent';
+import { Dictionary } from '../pages/dictioanary/index';
 import { MainPage } from '../pages/main/main';
+import { MiniGame } from '../pages/minigames/minigames';
 import { Statistics } from '../pages/statistics/statistics';
+import { WorldList } from '../pages/textbook/components/list';
 // import { Modal } from '../pages/components/modal';
 import { Textbook } from '../pages/textbook/index';
 
@@ -20,20 +23,23 @@ export class App {
 
   static pageContainer: HTMLElement;
 
-  private static async renderNewPage(idPage: string) {
-    const pageContainer = <HTMLElement> document.getElementById('main');
+  private static renderNewPage(idPage: string) {
+    const pageContainer = <HTMLElement>document.getElementById('main');
     const title = <HTMLTitleElement>document.getElementById('headerTitle');
     title.textContent = idPage;
-    let page: MainPage | Textbook | Statistics |null = null;
-
+    let page: MainPage | Textbook | Statistics | MiniGame | null = null;
+    let wordList: WorldList | null = null;
     if (idPage === PageId.main || idPage === '') {
       page = new MainPage();
       title.textContent = PageId.main;
     } else if (idPage === PageId.textbook) {
-      page = new Textbook();
+      page = new Textbook('red');
+      wordList = new WorldList('red');
     } else if (idPage === PageId.dictionary) {
-      page = new Textbook();
-    // } else if (idPage === PageId.minigames) {
+      page = new Dictionary('purple');
+      wordList = new WorldList('purple');
+    } else if (idPage === PageId.minigames) {
+      page = new MiniGame();
     } else if (idPage === PageId.statistics) {
       page = new Statistics();
     } else {
@@ -41,8 +47,12 @@ export class App {
     }
     if (page) {
       pageContainer.innerHTML = '';
-      const pageHTML = await page.render();
+      const pageHTML = page.render();
       pageContainer.append(<HTMLDivElement>pageHTML);
+      if (wordList) {
+        const container = <HTMLElement>document.querySelector('.words-list');
+        container.append(wordList.render());
+      }
     }
   }
 

@@ -1,31 +1,37 @@
-export class GameBar {
-  protected container: HTMLDivElement;
+import { gamesData, IGames } from '../../../common/games';
+import { Block } from './blockTemplate';
 
-  constructor() {
-    this.container = document.createElement('div');
-    this.container.className = 'game_bar';
+export class GameBar extends Block {
+  static textObject = {
+    mainContainerClass: 'game_bar',
+    linkClass: 'game_link',
+    iconClass: 'game__icon',
+    titleClass: 'game__title',
+    containerClass: 'game',
+    modificationClass: 'hover-',
+  };
+
+  constructor(color: string) {
+    super(color);
+    this.container.className = GameBar.textObject.mainContainerClass;
   }
 
-  render(color: string = 'red') {
-    this.container.innerHTML = `<a class="game_link game_link-hover-${color}" href="/games/sprint">
-        <div class="game">
+  protected create(game: IGames) {
+    const element: string = `
+      <a class="${GameBar.textObject.linkClass} ${GameBar.textObject.modificationClass}${this.color}" href="${game.href}">
+        <div class="${GameBar.textObject.containerClass}">
           <img 
-            class="game__icon"
-            src="./assets/png/sprint.png" 
-            alt="#" />
-          <span class="game__title">Sprint</span>
-        </div>
-      </a>
-      <a class="game_link game_link-hover-${color}" href="/games/audio-challenge">
-        <div class="game">
-          <img
-            class="game__icon"
-            src="./assets/png/audio-challenge.png"
-            alt="#"
-          />
-          <span class="game__title">Audio-challenge</span>
+            class="${GameBar.textObject.iconClass}"
+            src="${game.img}" 
+            alt="${game.name}"/>
+          <span class="${GameBar.textObject.titleClass}">${game.name}</span>
         </div>
       </a>`;
+    return element;
+  }
+
+  render() {
+    gamesData.forEach((game) => this.container.insertAdjacentHTML('afterbegin', this.create(game)));
     return this.container;
   }
 }
