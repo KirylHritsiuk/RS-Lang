@@ -25,7 +25,7 @@ export class Modal {
 
   protected createModalElement() {
     this.modal.innerHTML = `
-      <form class="modal" action="" novalidate>
+      <form class="modal-user" action="" novalidate>
           <h1 class="modal-header">Login</h1>
 
           <div class="input_form">
@@ -106,12 +106,12 @@ export class Modal {
       }
     });
 
-    const form = document.querySelector('.modal') as HTMLFormElement;
+    const form = document.querySelector('.modal-user') as HTMLFormElement;
     let forms = document.querySelectorAll('.input_form') as NodeListOf<Element>;
     let inputName: HTMLInputElement | null = document.querySelector('.input_name');
     const inputEmail = document.querySelector('.input_email') as HTMLInputElement;
     const inputPassword = document.querySelector('.input_password') as HTMLInputElement;
-    const modalContainer = document.querySelector('.modal') as HTMLElement;
+    const modalContainer = document.querySelector('.modal-user') as HTMLElement;
     const signUp = document.querySelector('.register') as HTMLElement;
     const btnLogin = document.querySelector('.btn-login') as HTMLButtonElement;
 

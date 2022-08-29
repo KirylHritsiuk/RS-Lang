@@ -8,6 +8,7 @@ import { Statistics } from '../pages/statistics/statistics';
 import { WorldList } from '../pages/textbook/components/list';
 // import { Modal } from '../pages/components/modal';
 import { Textbook } from '../pages/textbook/index';
+import burger from '../pages/components/burger';
 
 const enum PageId {
   main = 'main',
@@ -73,5 +74,6 @@ export class App {
     document.body.append(pageContentHTML);
     App.renderNewPage(hash);
     App.routeChange();
+    burger.controlBurger();
   }
 }

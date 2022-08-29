@@ -1,69 +1,68 @@
-import { Api } from '../utils/api/api'
+import { Api } from '../utils/api/api';
 import {
   IUserSchema,
   IGetUserToken,
 } from '../types/types';
 
 export class User extends Api {
-  protected client: IUserSchema
+  protected client: IUserSchema;
 
   constructor() {
-    super()
+    super();
     this.client = {
       name: '',
       email: '',
       password: '',
       complete: false,
-    }
+    };
   }
 
   addUserLocalStorage(user: IGetUserToken) {
-    localStorage.setItem('rslang-user', JSON.stringify(user))
+    localStorage.setItem('rslang-user', JSON.stringify(user));
   }
+
   getUserLocalStorage(): IGetUserToken | null {
-    const result: string | null = localStorage.getItem('rslang-user')
+    const result: string | null = localStorage.getItem('rslang-user');
     if (result) {
-      return JSON.parse(result)
-    } else {
-      return null
+      return JSON.parse(result);
     }
+    return null;
   }
+
   clearUserLocalStorage(): void {
-    localStorage.removeItem('rslang-user')
+    localStorage.removeItem('rslang-user');
   }
 
   registerUser = async (user: IUserSchema) => {
-    const data = await this.createUser(user)
+    const data = await this.createUser(user);
     if (!data.complete) {
-      return false
+      return false;
     }
     const userToken: IGetUserToken = await this.signin({
       email: user.email,
-      password: user.password
-    })
+      password: user.password,
+    });
     if (userToken.token) {
-      this.addUserLocalStorage(userToken)
-      return data
-    } else {
-      return false
+      this.addUserLocalStorage(userToken);
+      return data;
     }
+    return false;
   };
 
   async loginUser(user: IUserSchema) {
     const userToken: IGetUserToken = await this.signin({
       email: user.email,
-      password: user.password
-    })
+      password: user.password,
+    });
     if (userToken.token) {
-      this.addUserLocalStorage(userToken)
-      const userData: IUserSchema = await this.getUser(userToken.userId, userToken.token)
-      return userToken
-    } else {
-      return userToken
+      this.addUserLocalStorage(userToken);
+      const userData: IUserSchema = await this.getUser(userToken.userId, userToken.token);
+      return userToken;
     }
+    return userToken;
   }
 
   logoutUser() {
-    this.clearUserLocalStorage()
+    this.clearUserLocalStorage();
   }
 }

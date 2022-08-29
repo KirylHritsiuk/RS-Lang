@@ -13,6 +13,7 @@ const baseUrl = 'https://new-learnword.herokuapp.com/';
 
 export class Api {
   protected url: string;
+
   protected client: IUserSchema;
 
   constructor() {
@@ -32,6 +33,7 @@ export class Api {
   getUrl(): string {
     return this.url;
   }
+
   async getWords(query: IQueryParameters[] = []): Promise<IWord[]> {
     const res = await fetch(`${this.url}words/?${Api.generateQueryString(query)}`);
     const words: IWord[] = await res.json();
@@ -61,6 +63,7 @@ export class Api {
     this.client.complete = false;
     return this.client;
   }
+
   async getUser(id: string, token: string): Promise<IUserSchema> {
     const res = await fetch(`${this.url}users/${id}`, {
       headers: {
