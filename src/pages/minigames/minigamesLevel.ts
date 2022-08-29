@@ -30,7 +30,6 @@ export class MinigameLevel {
   }
 
   render() {
-    this.container.append(this.createGameLevel());
     return this.container;
   }
 }

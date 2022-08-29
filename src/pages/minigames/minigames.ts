@@ -52,7 +52,6 @@ export class Minigame {
   }
 
   render() {
-    this.container.append(this.createGame());
     return this.container;
   }
 }
