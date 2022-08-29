@@ -21,7 +21,7 @@ export const enum backendData {
 }
 export class WordCard {
   static ClassNameData = {
-    container: 'card',
+    container: 'word-card',
   };
 
   protected container: HTMLDivElement;
@@ -35,9 +35,9 @@ export class WordCard {
 
   protected createCard() {
     this.container.innerHTML = `
-    <img class="card_image" src="${backendData.url}${this.data.image}" alt="${this.data.word}">
-    <div class="card-content">
-      <div class="card-title">
+    <img class="word-card_image" src="${backendData.url}${this.data.image}" alt="${this.data.word}">
+    <div class="word-card-content">
+      <div class="word-card-title">
         <div class="title-word">
           <div class="word-group">
             <span class="title-word__item">${this.data.word}</span>

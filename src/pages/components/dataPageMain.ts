@@ -1,10 +1,25 @@
-interface IArrAdvantages{
+const btnBurger = <HTMLDivElement>document.querySelector('.plase-burger');
+const nawWrapper = <HTMLDivElement>document.querySelector('.naw-wrapper');
+const icon = <HTMLDivElement>document.querySelector('.svg-burger');
+// const listIconSvg = <HTMLDivElement>document.querySelector('.')
+const modal = <HTMLDivElement>document.querySelector('.modal');
+const containerUL = <HTMLUListElement>document.querySelector('.ul-wrapper');
+const burgerWrapper = <HTMLDivElement>document.querySelector('.burger-wrapper');
+const svgBurger = <HTMLDivElement>document.querySelector('.svg-burger');
+const spanRs = <HTMLSpanElement>document.querySelector('.span-rs');
+const body = <HTMLBodyElement>document.body;
+
+export {
+  btnBurger, nawWrapper, icon, modal, containerUL, burgerWrapper, svgBurger, spanRs, body,
+};
+
+export interface IArrAdvantages{
     svg: string,
     name: string,
     text: string
 }
 
-interface ITeam{
+export interface ITeam{
     nickName:string,
         speciality: string,
         contribution: string,
