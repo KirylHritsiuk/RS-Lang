@@ -1,12 +1,26 @@
+import { User } from '../../modules/user';
+
 export class Modal {
   protected modal: HTMLDivElement;
 
   protected body: HTMLElement;
 
+  protected name: string;
+
+  protected password: string;
+
+  protected email: string;
+
+  user: User;
+
   constructor() {
     this.modal = document.createElement('div');
     this.body = document.querySelector('.body')!;
     this.modal.className = 'modal-overlay';
+    this.name = '';
+    this.password = '';
+    this.email = '';
+    this.user = new User();
   }
 
   protected createModalElement() {
@@ -32,6 +46,32 @@ export class Modal {
           </div>
       </form>`;
     return this.modal;
+  }
+
+  validateEmail(email: string): boolean {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  errorMesssageInModal(message: string, mess: string) {
+    if (message === 'open') {
+      const err: HTMLElement | null = document.querySelector('.error-message-modal');
+      if (!err) {
+        const btnModal = document.querySelector('.btn-login') as HTMLButtonElement;
+        btnModal.insertAdjacentHTML('afterend', `
+          <div class="error-message-modal" style="color:red;">${mess}</div>`);
+      } else {
+        const btnModalMessage: HTMLDivElement | null = document.querySelector('.error-message-modal');
+        if (btnModalMessage) {
+          btnModalMessage.innerText = mess;
+        }
+      }
+    } else {
+      const errorMessage: HTMLElement | null = document.querySelector('.error-message-modal');
+      if (errorMessage) {
+        errorMessage.remove();
+      }
+    }
   }
 
   addModalListener() {
@@ -71,8 +111,15 @@ export class Modal {
     let inputName: HTMLInputElement | null = document.querySelector('.input_name');
     const inputEmail = document.querySelector('.input_email') as HTMLInputElement;
     const inputPassword = document.querySelector('.input_password') as HTMLInputElement;
-    form.onsubmit = (ev) => {
-      const temp = ev.target as HTMLElement;
+    const modalContainer = document.querySelector('.modal') as HTMLElement;
+    const signUp = document.querySelector('.register') as HTMLElement;
+    const btnLogin = document.querySelector('.btn-login') as HTMLButtonElement;
+
+    form.onsubmit = async (ev) => {
+      ev.preventDefault();
+      let flagPass = false;
+      let flagName = true;
+      let flagEmail = false;
       const emailVal = inputEmail.value;
       const passwordVal = inputPassword.value;
       let nameVal = null;
@@ -80,27 +127,77 @@ export class Modal {
         nameVal = inputName.value;
         if (nameVal === '') {
           inputName.classList.add('error');
+          this.name = nameVal;
+          flagName = false;
+        }
+        if (nameVal.length < 2) {
+          inputName.classList.add('error');
+          this.name = nameVal;
+          this.errorMesssageInModal('open', 'name must be 2 or more');
+          flagName = false;
         } else {
           inputName.classList.remove('error');
+          this.name = nameVal;
+          flagName = true;
         }
       }
-      forms.forEach((line) => {
-        const temp = line as HTMLInputElement;
-        console.log(temp);
-      });
       if (emailVal === '') {
         inputEmail.classList.add('error');
+        flagEmail = false;
+      }
+      if (!this.validateEmail(emailVal)) {
+        inputEmail.classList.add('error');
+        this.errorMesssageInModal('open', 'email incorrect');
+        flagEmail = false;
       } else {
         inputEmail.classList.remove('error');
+        flagEmail = true;
       }
       if (passwordVal === '') {
         inputPassword.classList.add('error');
+        flagPass = false;
+      }
+      if (passwordVal.length < 6) {
+        inputPassword.classList.add('error');
+        this.errorMesssageInModal('open', 'password must be 6 or more');
+        flagPass = false;
       } else {
         inputPassword.classList.remove('error');
+        flagPass = true;
       }
-
-      console.log(temp.children);
-      return false;
+      this.email = emailVal;
+      this.password = passwordVal;
+      if (flagPass && flagName && flagEmail) {
+        if (btnLogin.textContent === 'sign up') {
+          const newUser = this.user.registerUser({
+            email: this.email,
+            name: this.name,
+            password: this.password,
+          });
+          newUser.then((data) => {
+            if (data) {
+              this.errorMesssageInModal('del', '');
+              this.modal.classList.add('transition-close-modal');
+            } else {
+              this.errorMesssageInModal('open', 'user email already exists');
+            }
+          });
+        }
+        if (btnLogin.textContent === 'sign in') {
+          const loginUser = this.user.loginUser({
+            email: this.email,
+            password: this.password,
+          });
+          loginUser.then((data) => {
+            if (data.message === 'Authenticated') {
+              this.errorMesssageInModal('del', '');
+              this.modal.classList.add('transition-close-modal');
+            } else {
+              this.errorMesssageInModal('open', data.message);
+            }
+          });
+        }
+      }
     };
     this.modal.addEventListener('click', (ev) => {
       const temp = ev.target as HTMLElement;
@@ -108,10 +205,6 @@ export class Modal {
         this.modal.classList.add('transition-close-modal');
       }
     });
-
-    const modalContainer = document.querySelector('.modal') as HTMLElement;
-    const signUp = document.querySelector('.register') as HTMLElement;
-    const btnLogin = document.querySelector('.btn-login') as HTMLButtonElement;
 
     signUp.addEventListener('click', () => {
       if (forms.length === 2) {
@@ -124,7 +217,7 @@ export class Modal {
         titleElement.innerText = 'Register';
         modalContainer.prepend(titleElement, nameElement);
         signUp.innerHTML = '<a href=#>Do you have an account? Sign In<a>';
-        btnLogin.textContent = 'SIGN UP';
+        btnLogin.textContent = 'sign up';
         inputName = document.querySelector('.input_name');
       } else if (forms.length === 3) {
         modalContainer.firstElementChild?.remove();
@@ -134,15 +227,14 @@ export class Modal {
         titleElement.innerText = 'Login';
         modalContainer.prepend(titleElement);
         signUp.innerHTML = '<a href=#>Don\'t have an account? Sign Up<a>';
-        btnLogin.textContent = 'SIGN IN';
+        btnLogin.textContent = 'sign in';
         inputName = null;
       }
-
       forms = document.querySelectorAll('.input_form') as NodeListOf<Element>;
     });
   }
 
-  render():void {
+  render(): void {
     this.body.append(this.createModalElement());
     this.addModalListener();
   }
