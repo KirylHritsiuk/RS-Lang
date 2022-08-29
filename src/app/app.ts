@@ -49,19 +49,7 @@ export class App {
       pageContainer.append(<HTMLDivElement>pageHTML);
       if (wordList) {
         const container = <HTMLElement>document.querySelector('.words-list');
-        // const listCon = <HTMLElement>document.querySelector('.list_container');
-        // window.addEventListener('load', () => {
-        //   const loader = <HTMLDivElement>document.querySelector('.loader');
-        //   loader.remove();
-        // }, { once: true });
-        const list = wordList.render();
-        const loader = <HTMLDivElement>document.querySelector('.loader');
-        container.onload = () => {
-          const loader = <HTMLDivElement>document.querySelector('.loader');
-          loader.remove();
-          console.log('onload');
-        };
-        container.append(list);
+        container.append(wordList.render());
       }
     }
   }
