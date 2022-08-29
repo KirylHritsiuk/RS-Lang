@@ -1,22 +1,22 @@
 import '../../style/miniGame.css';
 
-export class Minigame {
+export class MiniGame {
   protected container: HTMLDivElement;
 
   static TextObject = {
-    containerClassName: 'wrapper-game',
+    containerClassName: 'wrapper-minigames',
   };
 
   constructor() {
     this.container = <HTMLDivElement>document.createElement('div');
-    this.container.className = Minigame.TextObject.containerClassName;
+    this.container.className = MiniGame.TextObject.containerClassName;
   }
 
-  createGame() {
+  render() {
     this.container.innerHTML = `
-        <div class="game">
-            <div class="icon">
-                <img src="./assets/img/headphones.png" class="game-img" alt="lion">
+        <div class="minigame">
+            <div class="minigame__icon">
+                <img src="./assets/img/headphones.png" class="minigame__img" alt="lion">
             </div>
             <div class="title">
                 <span class="game-h2">Audio challenge</span>
@@ -32,8 +32,8 @@ export class Minigame {
             </div>
         </div>
         <div class="game">
-            <div class="icon">
-                <img src="./assets/img/shoes.png" class="img" alt="lion">
+            <div class="minigame__icon">
+                <img src="./assets/img/shoes.png" class="minigame__img" alt="lion">
             </div>
             <div class="title">
                 <span class="game-h2">Sprint</span>
@@ -48,10 +48,6 @@ export class Minigame {
             </div>
         </div>
     `;
-    return this.container;
-  }
-
-  render() {
     return this.container;
   }
 }

@@ -3,6 +3,7 @@
 import { PageContent } from '../pages/components/pageContent';
 import { Dictionary } from '../pages/dictioanary/index';
 import { MainPage } from '../pages/main/main';
+import { MiniGame } from '../pages/minigames/minigames';
 import { Statistics } from '../pages/statistics/statistics';
 import { WorldList } from '../pages/textbook/components/list';
 // import { Modal } from '../pages/components/modal';
@@ -23,10 +24,10 @@ export class App {
   static pageContainer: HTMLElement;
 
   private static renderNewPage(idPage: string) {
-    const pageContainer = <HTMLElement> document.getElementById('main');
+    const pageContainer = <HTMLElement>document.getElementById('main');
     const title = <HTMLTitleElement>document.getElementById('headerTitle');
     title.textContent = idPage;
-    let page: MainPage | Textbook | Statistics | null = null;
+    let page: MainPage | Textbook | Statistics | MiniGame | null = null;
     let wordList: WorldList | null = null;
     if (idPage === PageId.main || idPage === '') {
       page = new MainPage();
@@ -37,7 +38,8 @@ export class App {
     } else if (idPage === PageId.dictionary) {
       page = new Dictionary('purple');
       wordList = new WorldList('purple');
-    // } else if (idPage === PageId.minigames) {
+    } else if (idPage === PageId.minigames) {
+      page = new MiniGame();
     } else if (idPage === PageId.statistics) {
       page = new Statistics();
     } else {

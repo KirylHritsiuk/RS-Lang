@@ -1,8 +1,8 @@
-.wrapper-games {
+.wrapper-minigames {
     display: flex;
 }
 
-.game {
+.minigame {
     max-width: 364px;
     min-height: 315px;
     display: flex;
@@ -13,21 +13,21 @@
     margin: 20px;
 }
 
-.icon {
+.minigame__icon {
     margin: 32px 0 16px 0;
 }
 
-.game-img {
+.minigame__img {
     width: 55px;
     height: 55px;
 }
 
-.title {
+.minigames__title {
     height: 36px;
     margin: 8px;
 }
 
-.game-h2 {
+.minigames__h2 {
     text-align: center;
     font-size: 2.4rem;
 }

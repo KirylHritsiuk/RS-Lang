@@ -14,4 +14,4 @@
 //   4: 'darkslateblue',
 //   5: 'purple',
 // };
-export const groupData = ['red','orange','palevioletred','slateblue', 'darkslateblue', 'purple'];
+export const groupData = ['red', 'orange', 'palevioletred', 'slateblue', 'darkslateblue', 'purple'];
