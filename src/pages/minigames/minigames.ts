@@ -1,19 +1,19 @@
-import '../../style/miniGame.css'
+import '../../style/miniGame.css';
 
-export class Minigame{
-    protected container: HTMLDivElement;
+export class Minigame {
+  protected container: HTMLDivElement;
 
-    static TextObject= {
-        containerClassName: 'wrapper-game',
-    }
+  static TextObject = {
+    containerClassName: 'wrapper-game',
+  };
 
-    constructor(){
-        this.container = <HTMLDivElement>document.createElement('div');
-        this.container.className = Minigame.TextObject.containerClassName;
-    }
+  constructor() {
+    this.container = <HTMLDivElement>document.createElement('div');
+    this.container.className = Minigame.TextObject.containerClassName;
+  }
 
-    createGame(){
-        this.container.innerHTML = `
+  createGame() {
+    this.container.innerHTML = `
         <div class="game">
             <div class="icon">
                 <img src="./assets/img/headphones.png" class="game-img" alt="lion">
@@ -47,12 +47,12 @@ export class Minigame{
                 </button>
             </div>
         </div>
-    `
-        return this.container
-    }
+    `;
+    return this.container;
+  }
 
-    render(){
-        this.container.append(this.createGame())
-        return this.container;
-    }
+  render() {
+    this.container.append(this.createGame());
+    return this.container;
+  }
 }

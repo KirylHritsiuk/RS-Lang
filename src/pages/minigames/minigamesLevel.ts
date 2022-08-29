@@ -1,19 +1,19 @@
-import '../../style/miniGame.css'
+import '../../style/miniGame.css';
 
-export class MinigameLevel{
-    protected container: HTMLDivElement;
+export class MinigameLevel {
+  protected container: HTMLDivElement;
 
-    static TextObject= {
-        containerClassName: 'wrapper-level',
-    }
+  static TextObject = {
+    containerClassName: 'wrapper-level',
+  };
 
-    constructor(){
-        this.container = <HTMLDivElement>document.createElement('div');
-        this.container.className = MinigameLevel.TextObject.containerClassName;
-    }
+  constructor() {
+    this.container = <HTMLDivElement>document.createElement('div');
+    this.container.className = MinigameLevel.TextObject.containerClassName;
+  }
 
-    createGameLevel(){
-        this.container.innerHTML = `
+  createGameLevel() {
+    this.container.innerHTML = `
             <p class="name-game">Audio challenge</p>
             <p class="level-text">Select the Level</p>
             <div class="wrapper-select">
@@ -25,12 +25,12 @@ export class MinigameLevel{
                 <div class="circle six-color"><span class="circle-select">6</span></div>
             </div>
             <button class="btn-back audio-btn-color"><span class="btn-back-text">BACK TO GAMES</span></button>
-           `
-        return this.container
-    }
+           `;
+    return this.container;
+  }
 
-    render(){
-        this.container.append(this.createGameLevel())
-        return this.container;
-    }
+  render() {
+    this.container.append(this.createGameLevel());
+    return this.container;
+  }
 }
