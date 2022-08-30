@@ -7,7 +7,7 @@ import {
   IAggregatedWords,
   IGetUserToken,
   IUserWordSchema,
-} from '../../types/types';
+} from '../types/types';
 
 const baseUrl = 'https://new-learnword.herokuapp.com/';
 
@@ -221,3 +221,5 @@ export class Api {
     return err;
   }
 }
+
+export default new Api();

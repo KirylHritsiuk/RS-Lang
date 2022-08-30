@@ -1,13 +1,14 @@
-import { Api } from '../utils/api/api';
-import { LocalStorage } from '../modules/localStorage';
+import { Api } from '../../utils/api';
+import { LocalStorageUser } from './localStorageUser';
 import {
   IUserSchema,
   IGetUserToken,
-} from '../types/types';
+} from '../../types/types';
 
 export class User extends Api {
   protected client: IUserSchema;
-  protected local: LocalStorage;
+
+  protected local: LocalStorageUser;
 
   constructor() {
     super();
@@ -17,7 +18,7 @@ export class User extends Api {
       password: '',
       complete: false,
     };
-    this.local = new LocalStorage()
+    this.local = new LocalStorageUser('rslang-user');
   }
 
   registerUser = async (user: IUserSchema) => {
@@ -31,7 +32,7 @@ export class User extends Api {
     });
     if (userToken.token) {
       this.local.addUserLocalStorage(userToken);
-      this.listenerLogout()
+      this.listenerLogout();
       return data;
     }
     return false;
@@ -45,18 +46,18 @@ export class User extends Api {
     if (userToken.token) {
       this.local.addUserLocalStorage(userToken);
       const userData: IUserSchema = await this.getUser(userToken.userId, userToken.token);
-      this.listenerLogout()
+      this.listenerLogout();
       return userToken;
     }
     return userToken;
   }
 
   listenerLogout() {
-    const logout = document.querySelector('.a-nav') as HTMLLinkElement
+    const logout = document.querySelector('#logout') as HTMLElement;
     logout.addEventListener('click', (ev) => {
-      ev.preventDefault()
-      this.logoutUser()
-    })
+      ev.preventDefault();
+      this.logoutUser();
+    });
   }
 
   logoutUser() {

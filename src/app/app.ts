@@ -67,7 +67,7 @@ export class App {
 
   constructor() {
     this.pageContent = new PageContent();
-    this.modal = new Modal()
+    this.modal = new Modal();
   }
 
   async run() {
@@ -77,6 +77,6 @@ export class App {
     App.renderNewPage(hash);
     App.routeChange();
     burger.controlBurger();
-    this.modal.render()
+    this.modal.render();
   }
 }

@@ -13,7 +13,7 @@ export class Header {
   render() {
     this.container.innerHTML = `<div class="login-wrapper">
         <h1 id="headerTitle" class="style-h1"></h1>
-        <button class="login">
+        <button class="login" id="login">
             <div class="plase-login">
                 <svg class="svg-login" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
                     <path
