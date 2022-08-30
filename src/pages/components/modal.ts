@@ -1,4 +1,4 @@
-import { User } from '../../modules/user';
+import { User } from '../../modules/user/user';
 
 export class Modal {
   protected modal: HTMLDivElement;
@@ -75,7 +75,7 @@ export class Modal {
   }
 
   addModalListener() {
-    const login: HTMLElement | null = document.querySelector('.login');
+    const login: HTMLElement | null = document.querySelector('#login');
 
     if (login) {
       login.addEventListener('click', () => {
@@ -237,5 +237,8 @@ export class Modal {
   render(): void {
     this.body.append(this.createModalElement());
     this.addModalListener();
+    if (localStorage.getItem('rslang-user')) {
+      this.user.listenerLogout();
+    }
   }
 }
