@@ -31,7 +31,7 @@ export class User extends Api {
       password: user.password,
     });
     if (userToken.token) {
-      this.local.addUserLocalStorage(userToken);
+      this.local.addItemLocalStorage(userToken);
       this.listenerLogout();
       return data;
     }
@@ -44,7 +44,7 @@ export class User extends Api {
       password: user.password,
     });
     if (userToken.token) {
-      this.local.addUserLocalStorage(userToken);
+      this.local.addItemLocalStorage(userToken);
       const userData: IUserSchema = await this.getUser(userToken.userId, userToken.token);
       this.listenerLogout();
       return userToken;
@@ -61,6 +61,6 @@ export class User extends Api {
   }
 
   logoutUser() {
-    this.local.clearUserLocalStorage();
+    this.local.clearItemLocalStorage();
   }
 }

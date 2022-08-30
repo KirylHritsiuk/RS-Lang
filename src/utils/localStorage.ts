@@ -3,17 +3,17 @@ export abstract class LocalStorage<T> {
     this.key = key;
   }
 
-  addUserLocalStorage(data: T) {
+  addItemLocalStorage(data: T) {
     localStorage.setItem(this.key, JSON.stringify(data));
   }
 
-  getUserLocalStorage(): T | null {
+  getItemLocalStorage(): T | null {
     const result: string | null = localStorage.getItem(this.key);
     if (result) return JSON.parse(result);
     return null;
   }
 
-  clearUserLocalStorage(): void {
+  clearItemLocalStorage(): void {
     localStorage.removeItem(this.key);
   }
 }
