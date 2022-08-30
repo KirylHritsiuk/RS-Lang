@@ -6,7 +6,7 @@ import { MainPage } from '../pages/main/main';
 import { MiniGame } from '../pages/minigames/minigames';
 import { Statistics } from '../pages/statistics/statistics';
 import { WorldList } from '../pages/textbook/components/list';
-// import { Modal } from '../pages/components/modal';
+import { Modal } from '../pages/components/modal';
 import { Textbook } from '../pages/textbook/index';
 import burger from '../pages/components/burger';
 
@@ -21,6 +21,7 @@ export class App {
   private static container: HTMLElement = document.createElement('div');
 
   protected pageContent: PageContent;
+  protected modal: Modal;
 
   static pageContainer: HTMLElement;
 
@@ -66,6 +67,7 @@ export class App {
 
   constructor() {
     this.pageContent = new PageContent();
+    this.modal = new Modal()
   }
 
   async run() {
@@ -75,5 +77,6 @@ export class App {
     App.renderNewPage(hash);
     App.routeChange();
     burger.controlBurger();
+    this.modal.render()
   }
 }
