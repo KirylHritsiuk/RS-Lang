@@ -96,12 +96,15 @@ export class MainPage {
                     <a href="https://rss-lang-team-53.web.app/textbook"><button class="button small">sing
                             up</button></a>
                 </div>
-                <img class="img-saze-computer" src="./assets/svg/computer.svg" alt="computer">`;
+                <div class = "place-computer">
+                <img class="img-saze-computer" src="./assets/svg/computer.svg" alt="computer">
+                </div>`;
     return container;
   }
 
   static createTeamList() {
     const [container, listContainer] = [<HTMLDivElement>document.createElement('div'), <HTMLDivElement>document.createElement('div')];
+    listContainer.className = 'wrapper-persons'
     container.innerHTML = '<h2 class="style-h2">Our team</h2>';
     team.forEach((el) => listContainer.append(MainPage.createTeam(el)));
     container.append(listContainer);
