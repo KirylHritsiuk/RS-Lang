@@ -151,13 +151,13 @@ export class Api {
     return res.status === 204;
   }
 
-  async getUserAgregatedWords(id: string, query: IQueryParameters[]): Promise<IWord> {
+  async getUserAggregatedWords(id: string, query: IQueryParameters[]): Promise<IWord> {
     const res = await fetch(`${this.url}users/${id}/aggregatedWords/${Api.generateQueryString(query)}`);
     const aggregatedWords: IWord = await res.json();
     return aggregatedWords;
   }
 
-  async getUserAgregatedWordById(userId: string, wordId: string): Promise<IAggregatedWords[]> {
+  async getUserAggregatedWordById(userId: string, wordId: string): Promise<IAggregatedWords[]> {
     const res = await fetch(`${this.url}users/${userId}/aggregatedWords/${wordId}`);
     const aggregatedWord: IAggregatedWords[] = await res.json();
     return aggregatedWord;
