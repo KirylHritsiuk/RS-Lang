@@ -1,8 +1,14 @@
-import { Page } from './template/textbook';
+import '../../style/textbook/style.css';
+import { Page } from './template/index';
+import localStorage from '../../modules/textbook/localStorageTextbook';
+import { groupQuery, pageQuery } from '../../common/query';
 
 export class Textbook extends Page {
-  constructor(protected color:string) {
-    super(color);
+  constructor(protected group: number) {
+    super(group);
+    if (localStorage.getItemLocalStorage() === null) {
+      localStorage.addItemLocalStorage([groupQuery, pageQuery]);
+    }
   }
 
   render() {

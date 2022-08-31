@@ -157,7 +157,7 @@
 }
 
 .groups_title {
-  font-size: 1.3em;
+  font-size: 2.5em;
   font-weight: 500;
   margin-bottom: 10%;
 }
@@ -180,7 +180,9 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  border: 3px solid transparent;
+  border-style: solid;
+  border-width: 3px;
+  border-color: transparent;
   width: 70px;
   height: 70px;
   margin-bottom: 11%;
@@ -193,7 +195,7 @@
   border-radius: 50%;
   width: 55px;
   height: 55px;
-  font-size: 1.7em;
+  font-size: 2.7em;
   font-weight: 700;
   color: bisque;
   border-color: transparent;
@@ -241,6 +243,10 @@
 
 .border-darkslateblue {
   border-color: darkslateblue !important;
+}
+
+.border-purple {
+  border-color: purple !important;
 }
 
 .color-purple {

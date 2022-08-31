@@ -1,8 +1,8 @@
 import { Block } from './blockTemplate';
 
 export class Filter extends Block {
-  constructor(protected color: string) {
-    super(color);
+  constructor(group: number) {
+    super(group);
     this.container.className = 'filter-container';
   }
 

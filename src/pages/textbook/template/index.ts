@@ -14,13 +14,15 @@ export abstract class Page {
 
   protected paginationBottom: HTMLElement;
 
-  protected wordList: HTMLElement;
+  protected wordsList: HTMLElement;
 
   protected groups: HTMLElement;
 
   protected loader: HTMLElement;
 
   protected filter: HTMLElement;
+
+  protected color: string;
 
   static TextObject = {};
 
@@ -37,17 +39,17 @@ export abstract class Page {
     loader: 'loader',
   };
 
-  constructor(protected color: string = groupData[0]) {
+  constructor(protected group: number = 0) {
     this.container = document.createElement('div');
+    this.wordsList = document.createElement('div');
     this.container.classList.add(Page.MainClass.container);
-    this.color = color;
-    this.games = new GameBar(this.color).render();
-    this.paginationTop = new Pagination(this.color).render();
-    this.paginationBottom = new Pagination(this.color).render();
-    this.loader = new Loader(this.color).render();
-    this.filter = new Filter(this.color).render();
-    this.wordList = document.createElement('div');
-    this.groups = new Groups(this.color).render();
+    this.color = groupData[group];
+    this.games = new GameBar(group).render();
+    this.paginationTop = new Pagination(group).render();
+    this.paginationBottom = new Pagination(group).render();
+    this.loader = new Loader(group).render();
+    this.filter = new Filter(group).render();
+    this.groups = new Groups(group).render();
   }
 
   protected createBlock(className: string, block: HTMLElement) {

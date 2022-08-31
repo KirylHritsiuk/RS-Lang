@@ -6,11 +6,12 @@ export class Loader extends Block {
     borderTopModificationClass: 'border-top-',
   };
 
-  constructor(protected color: string) {
-    super(color);
+  constructor(group: number) {
+    super(group);
     this.container.classList.add(
       Loader.textObject.containerClass,
       Loader.textObject.borderTopModificationClass + this.color,
     );
+    this.container.id = Loader.textObject.containerClass;
   }
 }

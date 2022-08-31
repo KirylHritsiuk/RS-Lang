@@ -11,8 +11,8 @@ export class GameBar extends Block {
     modificationClass: 'hover-',
   };
 
-  constructor(color: string) {
-    super(color);
+  constructor(group: number) {
+    super(group);
     this.container.className = GameBar.textObject.mainContainerClass;
   }
 

@@ -1,5 +1,5 @@
 import { Block } from './blockTemplate';
-
+import '../../../style/card/style.css';
 /* eslint-disable no-unused-vars */
 export interface IWord {
     id: string,
@@ -28,8 +28,8 @@ export class WordCard extends Block {
 
   protected group: number;
 
-  constructor(protected data: IWord, color: string) {
-    super(color);
+  constructor(protected data: IWord, group: number) {
+    super(group);
     this.container.className = WordCard.ClassNameData.container;
     this.container.id = data.id;
     this.data = data;
