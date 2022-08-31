@@ -15,6 +15,8 @@ export abstract class Block {
     bgModificationClass: 'bg-',
     colorModificationClass: 'color-',
     borderModificationClass: 'border-',
+    borderLeftModificationClass: 'border-left-',
+    hoverModificationClass: 'hover-',
   };
 
   constructor(group: number, tag: string = 'div') {

@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import { groupData } from '../../../common/groups';
 import { groupQuery, pageQuery } from '../../../common/query';
 import localStorage from '../../../modules/textbook/localStorageTextbook';
@@ -20,6 +21,24 @@ export class Groups extends Block {
     for (let i = 0; i < groupsList.length; i++) {
       groupsList[i].className = Groups.classNames.itemClass;
     }
+  }
+
+  static changeColorTame(color: string) {
+    const [
+      games,
+      pag,
+      title,
+    ] = [
+      document.getElementsByName('game'),
+      document.getElementsByName('pagButton'),
+      document.querySelector(`.${Groups.classNames.titleClass}`),
+    ];
+
+    replaceClasses(games, color, Block.modificationClass.hoverModificationClass);
+    replaceClasses(pag, color, Block.modificationClass.hoverModificationClass);
+    const pos = title!.className.indexOf(Groups.modificationClass.colorModificationClass);
+    // eslint-disable-next-line no-param-reassign
+    title!.className = `${title!.className.slice(0, pos)} ${Groups.modificationClass.colorModificationClass}${color}`;
   }
 
   constructor(group: number) {
@@ -74,6 +93,7 @@ export class Groups extends Block {
       container
         .parentElement?.classList
         .add(Block.modificationClass.borderModificationClass + color);
+      Groups.changeColorTame(color);
     });
     return container;
   }
@@ -82,4 +102,20 @@ export class Groups extends Block {
     this.container.append(this.createTitle(), this.createGroup());
     return this.container;
   }
+}
+
+function replaceClasses(arr: NodeListOf<HTMLElement>, color: string, modif: string) {
+  arr.forEach((item) => {
+    const pos = item.className.indexOf(modif);
+    if (item.className.indexOf('pag-item-disable') === -1) {
+      if (item.className.indexOf('active-') === -1) {
+        // eslint-disable-next-line no-param-reassign
+        item.className = `${item.className.slice(0, pos)} ${modif}${color}`;
+      } else {
+        const pos = item.className.indexOf(modif);
+        // eslint-disable-next-line no-param-reassign
+        item.className = `${item.className.slice(0, pos)} ${'active-'}${color}`;
+      }
+    }
+  });
 }
