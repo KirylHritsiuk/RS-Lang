@@ -26,6 +26,7 @@ export class PageContent {
   render() {
     const [headerHTML, mainHTML, footerHTML] = [
       this.header.render(),
+      this.header.createNameUser(),
       this.main.render(),
       this.footer.render(),
     ];

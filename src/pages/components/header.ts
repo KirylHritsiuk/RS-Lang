@@ -33,12 +33,30 @@ export class Header {
     }
   }
 
-
+  createNameUser(){
+    const container = <HTMLDivElement>document.createElement('div')
+    container.className = 'wrapper-yes-registration'
+    const localStorageUser: IGetUserToken | null = JSON.parse(localStorage.getItem('rslang-user'))
+    const id = localStorageUser.userId
+    const token = localStorageUser.token
+    Api.getUser(id, token).then(data => {
+      console.log(data)
+      container.innerHTML = `
+          <div class="wrapper-name">
+             <p class="registration-text">${data.name}</p>
+             <p class="registration-text">${data.email}</p>
+          </div>
+          ${this.createAvatar('')}         
+         `;
+    })
+            this.container.append(container)
+    return this.container
+  }
 
   render() {
     const localStorageUser: IGetUserToken | null = JSON.parse(localStorage.getItem('rslang-user'))
     if (localStorageUser === null) {
-      this.container.innerHTML = `<div class="login-wrapper">
+       this.container.innerHTML = `<div class="login-wrapper">
         <h1 id="headerTitle" class="style-h1"></h1>
         <div class="wrapper-no-registration">
            <button class="login" id="login">
@@ -56,27 +74,14 @@ export class Header {
        </div>
     </div>`;
       return this.container;
-
     } else {
-      const id = localStorageUser.userId
-      const token = localStorageUser.token
-      Api.getUser(id, token).then(data => {
-        console.log(data)
-        this.container.innerHTML = `<div class="login-wrapper">
-      <h1 id="headerTitle" class="style-h1"></h1>
-       
-       <div class="wrapper-yes-registration">
-           <div class="wrapper-name">
-               <p class="registration-text">${data.name}</p>
-               <p class="registration-text">${data.email}</p>
-           </div>
-            ${this.createAvatar('')}         
-       </div>
-       </div>`;
-      })
-
+        this.container.innerHTML = `
+        <div class="login-wrapper">
+          <h1 id="headerTitle" class="style-h1"></h1>
+        </div>
+        `;
       return this.container;
-    }
+      }
   }
 }
 
