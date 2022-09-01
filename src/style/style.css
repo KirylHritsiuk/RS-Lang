@@ -345,6 +345,43 @@ html {
     justify-content: center;
 }
 
+
+
+.wrapper-yes-registration{
+    display: flex;
+}
+
+.wrapper-name{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.wrapper-avatar{
+    width: 40px;
+    height: 40px;
+    background-color: #BDBDBD;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    overflow:hidden;
+}
+
+.img-avatar{
+    /* object-fit: contain; */
+    height: 100%;
+    width: 100%;
+}
+
+.svg-avatar {
+    width: 28px;
+    height: 28px;
+    fill: white;
+}
+
 @media (max-width: 1000px) {
 
     .rs-lang-wrapper {
