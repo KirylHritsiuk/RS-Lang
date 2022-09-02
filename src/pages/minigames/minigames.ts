@@ -36,7 +36,7 @@ export class MiniGame {
             <div class="game-btn-wrapper">
                 <button class="game-btn audio-btn-color" id="audio_chellenge">
                     <span class="game-btn-text">play</span>
-                </button>
+                </button></a>
             </div>
         </div>
         <div class="minigame">
