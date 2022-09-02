@@ -120,6 +120,7 @@
   justify-content: center;
   -moz-column-gap: 2%;
        column-gap: 2%;
+  font-size: large;
 }
 
 .game-button {
@@ -128,21 +129,18 @@
 }
 
 .pag-item {
-  width: 40px;
-  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
   border: 3px solid transparent;
   border-radius: 10px;
-  font-size: larger;
+  font-weight: 500;
+  font-size: x-large;
   text-align: center;
   cursor: pointer;
   transition: 0.2s linear;
-}
-
-.pag-item-disabled {
-  cursor: auto;
-}
-.pag-item-disabled svg {
-  fill: gray;
 }
 
 .groups_container {
@@ -157,7 +155,7 @@
 }
 
 .groups_title {
-  font-size: 1.3em;
+  font-size: 2.5em;
   font-weight: 500;
   margin-bottom: 10%;
 }
@@ -180,7 +178,9 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  border: 3px solid transparent;
+  border-style: solid;
+  border-width: 3px;
+  border-color: transparent;
   width: 70px;
   height: 70px;
   margin-bottom: 11%;
@@ -193,10 +193,97 @@
   border-radius: 50%;
   width: 55px;
   height: 55px;
-  font-size: 1.7em;
+  font-size: 2.7em;
   font-weight: 700;
   color: bisque;
   border-color: transparent;
+  cursor: pointer;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+          animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.pag-item-hover-red:hover {
+  color: red;
+  border-color: red;
+}
+.pag-item-hover-red:hover svg {
+  fill: red;
+}
+
+.pag-item-hover-orange:hover {
+  color: red;
+  border-color: red;
+}
+.pag-item-hover-orange:hover svg {
+  fill: red;
+}
+
+.pag-item-hover-palevioletred:hover {
+  color: palevioletred;
+  border-color: palevioletred;
+}
+.pag-item-hover-palevioletred:hover svg {
+  fill: palevioletred;
+}
+
+.pag-item-hover-slateblue:hover {
+  color: slateblue;
+  border-color: slateblue;
+}
+.pag-item-hover-slateblue:hover svg {
+  fill: slateblue;
+}
+
+.pag-item-hover-darkslateblue:hover {
+  color: darkslateblue;
+  border-color: darkslateblue;
+}
+.pag-item-hover-darkslateblue:hover svg {
+  fill: darkslateblue;
+}
+
+.pag-item-hover-purple:hover {
+  color: purple;
+  border-color: purple;
+}
+.pag-item-hover-purple:hover svg {
+  fill: purple;
+}
+
+.pag-item-disabled {
+  cursor: auto;
+}
+.pag-item-disabled svg {
+  fill: gray;
 }
 
 .bg-red {
@@ -241,6 +328,10 @@
 
 .border-darkslateblue {
   border-color: darkslateblue !important;
+}
+
+.border-purple {
+  border-color: purple !important;
 }
 
 .color-purple {
@@ -305,41 +396,26 @@
   box-shadow: 0px 0px 10px red;
 }
 
+.hover-orange:hover {
+  box-shadow: 0px 0px 10px orange;
+}
+
+.hover-palevioletred:hover {
+  box-shadow: 0px 0px 10px palevioletred;
+}
+
+.hover-slateblue:hover {
+  box-shadow: 0px 0px 10px slateblue;
+}
+
+.hover-darkslateblue:hover {
+  box-shadow: 0px 0px 10px darkslateblue;
+}
+
 .hover-purple:hover {
   box-shadow: 0px 0px 10px purple;
 }
 
-.loader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  -webkit-animation: spin 2s linear infinite;
-          animation: spin 2s linear infinite;
-}
-
-@-webkit-keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 .border-top-red {
   border-top: 16px solid red;
 }
@@ -364,14 +440,30 @@
   border-top: 16px solid purple;
 }
 
-.ds-none {
-  display: none;
-}
-
-.border-left-color-red {
+.border-left-red {
   border-left-color: red !important;
 }
 
-.border-left-color-purple {
+.border-left-orange {
+  border-left-color: orange !important;
+}
+
+.border-left-palevioletred {
+  border-left-color: palevioletred !important;
+}
+
+.border-left-slateblue {
+  border-left-color: slateblue !important;
+}
+
+.border-left-darkslateblue {
+  border-left-color: darkslateblue !important;
+}
+
+.border-left-purple {
   border-left-color: purple !important;
+}
+
+.ds-none {
+  display: none;
 }/*# sourceMappingURL=style.css.map */

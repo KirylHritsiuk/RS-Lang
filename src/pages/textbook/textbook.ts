@@ -1,11 +1,17 @@
-import { Page } from './template/textbook';
+import '../../style/textbook/style.css';
+import { Page } from './template/index';
+import localStorage from '../../modules/textbook/localStorageTextbook';
+import { createQuery } from '../../modules/textbook/queryTextbook';
 
 export class Textbook extends Page {
-  constructor(protected color:string) {
-    super(color);
+  checkStorage() {
+    if (localStorage.getItemLocalStorage() === null) {
+      localStorage.addItemLocalStorage(createQuery());
+    }
   }
 
   render() {
+    this.checkStorage();
     this.container.classList.add(Textbook.MainClass.textbook);
     this.container.append(
       this.createBlock(Page.MainClass.games, this.games),

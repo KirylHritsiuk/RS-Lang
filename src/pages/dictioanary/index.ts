@@ -1,11 +1,7 @@
-import { Textbook } from '../textbook/index';
-import { Page } from '../textbook/template/textbook';
+import { Textbook } from '../textbook/textbook';
+import { Page } from '../textbook/template/index';
 
 export class Dictionary extends Textbook {
-  constructor(protected color:string) {
-    super(color);
-  }
-
   render() {
     this.container.classList.add(Dictionary.MainClass.dictionary);
     this.container.append(

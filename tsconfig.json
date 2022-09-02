@@ -6,7 +6,9 @@
     "module": "es6",
     "target": "es5",
     "allowJs": true,
+    "downlevelIteration": true,
     "outDir": "./dist/",
+    "lib": ["DOM", "DOM.Iterable"]
   },
   // "files": ["src/index.ts"],
   "exclude": ["node_modules"]

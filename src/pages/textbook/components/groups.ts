@@ -1,5 +1,10 @@
+/* eslint-disable no-use-before-define */
 import { groupData } from '../../../common/groups';
+import localStorage from '../../../modules/textbook/localStorageTextbook';
+import { createQuery } from '../../../modules/textbook/queryTextbook';
+import { changeList } from '../../../utils/changeList';
 import { Block } from './blockTemplate';
+import { Pagination } from './pagination';
 
 export class Groups extends Block {
   static classNames = {
@@ -8,18 +13,42 @@ export class Groups extends Block {
     titleClass: 'groups_title',
     itemClass: 'groups_item',
     itemLinkClass: 'groups__link',
-    bgModificationClass: 'bg-',
-    colorModificationClass: 'color-',
   };
 
-  constructor(protected color: string) {
-    super(color);
+  static toDefaultItem() {
+    const groupsList = <HTMLCollectionOf<HTMLElement>>document
+      .getElementsByClassName(Groups.classNames.itemClass);
+    for (let i = 0; i < groupsList.length; i++) {
+      groupsList[i].className = Groups.classNames.itemClass;
+    }
+  }
+
+  static changeColorTame(color: string) {
+    const [
+      games,
+      pag,
+      title,
+    ] = [
+      document.getElementsByName('game'),
+      document.getElementsByName('pagButton'),
+      document.querySelector(`.${Groups.classNames.titleClass}`),
+    ];
+
+    replaceClasses(games, color, Block.modificationClass.hoverModificationClass);
+    replaceClasses(pag, color, Pagination.textObject.hoverMod);
+    const pos = title!.className.indexOf(Groups.modificationClass.colorModificationClass);
+    // eslint-disable-next-line no-param-reassign
+    title!.className = `${title!.className.slice(0, pos)} ${Groups.modificationClass.colorModificationClass}${color}`;
+  }
+
+  constructor() {
+    super();
     this.container.className = Groups.classNames.mainContainer;
   }
 
   createTitle() {
     const container = document.createElement('div');
-    container.className = `${Groups.classNames.titleClass} ${Groups.classNames.colorModificationClass + this.color}`;
+    container.className = `${Groups.classNames.titleClass} ${Block.modificationClass.colorModificationClass + this.color}`;
     container.textContent = 'Groups';
     return container;
   }
@@ -28,23 +57,36 @@ export class Groups extends Block {
     const container = document.createElement('ul');
     container.className = Groups.classNames.listClass;
     for (let i = 0; i < groupData.length; i++) {
-      container.append(this.createItem(i + 1, groupData[i]));
+      container.append(this.createItem(i, groupData[i]));
     }
     return container;
   }
 
   createItem(group: number, color: string) {
     const item = document.createElement('li');
-    item.className = Groups.classNames.itemClass;
+    if (color === this.color) {
+      item.className = `${Groups.classNames.itemClass} ${Groups.modificationClass.borderModificationClass + color}`;
+    } else {
+      item.className = Groups.classNames.itemClass;
+    }
     item.append(this.createLink(group, color));
     return item;
   }
 
   createLink(group: number, color: string) {
     const container = document.createElement('button');
-    container.className = `${Groups.classNames.itemLinkClass} ${Groups.classNames.bgModificationClass}${color}`;
-    container.textContent = group.toString();
+    container.className = `${Groups.classNames.itemLinkClass} ${Block.modificationClass.bgModificationClass}${color}`;
+    container.textContent = (group + 1).toString();
     container.dataset.group = group.toString();
+    container.addEventListener('click', () => {
+      localStorage.addItemLocalStorage(createQuery(group, 0));
+      changeList();
+      Groups.toDefaultItem();
+      container
+        .parentElement?.classList
+        .add(Block.modificationClass.borderModificationClass + color);
+      Groups.changeColorTame(color);
+    });
     return container;
   }
 
@@ -52,4 +94,20 @@ export class Groups extends Block {
     this.container.append(this.createTitle(), this.createGroup());
     return this.container;
   }
+}
+
+function replaceClasses(arr: NodeListOf<HTMLElement>, color: string, modif: string) {
+  arr.forEach((item) => {
+    const pos = item.className.indexOf(modif);
+    if (item.className.indexOf('pag-item-disable') === -1) {
+      if (item.className.indexOf('active-') === -1) {
+        // eslint-disable-next-line no-param-reassign
+        item.className = `${item.className.slice(0, pos)} ${modif}${color}`;
+      } else {
+        const pos = item.className.indexOf(modif);
+        // eslint-disable-next-line no-param-reassign
+        item.className = `${item.className.slice(0, pos)} ${'active-'}${color}`;
+      }
+    }
+  });
 }

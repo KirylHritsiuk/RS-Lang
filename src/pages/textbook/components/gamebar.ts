@@ -11,14 +11,14 @@ export class GameBar extends Block {
     modificationClass: 'hover-',
   };
 
-  constructor(color: string) {
-    super(color);
+  constructor() {
+    super();
     this.container.className = GameBar.textObject.mainContainerClass;
   }
 
   protected create(game: IGames) {
     const element: string = `
-      <a class="${GameBar.textObject.linkClass} ${GameBar.textObject.modificationClass}${this.color}" href="${game.href}">
+      <a class="${GameBar.textObject.linkClass} ${GameBar.textObject.modificationClass}${this.color}" href="${game.href}" name="game">
         <div class="${GameBar.textObject.containerClass}">
           <img 
             class="${GameBar.textObject.iconClass}"

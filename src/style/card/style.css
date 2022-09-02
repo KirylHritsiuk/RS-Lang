@@ -16,7 +16,7 @@ img {
   padding: 2%;
   border-radius: 10px;
   box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
-  font-size: 1.3rem;
+  font-size: 2rem;
 }
 
 .word-card_image {
@@ -45,8 +45,9 @@ img {
 
 .word-group {
   display: flex;
-  justify-content: space-between;
   margin-bottom: 1%;
+  -moz-column-gap: 3%;
+       column-gap: 3%;
 }
 
 .title-word__item {
@@ -66,12 +67,12 @@ img {
 
 .title-word__item_translate {
   text-transform: none;
-  font-size: 1.6em;
+  font-size: 1.9em;
 }
 
 .word-text {
   display: flex;
-  font-size: 1.5rem;
+  font-size: 2.4rem;
   justify-content: space-between;
   margin-bottom: 1%;
 }
@@ -100,7 +101,11 @@ img {
 }
 
 .word-meaning__translate {
-  font-size: 1.3rem;
+  font-size: 2rem;
+}
+
+.word_example__translate {
+  font-size: 2rem;
 }
 
 .card-buttons {
@@ -121,8 +126,8 @@ img {
 }
 
 .button-card_large {
-  width: 7rem;
-  height: 3rem;
+  width: 7em;
+  height: 3em;
 }
 
 .button-card-del {
