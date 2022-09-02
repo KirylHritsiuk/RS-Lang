@@ -36,7 +36,7 @@ export class Header {
   createNameUser(){
     const localStorageUser: IGetUserToken | null = JSON.parse(localStorage.getItem('rslang-user'))
     if (localStorageUser === null) {
-      return
+      return 
     }else{
     const container = <HTMLDivElement>document.createElement('div')
     container.className = 'wrapper-yes-registration'
@@ -54,8 +54,21 @@ export class Header {
          `;
     })
             this.container.append(container)
-    return this.container
+            
+       return this.container
   }
+  
+  }
+
+  reload(){
+    setTimeout(()=>{
+    const singIn = <HTMLElement>document.querySelector('.btn-login')
+    singIn.addEventListener('click', ()=>{
+      setTimeout(()=>{
+        location.reload()
+      },1000)
+          })
+     },2000)
   }
 
   render() {
