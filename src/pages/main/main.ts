@@ -104,7 +104,7 @@ export class MainPage {
 
   static createTeamList() {
     const [container, listContainer] = [<HTMLDivElement>document.createElement('div'), <HTMLDivElement>document.createElement('div')];
-    listContainer.className = 'wrapper-persons'
+    listContainer.className = 'wrapper-persons';
     container.innerHTML = '<h2 class="style-h2">Our team</h2>';
     team.forEach((el) => listContainer.append(MainPage.createTeam(el)));
     container.append(listContainer);

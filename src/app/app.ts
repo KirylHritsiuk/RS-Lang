@@ -25,7 +25,7 @@ export class App {
 
   static pageContainer: HTMLElement;
 
-  private static renderNewPage(idPage: string) {
+  static renderNewPage(idPage: string) {
     const pageContainer = <HTMLElement>document.getElementById('main');
     const title = <HTMLTitleElement>document.getElementById('headerTitle');
     title.textContent = idPage;
@@ -54,6 +54,9 @@ export class App {
       if (wordList) {
         const container = <HTMLElement>document.querySelector('.words-list');
         container.append(wordList.render());
+      }
+      if ('listenerGames' in page) {
+        page.listenerGames();
       }
     }
   }
