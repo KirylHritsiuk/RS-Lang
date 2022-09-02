@@ -9,7 +9,8 @@ import {
   IUserWordSchema,
 } from '../types/types';
 
-const baseUrl = 'https://new-learnword.herokuapp.com/';
+export const baseUrl = 'https://new-learnword.herokuapp.com/';
+// export const baseUrl = 'http://localhost:3001/';
 
 export class Api {
   protected url: string;

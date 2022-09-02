@@ -1,4 +1,5 @@
 import '../../style/miniGame.css';
+import AudioChellenge from '../../modules/minigames/audioChellenge';
 
 export class MiniGame {
   protected container: HTMLDivElement;
@@ -10,6 +11,13 @@ export class MiniGame {
   constructor() {
     this.container = <HTMLDivElement>document.createElement('div');
     this.container.className = MiniGame.TextObject.containerClassName;
+  }
+
+  listenerGames() {
+    const listenAudioChellenge = document.querySelector('#audio_chellenge') as HTMLButtonElement;
+    listenAudioChellenge.addEventListener('click', () => {
+      AudioChellenge.run();
+    });
   }
 
   render() {
@@ -25,8 +33,8 @@ export class MiniGame {
                 <p class="game-text">Check your listening skills, trying to pick the right meaning after hearing a
                     word. Be careful, as you just have one guess.</p>
             </div>
-            <div class="game-btn-wrapper"><a href="minigamesLevel.ts" class="a-nav">
-                <button class="game-btn audio-btn-color">
+            <div class="game-btn-wrapper">
+                <button class="game-btn audio-btn-color" id="audio_chellenge">
                     <span class="game-btn-text">play</span>
                 </button></a>
             </div>
