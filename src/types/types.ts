@@ -111,3 +111,9 @@ export interface ITeam {
   github: string,
   photo:string
 }
+
+export interface IStatisticGame {
+  maxRow: number,
+  wrong: number,
+  correctly: number
+}
