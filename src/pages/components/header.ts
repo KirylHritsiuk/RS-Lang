@@ -34,9 +34,13 @@ export class Header {
   }
 
   createNameUser(){
+    const localStorageUser: IGetUserToken | null = JSON.parse(localStorage.getItem('rslang-user'))
+    if (localStorageUser === null) {
+      return
+    }else{
     const container = <HTMLDivElement>document.createElement('div')
     container.className = 'wrapper-yes-registration'
-    const localStorageUser: IGetUserToken | null = JSON.parse(localStorage.getItem('rslang-user'))
+    
     const id = localStorageUser.userId
     const token = localStorageUser.token
     Api.getUser(id, token).then(data => {
@@ -51,6 +55,7 @@ export class Header {
     })
             this.container.append(container)
     return this.container
+  }
   }
 
   render() {
