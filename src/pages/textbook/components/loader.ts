@@ -6,8 +6,8 @@ export class Loader extends Block {
     borderTopModificationClass: 'border-top-',
   };
 
-  constructor(group: number) {
-    super(group);
+  constructor() {
+    super();
     this.container.classList.add(
       Loader.textObject.containerClass,
       Loader.textObject.borderTopModificationClass + this.color,

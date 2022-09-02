@@ -1,34 +1,42 @@
 /* eslint-disable max-classes-per-file */
 import { IQueryParameters } from '../types/types';
 
-abstract class QueryItem implements IQueryParameters {
+export abstract class QueryItem implements IQueryParameters {
   constructor(
-    public key: number | string,
     public value: number | string,
+    public key: number | string,
   ) {
     this.key = key;
     this.value = value;
   }
+
+  get() {
+    return this.value;
+  }
+
+  set(val: number | string) {
+    this.value = val;
+  }
 }
 
 class GroupQuery extends QueryItem {
-  constructor(key = 'group', value = 0) {
-    super(key, value);
+  constructor(value = 3, key = 'group') {
+    super(value, key);
   }
 }
 class PageQuery extends QueryItem {
-  constructor(key = 'page', value = 0) {
-    super(key, value);
+  constructor(value = 3, key = 'page') {
+    super(value, key);
   }
 }
 class WordsPerPage extends QueryItem {
-  constructor(key = 'wordsPerPage', value = 20) {
-    super(key, value);
+  constructor(value = 20, key = 'wordsPerPage') {
+    super(value, key);
   }
 }
 class FilterQuery extends QueryItem {
-  constructor(key = 'filter', value = '') {
-    super(key, value);
+  constructor(value = '', key = 'filter') {
+    super(value, key);
   }
 }
 

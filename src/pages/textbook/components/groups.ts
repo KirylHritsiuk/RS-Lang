@@ -1,10 +1,10 @@
 /* eslint-disable no-use-before-define */
 import { groupData } from '../../../common/groups';
-import { groupQuery, pageQuery } from '../../../common/query';
 import localStorage from '../../../modules/textbook/localStorageTextbook';
+import { createQuery } from '../../../modules/textbook/queryTextbook';
+import { changeList } from '../../../utils/changeList';
 import { Block } from './blockTemplate';
-import { List } from './list';
-import { Loader } from './loader';
+import { Pagination } from './pagination';
 
 export class Groups extends Block {
   static classNames = {
@@ -35,14 +35,14 @@ export class Groups extends Block {
     ];
 
     replaceClasses(games, color, Block.modificationClass.hoverModificationClass);
-    replaceClasses(pag, color, Block.modificationClass.hoverModificationClass);
+    replaceClasses(pag, color, Pagination.textObject.hoverMod);
     const pos = title!.className.indexOf(Groups.modificationClass.colorModificationClass);
     // eslint-disable-next-line no-param-reassign
     title!.className = `${title!.className.slice(0, pos)} ${Groups.modificationClass.colorModificationClass}${color}`;
   }
 
-  constructor(group: number) {
-    super(group);
+  constructor() {
+    super();
     this.container.className = Groups.classNames.mainContainer;
   }
 
@@ -79,16 +79,8 @@ export class Groups extends Block {
     container.textContent = (group + 1).toString();
     container.dataset.group = group.toString();
     container.addEventListener('click', () => {
-      groupQuery.value = group;
-      localStorage.addItemLocalStorage([groupQuery, pageQuery]);
-      const list = new List(group);
-      const loader = new Loader(group);
-      const cont = <HTMLElement>document.querySelector('.words-list');
-      cont.innerHTML = '';
-      cont.append(
-        loader.render(),
-        list.render(),
-      );
+      localStorage.addItemLocalStorage(createQuery(group, 0));
+      changeList();
       Groups.toDefaultItem();
       container
         .parentElement?.classList

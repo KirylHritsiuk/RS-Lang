@@ -1,4 +1,4 @@
-import { groupQuery, pageQuery } from '../../../common/query';
+import { createQuery } from '../../../modules/textbook/queryTextbook';
 import { IWord } from '../../../types/types';
 import api from '../../../utils/api';
 import { Block } from './blockTemplate';
@@ -7,11 +7,10 @@ import { WordCard } from './card';
 export class List extends Block {
   protected data: Promise<IWord[]>;
 
-  constructor(group: number) {
-    super(group);
-    this.group = group;
+  constructor() {
+    super();
     this.container.className = 'list_container';
-    this.data = api.getWords([groupQuery, pageQuery]);
+    this.data = api.getWords(createQuery());
   }
 
   render() {
@@ -21,7 +20,7 @@ export class List extends Block {
         const loader = <HTMLDivElement>document.getElementById('loader');
         loader.remove();
         val.forEach((wordData) => {
-          const card = new WordCard(wordData, this.group);
+          const card = new WordCard(wordData);
           this.container.append(card.render());
         });
       });

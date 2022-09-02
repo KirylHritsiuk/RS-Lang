@@ -1,4 +1,3 @@
-import { groupData } from '../../../common/groups';
 import { Filter } from '../components/filter';
 import { GameBar } from '../components/gamebar';
 import { Groups } from '../components/groups';
@@ -22,8 +21,6 @@ export abstract class Page {
 
   protected filter: HTMLElement;
 
-  protected color: string;
-
   static TextObject = {};
 
   static MainClass = {
@@ -39,17 +36,16 @@ export abstract class Page {
     loader: 'loader',
   };
 
-  constructor(protected group: number = 0) {
+  constructor() {
     this.container = document.createElement('div');
     this.wordsList = document.createElement('div');
     this.container.classList.add(Page.MainClass.container);
-    this.color = groupData[group];
-    this.games = new GameBar(group).render();
-    this.paginationTop = new Pagination(group).render();
-    this.paginationBottom = new Pagination(group).render();
-    this.loader = new Loader(group).render();
-    this.filter = new Filter(group).render();
-    this.groups = new Groups(group).render();
+    this.games = new GameBar().render();
+    this.paginationTop = new Pagination().render();
+    this.paginationBottom = new Pagination().render();
+    this.loader = new Loader().render();
+    this.filter = new Filter().render();
+    this.groups = new Groups().render();
   }
 
   protected createBlock(className: string, block: HTMLElement) {

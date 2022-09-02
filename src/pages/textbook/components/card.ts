@@ -10,8 +10,8 @@ export class WordCard extends Block {
 
   protected group: number;
 
-  constructor(protected data: IWord, group: number) {
-    super(group);
+  constructor(protected data: IWord) {
+    super();
     this.container.className = WordCard.ClassNameData.container;
     this.container.id = data.id;
     this.data = data;
@@ -75,13 +75,13 @@ export class WordCard extends Block {
             </div>
             <div class="word_example__translate translate">${this.data.textExampleTranslate}</div>
           </div>
+          <div class="card-buttons ds-none">
+          <button class="button-card button-card_large bg-${this.color}" data-set-color="${this.color}" name="difficult">Difficult</button>
+            <button class="button-card button-card_large button-card-del name="delete">Delete</button>
+            </div>
           </div>
           </div>
           `;
-        // <div class="card-buttons">
-        // <button class="button-card button-card_large bg-${this.color}" data-set-color="${this.color}" name="difficult">Difficult</button>
-          // <button class="button-card button-card_large button-card-del name="delete">Delete</button>
-          // </div>
     return this.container;
   }
 

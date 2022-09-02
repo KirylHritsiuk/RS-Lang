@@ -1,8 +1,8 @@
 import { Block } from './blockTemplate';
 
 export class Filter extends Block {
-  constructor(group: number) {
-    super(group);
+  constructor() {
+    super();
     this.container.className = 'filter-container';
   }
 
