@@ -8,9 +8,11 @@ const burgerWrapper = <HTMLDivElement>document.querySelector('.burger-wrapper');
 const svgBurger = <HTMLDivElement>document.querySelector('.svg-burger');
 const spanRs = <HTMLSpanElement>document.querySelector('.span-rs');
 const body = <HTMLBodyElement>document.body;
+const allLi: NodeListOf<HTMLElement> = document.querySelectorAll('.li-wrapper')
+const exit = <HTMLDivElement>document.querySelector('.li-wrapper-log');
 
 export {
-  btnBurger, nawWrapper, icon, modal, containerUL, burgerWrapper, svgBurger, spanRs, body,
+  allLi, exit, btnBurger, nawWrapper, icon, modal, containerUL, burgerWrapper, svgBurger, spanRs, body,
 };
 
 export interface IArrAdvantages{
