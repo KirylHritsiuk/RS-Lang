@@ -25,13 +25,13 @@ export class MiniGame {
                 <p class="game-text">Check your listening skills, trying to pick the right meaning after hearing a
                     word. Be careful, as you just have one guess.</p>
             </div>
-            <div class="game-btn-wrapper">
+            <div class="game-btn-wrapper"><a href="minigamesLevel.ts" class="a-nav">
                 <button class="game-btn audio-btn-color">
                     <span class="game-btn-text">play</span>
-                </button>
+                </button></a>
             </div>
         </div>
-        <div class="game">
+        <div class="minigame">
             <div class="minigame__icon">
                 <img src="./assets/img/shoes.png" class="minigame__img" alt="lion">
             </div>
