@@ -128,16 +128,6 @@
   transition: 0.2s linear;
 }
 
-.break-item {
-}
-.prev-page-item {
-}
-.next-page-item {
-}
-.page-item-active {
-}
-.page-item-disabled {
-}
 //----------------------------------------------------
 .groups_container {
   @include flexCenter();
@@ -202,6 +192,7 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+//------------------------------------------------------------------------
 .pag-item-hover-red{
   &:hover {
    color: red;
@@ -212,14 +203,14 @@
    }
  }
 }
-//------------------------------------------------------------------------
+
 .pag-item-hover-orange{
   &:hover {
-   color: red;
-   border-color: red;
+   color: orange;
+   border-color: orange;
 
    svg {
-     fill: red;
+     fill: orange;
    }
  }
 }

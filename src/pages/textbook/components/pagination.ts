@@ -1,10 +1,10 @@
-import { getGroup } from '../../../modules/textbook/getGroup';
-import { getPage } from '../../../modules/textbook/getPage';
-import { createQuery } from '../../../modules/textbook/queryTextbook';
 import { Block } from './blockTemplate';
 import localStorageTextbook from '../../../modules/textbook/localStorageTextbook';
 import { changeList } from '../../../utils/changeList';
 import { svg } from '../../../common/svg';
+import { createQuery } from '../../../modules/textbook/queryTextbook';
+import { getGroup } from '../../../modules/textbook/getGroup';
+import { getPage } from '../../../modules/textbook/getPage';
 
 export class Pagination extends Block {
   static textObject = {
@@ -70,7 +70,7 @@ export class Pagination extends Block {
     } else container.classList.add(`${Pagination.textObject.hoverMod}${this.color}`);
     container.innerHTML = svg.chevron_left;
     container.addEventListener('click', () => {
-      const page = getPage() - 1;
+      const page = this.page - 1;
       if (page === 0) {
         this.setDisabledStatusToControls('prev', true);
       }
@@ -207,8 +207,8 @@ export class Pagination extends Block {
     btn.forEach((item) => {
       item.classList.remove(`${Pagination.textObject.activeMod}${this.color}`);
       this.checkActivePage(Number(item.dataset.page), item);
-        // item.disabled = true;
-    })
+      // item.disabled = true;
+    });
   }
 
   setDisabledStatusToControls(name: string, status: boolean) {

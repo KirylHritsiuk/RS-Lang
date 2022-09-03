@@ -16,8 +16,8 @@ export class Groups extends Block {
   };
 
   static toDefaultItem() {
-    const groupsList = <HTMLCollectionOf<HTMLElement>>document
-      .getElementsByClassName(Groups.classNames.itemClass);
+    const groupsList = Array.from(document
+      .getElementsByClassName(Groups.classNames.itemClass));
     for (let i = 0; i < groupsList.length; i++) {
       groupsList[i].className = Groups.classNames.itemClass;
     }
@@ -29,8 +29,8 @@ export class Groups extends Block {
       pag,
       title,
     ] = [
-      document.getElementsByName('game'),
-      document.getElementsByName('pagButton'),
+      Array.from(document.getElementsByName('game')),
+      Array.from(document.querySelectorAll(`.${Pagination.textObject.itemClass}`)),
       document.querySelector(`.${Groups.classNames.titleClass}`),
     ];
 
@@ -95,17 +95,15 @@ export class Groups extends Block {
     return this.container;
   }
 }
-
-function replaceClasses(arr: NodeListOf<HTMLElement>, color: string, modif: string) {
+//todo fix change active classs 
+function replaceClasses(arr: Element[], color: string, modif: string) {
   arr.forEach((item) => {
     const pos = item.className.indexOf(modif);
-    if (item.className.indexOf('pag-item-disable') === -1) {
+    if (item.className.indexOf(Pagination.textObject.disableMod) === -1) {
       if (item.className.indexOf('active-') === -1) {
-        // eslint-disable-next-line no-param-reassign
         item.className = `${item.className.slice(0, pos)} ${modif}${color}`;
       } else {
         const pos = item.className.indexOf(modif);
-        // eslint-disable-next-line no-param-reassign
         item.className = `${item.className.slice(0, pos)} ${'active-'}${color}`;
       }
     }

@@ -240,11 +240,11 @@
 }
 
 .pag-item-hover-orange:hover {
-  color: red;
-  border-color: red;
+  color: orange;
+  border-color: orange;
 }
 .pag-item-hover-orange:hover svg {
-  fill: red;
+  fill: orange;
 }
 
 .pag-item-hover-palevioletred:hover {
