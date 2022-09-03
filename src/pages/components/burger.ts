@@ -1,5 +1,5 @@
 import {
-  btnBurger, nawWrapper, icon, modal, containerUL, svgBurger, spanRs, allLi, exit
+  btnBurger, nawWrapper, icon, modal, containerUL, svgBurger, spanRs, allLi, exit,
 } from '../components/dataPageMain';
 
 class Burger {
@@ -14,24 +14,23 @@ class Burger {
     svgBurger.style.fill = ' black';
     nawWrapper.style.backgroundColor = 'white';
     nawWrapper.classList.remove('scroll');
-    exit.style.display = 'none'
+    exit.style.display = 'none';
   }
 
   controlBurger() {
+    exit.onclick = () => location.reload();
 
-    exit.onclick = () => location.reload()
-
-    allLi.forEach(e => {
-      e.addEventListener('click', e => {
+    allLi.forEach((e) => {
+      e.addEventListener('click', (e) => {
         const target = <HTMLElement>(e.currentTarget);
-        const dark = <HTMLElement>document.querySelector('.dark-burger')
-        console.log(dark)
-        dark.classList.remove('dark-burger')
+        const dark = <HTMLElement>document.querySelector('.dark-burger');
+        console.log(dark);
+        dark.classList.remove('dark-burger');
         if (target.className === 'li-wrapper') {
-          target.classList.add('dark-burger')
+          target.classList.add('dark-burger');
         }
-      })
-    })
+      });
+    });
 
     const windowInnerWidth = window.innerWidth;
     if (windowInnerWidth > 1140) {
@@ -43,7 +42,6 @@ class Burger {
                         </path>`;
           btnBurger.classList.add('a');
         } else {
-
           nawWrapper.classList.remove('scroll');
           icon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>';
           btnBurger.classList.remove('a');
@@ -64,17 +62,16 @@ class Burger {
           nawWrapper.style.height = '100vh';
           nawWrapper.style.backgroundColor = '#474965';
           nawWrapper.classList.add('scroll');
-          exit.style.display = 'flex'
+          exit.style.display = 'flex';
         } else {
-          this.closeSmallBurger()
+          this.closeSmallBurger();
         }
       });
     }
 
     modal.onclick = () => {
-      this.closeSmallBurger()
-    }
-
+      this.closeSmallBurger();
+    };
   }
 }
 
