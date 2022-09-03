@@ -84,16 +84,9 @@ img {
   color: gray;
 }
 
-.word-audio_title {
-  justify-content: center;
-}
-
 .word-audio {
   cursor: pointer;
-}
-
-.word-audio_main {
-  margin-left: 1%;
+  height: 1.5em;
 }
 
 .word-meaning {
@@ -123,6 +116,7 @@ img {
   font-weight: 600;
   letter-spacing: 0.2em;
   text-align: center;
+  text-transform: capitalize;
 }
 
 .button-card_large {
