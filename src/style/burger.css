@@ -123,10 +123,11 @@
 .out{
     padding-bottom: 20px;
     white-space: nowrap;
-}
+}  
+ 
 
 
-@media (max-width: 1140px) {
+@media (max-width: 800px) {
 
     .ul-wrapper {
         display: none;
@@ -147,5 +148,15 @@
 
     .li-wrapper-log{
         display: none;
+    }
+}
+
+@media (max-width: 800px) {
+    .naw-wrapper{
+        position: fixed;
+    }
+
+    .page-content{
+        padding-left: 49px;
     }
 }
