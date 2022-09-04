@@ -1,31 +1,29 @@
 import '../../style/statistics.css';
-import Api from '../../utils/api'
-import { LocalStorageUser } from '../../modules/user/localStorageUser'
+import Api from '../../utils/api';
+import { LocalStorageUser } from '../../modules/user/localStorageUser';
 import { IGetUserToken } from '../../types/types';
-
 
 export class Statistics {
   protected container: HTMLElement;
- public dataLocalUser: IGetUserToken;
+
+  public dataLocalUser: IGetUserToken;
 
   static TextObject = {
     containerWrapperName: 'statistics-wrapper',
     containerToday: 'today-wrapper',
     containerAll: 'today-wrapper',
   };
-    static dataLocalUser: IGetUserToken;
+
+  static dataLocalUser: IGetUserToken;
 
   constructor() {
-    this.dataLocalUser = new LocalStorageUser().getItemLocalStorage()
+    this.dataLocalUser = new LocalStorageUser().getItemLocalStorage();
     this.container = <HTMLElement>document.createElement('div');
     this.container.className = Statistics.TextObject.containerWrapperName;
   }
 
-    
-
-
   static createContainerToday() {
-    const userlocalStorage = localStorage.getItem('rslang-user')
+    const userlocalStorage = localStorage.getItem('rslang-user');
     const container = <HTMLDivElement>document.createElement('div');
     container.className = Statistics.TextObject.containerAll;
     container.innerHTML = `

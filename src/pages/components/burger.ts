@@ -1,5 +1,5 @@
 import {
-  main, btnBurger, nawWrapper, icon, modal, containerUL, svgBurger, spanRs, allLi, exit
+  main, btnBurger, nawWrapper, icon, modal, containerUL, svgBurger, spanRs, allLi, exit,
 
 } from '../components/dataPageMain';
 
@@ -15,8 +15,8 @@ class Burger {
     svgBurger.style.fill = ' black';
     nawWrapper.style.backgroundColor = 'white';
     nawWrapper.classList.remove('scroll');
-    exit.style.display = 'none'
-    document.body.style.overflow= 'scroll';
+    exit.style.display = 'none';
+    document.body.style.overflow = 'scroll';
   }
 
   controlBurger() {
@@ -25,8 +25,8 @@ class Burger {
     allLi.forEach((e) => {
       e.addEventListener('click', (e) => {
         const target = <HTMLElement>(e.currentTarget);
-        const dark = <HTMLElement>document.querySelector('.dark-burger')
-        dark.classList.remove('dark-burger')
+        const dark = <HTMLElement>document.querySelector('.dark-burger');
+        dark.classList.remove('dark-burger');
         if (target.className === 'li-wrapper') {
           target.classList.add('dark-burger');
         }
@@ -63,9 +63,8 @@ class Burger {
           nawWrapper.style.height = '100vh';
           nawWrapper.style.backgroundColor = '#474965';
           nawWrapper.classList.add('scroll');
-          exit.style.display = 'flex'
-          document.body.style.overflow= 'hidden';
-
+          exit.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
         } else {
           this.closeSmallBurger();
         }
