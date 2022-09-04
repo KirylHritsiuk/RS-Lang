@@ -26,14 +26,6 @@ export class Statistics {
 
   static createContainerToday() {
     const userlocalStorage = localStorage.getItem('rslang-user')
-    // console.log(this.dataLocalUser.userId)
-    // console.log('ddddd')
-    // const local = getI
-    // this.dataLocalUser.userId
-    Api.getUserStatistics(this.dataLocalUser.userId).then(data=>{
-        
-    })
-
     const container = <HTMLDivElement>document.createElement('div');
     container.className = Statistics.TextObject.containerAll;
     container.innerHTML = `
