@@ -21,9 +21,11 @@ export class Statistics {
     this.container.className = Statistics.TextObject.containerWrapperName;
   }
 
+    
+
+
   static createContainerToday() {
     const userlocalStorage = localStorage.getItem('rslang-user')
-  
     const container = <HTMLDivElement>document.createElement('div');
     container.className = Statistics.TextObject.containerAll;
     container.innerHTML = `
