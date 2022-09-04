@@ -1,7 +1,6 @@
 /* eslint-disable no-use-before-define */
 import { groupData } from '../../../common/groups';
-import localStorage from '../../../modules/textbook/localStorageTextbook';
-import { createQuery } from '../../../modules/textbook/queryTextbook';
+import localStorage from '../../../modules/textbook/anonymous/localStorageTextbook';
 import { changeList } from '../../../utils/changeList';
 import { Block } from './blockTemplate';
 import { Pagination } from './pagination';
@@ -79,7 +78,9 @@ export class Groups extends Block {
     container.textContent = (group + 1).toString();
     container.dataset.group = group.toString();
     container.addEventListener('click', () => {
-      localStorage.addItemLocalStorage(createQuery(group, 0));
+      Block.textbookQueryData.setGroup(group);
+      // localStorage.addItemLocalStorage(Block.textbookQueryData.getQuery());
+      Block.textbookQueryData.updateLocal();
       changeList();
       Groups.toDefaultItem();
       container

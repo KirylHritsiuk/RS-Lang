@@ -1,10 +1,7 @@
 import { Block } from './blockTemplate';
-import localStorageTextbook from '../../../modules/textbook/localStorageTextbook';
+// import localStorageTextbook from '../../../modules/textbook/anonymous/localStorageTextbook';
 import { changeList } from '../../../utils/changeList';
 import { svg } from '../../../common/svg';
-import { createQuery } from '../../../modules/textbook/queryTextbook';
-import { getGroup } from '../../../modules/textbook/getGroup';
-import { getPage } from '../../../modules/textbook/getPage';
 
 export class Pagination extends Block {
   static textObject = {
@@ -41,13 +38,12 @@ export class Pagination extends Block {
     container.dataset.page = page.toString();
     container.classList.add(`${Pagination.textObject.hoverMod}${this.color}`);
     container.addEventListener('click', () => {
-      // const btn = <HTMLButtonElement>e.currentTarget;
-      localStorageTextbook.addItemLocalStorage(
-        createQuery(
-          getGroup(),
-          page,
-        ),
-      );
+      // localStorageTextbook.addItemLocalStorage(
+      //   createQuery(
+      //     getGroup(),
+      //     page,
+      //   ),
+      // );
       changeList();
       const container = [
         <HTMLDivElement>document.querySelector('.pagination-top'),
@@ -74,12 +70,12 @@ export class Pagination extends Block {
       if (page === 0) {
         this.setDisabledStatusToControls('prev', true);
       }
-      localStorageTextbook.addItemLocalStorage(
-        createQuery(
-          getGroup(),
-          page,
-        ),
-      );
+      // localStorageTextbook.addItemLocalStorage(
+      //   createQuery(
+      //     getGroup(),
+      //     page,
+      //   ),
+      // );
       this.changePageButton();
       changeList();
       this.setDisabledStatusToControls('next', false);
@@ -96,12 +92,12 @@ export class Pagination extends Block {
     } else container.classList.add(`${Pagination.textObject.hoverMod}${this.color}`);
     container.innerHTML = svg.chevron_double_left;
     container.addEventListener('click', () => {
-      localStorageTextbook.addItemLocalStorage(
-        createQuery(
-          getGroup(),
-          (getPage() - this.step - 1),
-        ),
-      );
+      // localStorageTextbook.addItemLocalStorage(
+      //   createQuery(
+      //     getGroup(),
+      //     (getPage() - this.step - 1),
+      //   ),
+      // );
       changeList();
       const container = [
         <HTMLDivElement>document.querySelector('.pagination-top'),
@@ -124,23 +120,22 @@ export class Pagination extends Block {
     } else container.classList.add(`${Pagination.textObject.hoverMod}${this.color}`);
     container.innerHTML = svg.chevron_right;
     container.addEventListener('click', () => {
-      const page = getPage() + 1;
+      const page = this.page + 1;
       if (page === this.pages) {
         this.setDisabledStatusToControls('next', true);
       }
-      localStorageTextbook.addItemLocalStorage(
-        createQuery(
-          getGroup(),
-          page,
-        ),
-      );
+      // localStorageTextbook.addItemLocalStorage(
+      //   createQuery(
+      //     getGroup(),
+      //     page,
+      //   ),
+      // );
       this.changePageButton();
       changeList();
       this.setDisabledStatusToControls('prev', false);
-      // const hh = <HTMLButtonElement>document.querySelector('button[name]="prev"');
-      // if (hh.dataset.count)
-      const prevCount = <NodeListOf<HTMLButtonElement>>document.getElementsByName('prev');
-      const nextCount = <NodeListOf<HTMLButtonElement>>document.getElementsByName('next');
+
+      const prevCount = Array.from(document.getElementsByName('prev'));
+      const nextCount = Array.from(document.getElementsByName('next'));
       prevCount.forEach((elem) => {
         elem.dataset.count = (Number(elem.dataset.count) + 1).toString();
       });
@@ -163,12 +158,12 @@ export class Pagination extends Block {
     }
     container.innerHTML = svg.chevron_double_right;
     container.addEventListener('click', () => {
-      localStorageTextbook.addItemLocalStorage(
-        createQuery(
-          getGroup(),
-          (getPage() + this.step + 1),
-        ),
-      );
+      // localStorageTextbook.addItemLocalStorage(
+      //   createQuery(
+      //     getGroup(),
+      //     (getPage() + this.step + 1),
+      //   ),
+      // );
       changeList();
       const container = [
         <HTMLDivElement>document.querySelector('.pagination-top'),
@@ -183,7 +178,7 @@ export class Pagination extends Block {
 
   checkActivePage(page: number | string, btn: HTMLButtonElement) {
     if (typeof page === 'string') btn.classList.add(`${Pagination.textObject.hoverMod}${this.color}`);
-    if (page === getPage()) {
+    if (page === this.page) {
       // btn.disabled = true;
       btn.classList.add(`${Pagination.textObject.activeMod}${this.color}`);
     } else if (btn.disabled === false) {

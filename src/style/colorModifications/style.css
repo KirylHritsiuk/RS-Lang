@@ -16,6 +16,15 @@
   .bg-purple {
     background: purple !important;
   }
+  .bg-difficult {
+    background: rgba(173, 5, 5, 0.16) !important;
+  }
+  .bg-easy {
+    background: #0080002b !important;
+  }
+  .bg-disabled {
+    background: gray;
+  }
   .border-red {
     border-color: red !important;
   }

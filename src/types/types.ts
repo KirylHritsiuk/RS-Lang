@@ -65,12 +65,8 @@ export interface IWord {
 }
 
 export interface IAggregatedWords {
-  wordsResult: [
-    IWord
-  ],
-  wordsTotal: [
-    ICount
-  ]
+  paginatedResults: IWord[],
+  totalCount: ICount[],
 }
 
 export interface IQueryParameters {

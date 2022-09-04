@@ -1,4 +1,5 @@
-import { createQuery } from '../../../modules/textbook/queryTextbook';
+import { getUserId } from '../../../modules/user/getUserId';
+import { getUserToken } from '../../../modules/user/getUserToken';
 import { IWord } from '../../../types/types';
 import api from '../../../utils/api';
 import { Block } from './blockTemplate';
@@ -10,7 +11,15 @@ export class List extends Block {
   constructor() {
     super();
     this.container.className = 'list_container';
-    this.data = api.getWords(createQuery());
+    if (this.user === '') {
+      this.data = api.getWords(Block.textbookQueryData.getQuery());
+    } else {
+      this.data = api.getUserAggregatedWords(
+        getUserId(),
+        getUserToken(),
+        Block.textbookQueryData.getQuery(),
+      ).then((val) => val[0].paginatedResults);
+    }
   }
 
   render() {

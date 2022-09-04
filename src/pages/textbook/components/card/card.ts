@@ -1,5 +1,6 @@
 import { Block } from '../blockTemplate';
 import '../../../../style/card/style.css';
+import '../../../../style/colorModifications/style.css';
 import { IWord } from '../../../../types/types';
 import { baseUrl } from '../../../../utils/api';
 import { AudioBlock } from './audio/AudioBlock';
@@ -19,7 +20,7 @@ export class WordCard extends Block {
   constructor(protected data: IWord) {
     super();
     this.container.className = WordCard.ClassNameData.container;
-    this.container.id = data.id;
+    this.container.id = data.word;
     this.data = data;
     this.group = data.group;
     this.audioBlock = new AudioBlock(data).render();

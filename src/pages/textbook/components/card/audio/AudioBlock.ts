@@ -31,8 +31,8 @@ export class AudioBlock extends Block {
           this.container.dataset.status = AudioBlock.textObject.playStatus;
           this.container.innerHTML = svg.stop;
           await this.play(this.audio);
-          await this.play(this.audioExample);
           await this.play(this.audioMeaning);
+          await this.play(this.audioExample);
           this.container.dataset.status = AudioBlock.textObject.stopStatus;
           this.container.innerHTML = svg.play;
           break;
@@ -44,6 +44,8 @@ export class AudioBlock extends Block {
           this.container.dataset.status = AudioBlock.textObject.stopStatus;
           this.container.innerHTML = svg.play;
           break;
+        default:
+          console.log('default');
       }
     });
   }
