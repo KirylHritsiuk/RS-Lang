@@ -48,17 +48,17 @@ export class TextbookQueryData {
   }
 
   getWordsPerPage() {
-    if (this.localData === null) {
-      return 0;
+    if (this.localData !== null && this.local instanceof LocalStorageTextbookUser) {
+      return Number(this.localData[2].value);
     }
-    return Number(this.localData[2].value);
+    return 0;
   }
 
   getFilter() {
-    if (this.localData === null) {
-      return '';
+    if (this.localData !== null && this.local instanceof LocalStorageTextbookUser) {
+      return this.localData[3].value;
     }
-    return this.localData[3].value;
+    return '';
   }
 
   setGroup(val: string | number) {
