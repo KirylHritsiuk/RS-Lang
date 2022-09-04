@@ -16,7 +16,7 @@ html {
     grid-template-areas: "header""main""footer";
     grid-template-rows: 80px minmax(80vh, max-content) 80px;
     margin: 0 auto;
-    padding: 0 20px;
+    /* padding: 0 20px; */
     width: 100%;
     min-height: 100vh;
     align-content: space-between;
@@ -30,7 +30,6 @@ html {
     transition: 0.8s;
     overflow-x: hidden;
 }
-
 
 .main {
     grid-area: main;
@@ -402,6 +401,7 @@ html {
     }
 
 }
+
 
 @media (max-width: 840px) {
     .advantag-wrap {
