@@ -1,21 +1,22 @@
-import { IWord } from "../../../../../types/types";
-import { Block } from "../../blockTemplate"
-import { CardButtons } from "../buttons/buttons";
+import { IWord } from '../../../../../types/types';
+import { Block } from '../../blockTemplate';
+import { CardButtons } from '../buttons/buttons';
 
 export class TextContent extends Block {
-    static textObject = {
-        containerClass: 'word-card-content'
-    };
+  static textObject = {
+    containerClass: 'word-card-content',
+  };
 
-    protected buttons: HTMLElement;
+  protected buttons: HTMLElement;
 
-    constructor(protected data: IWord) {
-        super()
-        this.container.className = TextContent.textObject.containerClass;
-        this.buttons = new CardButtons(data).render();
-    }
-    render() {
-        this.container.innerHTML = `<div class="word-card-title border-left-${this.color}" name="borderLeft">
+  constructor(protected data: IWord) {
+    super();
+    this.container.className = TextContent.textObject.containerClass;
+    this.buttons = new CardButtons(data).render();
+  }
+
+  render() {
+    this.container.innerHTML = `<div class="word-card-title border-left-${this.color}" name="borderLeft">
         <div class="title-word">
           <div class="word-group">
             <span class="title-word__item">${this.data.word}</span>
@@ -35,12 +36,8 @@ export class TextContent extends Block {
             <div class="word-example__sentence">${this.data.textExample}</div>
             </div>
             <div class="word_example__translate translate">${this.data.textExampleTranslate}</div>
-          </div>`
-          this.container.append(this.buttons);
-        return this.container;
-        
-    }
+          </div>`;
+    this.container.append(this.buttons);
+    return this.container;
+  }
 }
-
-
-     

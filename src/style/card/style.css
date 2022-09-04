@@ -11,6 +11,7 @@ img {
 
 .word-card {
   display: flex;
+  position: relative;
   -moz-column-gap: 2%;
        column-gap: 2%;
   padding: 2%;
@@ -85,8 +86,10 @@ img {
 }
 
 .word-audio {
+  position: absolute;
   cursor: pointer;
   height: 1.5em;
+  right: 1em;
 }
 
 .word-meaning {
@@ -105,6 +108,7 @@ img {
   display: flex;
   -moz-column-gap: 3%;
        column-gap: 3%;
+  justify-content: end;
 }
 
 .button-card {
@@ -120,10 +124,10 @@ img {
 }
 
 .button-card_large {
-  width: 7em;
+  width: 8em;
   height: 3em;
 }
 
-.button-card-del {
-  background: grey;
+.button-card-easy {
+  background: rgb(66, 161, 28);
 }/*# sourceMappingURL=style.css.map */

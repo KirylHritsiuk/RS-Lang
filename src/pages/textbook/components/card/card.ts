@@ -12,9 +12,9 @@ export class WordCard extends Block {
 
   protected group: number;
 
-  protected  audioBlock: HTMLElement;
-  
-  protected  text: HTMLElement;
+  protected audioBlock: HTMLElement;
+
+  protected text: HTMLElement;
 
   constructor(protected data: IWord) {
     super();
@@ -23,8 +23,7 @@ export class WordCard extends Block {
     this.data = data;
     this.group = data.group;
     this.audioBlock = new AudioBlock(data).render();
-    this.text = new TextContent(data).render()
-    
+    this.text = new TextContent(data).render();
   }
 
   create() {
@@ -38,4 +37,3 @@ export class WordCard extends Block {
     return card;
   }
 }
-

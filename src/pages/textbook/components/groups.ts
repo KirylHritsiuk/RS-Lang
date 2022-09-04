@@ -95,7 +95,7 @@ export class Groups extends Block {
     return this.container;
   }
 }
-//todo fix change active classs 
+// todo fix change active classs
 function replaceClasses(arr: Element[], color: string, modif: string) {
   arr.forEach((item) => {
     const pos = item.className.indexOf(modif);
