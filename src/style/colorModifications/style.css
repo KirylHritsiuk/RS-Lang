@@ -16,6 +16,15 @@
   .bg-purple {
     background: purple !important;
   }
+  .bg-difficult {
+    background: rgba(173, 5, 5, 0.16) !important;
+  }
+  .bg-easy {
+    background: #0080002b !important;
+  }
+  .bg-disabled {
+    background: gray;
+  }
   .border-red {
     border-color: red !important;
   }
@@ -29,6 +38,24 @@
     border-color: slateblue !important;
   }
   .border-darkslateblue {
+    border-color: darkslateblue !important;
+  }
+  .color-purple {
+    color: purple !important;
+  }
+  .border-left-red {
+    border-color: red !important;
+  }
+  .border-left-orange {
+    border-color: orange !important;
+  }
+  .border-left-palevioletred {
+    border-color: palevioletred !important;
+  }
+  .border-left-slateblue {
+    border-color: slateblue !important;
+  }
+  .border-left-darkslateblue {
     border-color: darkslateblue !important;
   }
   .color-purple {
@@ -76,15 +103,5 @@
     color: purple;
     border-color: purple;
   }
-  
-  .hover-red {
-    &:hover {
-      box-shadow: 0px 0px 10px red;
-    }
-  }
-  .hover-purple {
-    &:hover {
-      box-shadow: 0px 0px 10px purple;
-    }
-  }
+
   

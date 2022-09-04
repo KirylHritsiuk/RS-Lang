@@ -30,7 +30,7 @@ export class AudioChellenge {
     this.statistics = {
       maxRow: 0,
       wrong: 0,
-      correctly: 0
+      correctly: 0,
     };
     this.rand = Math.floor(Math.random() * this.words.length);
   }
@@ -61,7 +61,7 @@ export class AudioChellenge {
       groups.append(group.createLink(i + 1, groupData[i]));
     }
   }
-  
+
   progressIncrement() {
     const progressText = document.querySelector('.audio-progress-text') as HTMLDivElement;
     const tempText: string | null = progressText.textContent;
@@ -82,11 +82,10 @@ export class AudioChellenge {
   listenerAudioButton() {
     const audio: HTMLAudioElement | null = document.querySelector('#audio');
     const buttonAudio = document.querySelector('.audio-button') as HTMLButtonElement;
-    buttonAudio.addEventListener('click', () => audio ? audio.play() : false);
+    buttonAudio.addEventListener('click', () => (audio ? audio.play() : false));
   }
 
   nextWord() {
-
     return `
     <audio id="audio" src="${baseUrl}${this.words[this.rand].audio}" autoplay=""><track kind="captions"></audio>
     <div class="audio-option">
@@ -124,9 +123,9 @@ export class AudioChellenge {
       this.progressIncrement();
       this.statistics.wrong += 1;
       this.nextWord();
-    })
+    });
     const btnWords = document.querySelectorAll('.audio-option-word') as NodeListOf<HTMLElement>;
-    btnWords.forEach(line => {
+    btnWords.forEach((line) => {
       line.addEventListener('click', async () => {
         line.classList.add('choise');
         if (this.word?.wordTranslate === line.dataset.word) {
@@ -205,7 +204,7 @@ export class AudioChellenge {
     buttonBack.addEventListener('click', () => {
       const hash = window.location.hash.slice(1);
       App.renderNewPage(hash);
-    })
+    });
     const groupButtons = document.querySelectorAll('.groups__link') as NodeListOf<HTMLButtonElement>;
 
     groupButtons.forEach((line) => {

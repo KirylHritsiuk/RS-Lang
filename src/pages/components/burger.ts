@@ -1,5 +1,6 @@
 import {
   main, btnBurger, nawWrapper, icon, modal, containerUL, svgBurger, spanRs, allLi, exit
+
 } from '../components/dataPageMain';
 
 class Burger {
@@ -19,19 +20,18 @@ class Burger {
   }
 
   controlBurger() {
+    exit.onclick = () => location.reload();
 
-    exit.onclick = () => location.reload()
-
-    allLi.forEach(e => {
-      e.addEventListener('click', e => {
+    allLi.forEach((e) => {
+      e.addEventListener('click', (e) => {
         const target = <HTMLElement>(e.currentTarget);
         const dark = <HTMLElement>document.querySelector('.dark-burger')
         dark.classList.remove('dark-burger')
         if (target.className === 'li-wrapper') {
-          target.classList.add('dark-burger')
+          target.classList.add('dark-burger');
         }
-      })
-    })
+      });
+    });
 
     const windowInnerWidth = window.innerWidth;
     if (windowInnerWidth > 800) {
@@ -43,7 +43,6 @@ class Burger {
                         </path>`;
           btnBurger.classList.add('a');
         } else {
-
           nawWrapper.classList.remove('scroll');
           icon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>';
           btnBurger.classList.remove('a');
@@ -66,16 +65,16 @@ class Burger {
           nawWrapper.classList.add('scroll');
           exit.style.display = 'flex'
           document.body.style.overflow= 'hidden';
+
         } else {
-          this.closeSmallBurger()
+          this.closeSmallBurger();
         }
       });
     }
 
     modal.onclick = () => {
-      this.closeSmallBurger()
-    }
-
+      this.closeSmallBurger();
+    };
   }
 }
 

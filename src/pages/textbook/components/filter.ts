@@ -8,9 +8,8 @@ export class Filter extends Block {
 
   render() {
     this.container.innerHTML = `
-        <div class="filter__block border-left-color-${this.color}"><input class="filter__block_radio" id="difficult" type="radio" name="filter" checked><label for="difficult">Difficult words</label></div>
-        <div class="filter__block border-left-color-"><input class="filter__block_radio" id="learning" type="radio" name="filter"><label for="learning">Learning words</label></div>
-        <div class="filter__block border-left-color-"><input class="filter__block_radio" id="delete" type="radio" name="filter"><label for="delete">Delete words</label></div>`;
+        <div class="filter__block active-${this.color}">Difficult words</div>
+        <div class="filter__block">Easy words</div>`;
     return this.container;
   }
 }

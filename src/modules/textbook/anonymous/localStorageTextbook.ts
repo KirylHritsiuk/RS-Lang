@@ -1,5 +1,5 @@
-import { LocalStorage } from '../../utils/localStorage';
-import { IQueryParameters } from '../../types/types';
+import { LocalStorage } from '../../../utils/localStorage';
+import { IQueryParameters } from '../../../types/types';
 
 class LocalStorageTextbook extends LocalStorage<IQueryParameters[]> {
   constructor(key: string = 'textbook') {
