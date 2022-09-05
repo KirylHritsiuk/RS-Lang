@@ -106,7 +106,9 @@
   border-radius: 10px;
   margin-bottom: 32px;
   justify-content: space-between;
-.wrapper-select{
+}
+
+.wrapper-select {
     width: 430px;
     height: 85px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.87);
@@ -189,6 +191,8 @@
   grid-column-end: 2;
   grid-row-start: 2;
   grid-row-end: 3;
+}
+
 .four-color{
     background-color: #88BFB0;
 }
@@ -556,6 +560,8 @@ ul > .res-words {
 .mistake-word {
   display: flex;
   gap: 10px;
+}
+
 @media (max-width: 940px) {
     .wrapper-games {
         flex-direction: column;
