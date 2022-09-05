@@ -17,7 +17,7 @@ export class Statistics {
   static dataLocalUser: IGetUserToken;
 
   constructor() {
-    this.dataLocalUser = new LocalStorageUser().getItemLocalStorage();
+    this.dataLocalUser = new LocalStorageUser().getItemLocalStorage() as IGetUserToken;
     this.container = <HTMLElement>document.createElement('div');
     this.container.className = Statistics.TextObject.containerWrapperName;
   }
