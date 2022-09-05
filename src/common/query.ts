@@ -1,6 +1,6 @@
 import { Query } from './queryTemplate';
 
-class QueryItem extends Query {
+export class QueryItem extends Query {
 }
 
 export const groupQuery = new QueryItem(0, 'group');

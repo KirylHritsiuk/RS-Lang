@@ -99,8 +99,12 @@ export class Api {
     return token;
   }
 
-  async getUserWords(id: string): Promise<IUserWordSchema[]> {
-    const res = await fetch(`${this.url}users/${id}/words`);
+  async getUserWords(id: string, token: string): Promise<IUserWordSchema[]> {
+    const res = await fetch(`${this.url}users/${id}/words`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const userWord: IUserWordSchema[] = await res.json();
     return userWord;
   }
@@ -173,13 +177,13 @@ export class Api {
     userId: string,
     token: string,
     wordId: string,
-  ): Promise<IAggregatedWords[]> {
+  ): Promise<IWord[]> {
     const res = await fetch(`${this.url}users/${userId}/aggregatedWords/${wordId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    const aggregatedWord: IAggregatedWords[] = await res.json();
+    const aggregatedWord: IWord[] = await res.json();
     return aggregatedWord;
   }
 

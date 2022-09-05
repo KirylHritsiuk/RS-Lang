@@ -9,6 +9,7 @@ import { Textbook } from '../pages/textbook/textbook';
 import burger from '../pages/components/burger';
 import { Page } from '../pages/textbook/template/index';
 import { changeList } from '../utils/changeList';
+import { DictionaryList } from '../pages/dictioanary/list';
 
 const enum PageId {
   main = 'main',
@@ -47,8 +48,12 @@ export class App {
       pageContainer.innerHTML = '';
       const pageHTML = page.render();
       pageContainer.append(<HTMLDivElement>pageHTML);
-      if (page instanceof Page) {
+      if (idPage === PageId.textbook) {
+        console.log('textbook')
         changeList();
+      } else if (idPage === PageId.dictionary) {
+        console.log('app dic')
+        changeList(new DictionaryList());
       }
       if ('listenerGames' in page) {
         page.listenerGames();
