@@ -1,5 +1,5 @@
 import {
-  main, btnBurger, nawWrapper, icon, modal, containerUL, svgBurger, spanRs, allLi, exit,
+  btnBurger, nawWrapper, icon, modal, containerUL, svgBurger, spanRs, allLi, exit,
 
 } from '../components/dataPageMain';
 
