@@ -74,6 +74,18 @@ export interface IQueryParameters {
   value: number | string,
 }
 
+interface IStatistics {
+  maxRow: number,
+  correctly: number,
+  wrong: number,
+}
+
+export interface IResultGames {
+  statistics: IStatistics,
+  mistakeWords: IWord[],
+  correctWords: IWord[],
+}
+
 export interface IGetUserToken {
   message: string,
   token: string,
