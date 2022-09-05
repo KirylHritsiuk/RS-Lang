@@ -32,6 +32,7 @@ export abstract class Block {
     hoverModificationClass: 'hover-',
     displayNone: 'ds-none',
     bgDisabled: 'bg-disabled',
+    active: 'active-',
     sizeL: 'large',
   };
 

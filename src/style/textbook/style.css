@@ -459,5 +459,5 @@
 }
 
 .ds-none {
-  display: none;
+  display: none !important;
 }/*# sourceMappingURL=style.css.map */

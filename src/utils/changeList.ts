@@ -1,19 +1,18 @@
+import { DictionaryList } from '../pages/dictioanary/list';
 import { List } from '../pages/textbook/components/list';
 import { Loader } from '../pages/textbook/components/loader';
 
-export function changeList() {
+export function changeList(list: List | DictionaryList = new List()) {
   const [
-    list,
     loader,
     container,
   ] = [
-    new List(),
-    new Loader(),
+    new Loader().render(),
       <HTMLElement>document.querySelector('.words-list'),
   ];
   container.innerHTML = '';
   container.append(
-    loader.render(),
+    loader,
     list.render(),
   );
 }

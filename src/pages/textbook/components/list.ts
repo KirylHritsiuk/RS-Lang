@@ -6,11 +6,15 @@ import { Block } from './blockTemplate';
 import { WordCard } from './card/card';
 
 export class List extends Block {
+  static textObject: { containerClass: string; } = {
+    containerClass: 'list_container',
+  };
+
   protected data: Promise<IWord[]>;
 
   constructor() {
     super();
-    this.container.className = 'list_container';
+    this.container.className = List.textObject.containerClass;
     if (this.user === '') {
       this.data = api.getWords(Block.textbookQueryData.getQuery());
     } else {

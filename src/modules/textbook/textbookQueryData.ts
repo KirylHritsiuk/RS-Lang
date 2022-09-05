@@ -82,7 +82,7 @@ export class TextbookQueryData {
       console.log('user', this.local);
       return [groupQuery, pageQuery, wordsPerPageQuery, filterQuery];
     }
-    console.log('get q ano', this.local);
+    console.log('get q noUser', this.local);
     return [groupQuery, pageQuery];
   }
 

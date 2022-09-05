@@ -47,8 +47,14 @@ export interface ISettingSchema {
   optional: IObject
 }
 
+export interface IUserWordSchema {
+  wordId?: string,
+  userId?: string,
+  difficulty: string,
+  optional?: IWordUser
+}
 export interface IWord {
-  id: string,
+  _id: string,
   group: number,
   page: number,
   word: string,
@@ -60,6 +66,7 @@ export interface IWord {
   textExample: string,
   transcription: string,
   wordTranslate: string,
+  userWord?: IUserWordSchema,
   textMeaningTranslate: string,
   textExampleTranslate: string,
 }
@@ -92,13 +99,6 @@ export interface IGetUserToken {
   refreshToken: string,
   userId: string,
   name: string
-}
-
-export interface IUserWordSchema {
-  wordId?: string,
-  userId?: string,
-  difficulty: string,
-  optional: IWordUser
 }
 
 export interface IError {

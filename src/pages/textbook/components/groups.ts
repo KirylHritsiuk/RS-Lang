@@ -79,7 +79,6 @@ export class Groups extends Block {
     container.dataset.group = group.toString();
     container.addEventListener('click', () => {
       Block.textbookQueryData.setGroup(group);
-      // localStorage.addItemLocalStorage(Block.textbookQueryData.getQuery());
       Block.textbookQueryData.updateLocal();
       changeList();
       Groups.toDefaultItem();

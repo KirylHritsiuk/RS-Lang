@@ -16,7 +16,7 @@
   .bg-purple {
     background: purple !important;
   }
-  .bg-difficult {
+  .bg-hard {
     background: rgba(173, 5, 5, 0.16) !important;
   }
   .bg-easy {
@@ -102,6 +102,18 @@
   .active-purple {
     color: purple;
     border-color: purple;
+  }
+  .active-all {
+    color: purple;
+    border-color: purple;
+  }
+  .active-hard {
+    color: red;
+    border-color: red;
+  }
+  .active-easy {
+    color: green;
+    border-color: green;
   }
 
   
