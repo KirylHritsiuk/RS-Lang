@@ -103,5 +103,17 @@
     color: purple;
     border-color: purple;
   }
+  .active-all {
+    color: purple;
+    border-color: purple;
+  }
+  .active-hard {
+    color: red;
+    border-color: red;
+  }
+  .active-easy {
+    color: green;
+    border-color: green;
+  }
 
   

@@ -8,12 +8,13 @@ export class DictionaryButton extends Block {
   constructor(protected name: string) {
     super();
     this.container = document.createElement('button');
-    this.container.id = `${data.word}-${name}`;
+    this.container.dataset.name = name;
     this.container.textContent = `${name} words`;
     this.container.className = DictionaryButton.textObject.containerClass;
     this.container.addEventListener('click', () => {
-      this.container.classList.add(`${Block.modificationClass.active}${name}');
-      document.getElementById(`${this.data.word}`)?.classList.toggle(`${Block.modificationClass.bgModificationClass}${name}`);
+      this.container.setAttribute('disabled', 'disabled');
+      this.container.classList.add(`${Block.modificationClass.active}${name}`);
+      console.log('but click');
     });
   }
 }
