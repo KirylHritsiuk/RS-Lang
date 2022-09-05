@@ -1,15 +1,14 @@
 /* eslint-disable no-unused-vars */
 import { PageContent } from '../pages/components/pageContent';
-import { Dictionary } from '../pages/dictioanary/index';
+import { Dictionary } from '../pages/textbook/components/dictionary/index';
 import { MainPage } from '../pages/main/main';
 import { MiniGame } from '../pages/minigames/minigames';
 import { Statistics } from '../pages/statistics/statistics';
 import { Modal } from '../pages/components/modal';
 import { Textbook } from '../pages/textbook/textbook';
 import burger from '../pages/components/burger';
-import { Page } from '../pages/textbook/template/index';
 import { changeList } from '../utils/changeList';
-import { DictionaryList } from '../pages/dictioanary/list';
+import { DictionaryList } from '../pages/textbook/components/dictionary/list';
 
 const enum PageId {
   main = 'main',
@@ -49,10 +48,10 @@ export class App {
       const pageHTML = page.render();
       pageContainer.append(<HTMLDivElement>pageHTML);
       if (idPage === PageId.textbook) {
-        console.log('textbook')
+        console.log('textbook');
         changeList();
       } else if (idPage === PageId.dictionary) {
-        console.log('app dic')
+        console.log('app dic');
         changeList(new DictionaryList());
       }
       if ('listenerGames' in page) {

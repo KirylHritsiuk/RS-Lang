@@ -1,7 +1,6 @@
-import { Block } from '../textbook/components/blockTemplate';
-import { List } from '../textbook/components/list';
+import { Block } from '../../blockTemplate';
+import { List } from '../../list';
 import { DictionaryButton } from './button';
-import '../../style/textbook/style.css';
 
 export class Filter extends Block {
   static textObject = {

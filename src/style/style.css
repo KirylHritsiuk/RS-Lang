@@ -16,7 +16,6 @@ html {
     grid-template-areas: "header""main""footer";
     grid-template-rows: 80px minmax(80vh, max-content) 80px;
     margin: 0 auto;
-    /* padding: 0 20px; */
     width: 100%;
     min-height: 100vh;
     align-content: space-between;

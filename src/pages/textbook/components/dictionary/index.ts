@@ -1,5 +1,5 @@
-import { Textbook } from '../textbook/textbook';
-import { Page } from '../textbook/template/index';
+import { Textbook } from '../../textbook';
+import { Page } from '../../template/index';
 
 export class Dictionary extends Textbook {
   render() {

@@ -1,15 +1,14 @@
-import { IResultGames, IWord } from "../../types/types";
-import { svg, svgMethods } from "../../common/svg";
+import { IResultGames, IWord } from '../../types/types';
+import { svg, svgMethods } from '../../common/svg';
 import { App } from '../../app/app';
 import AudioChellenge from '../../modules/minigames/audioChellenge';
-import { baseUrl } from "../../utils/api";
+import { baseUrl } from '../../utils/api';
 
 const svgAudio = svgMethods.audio;
 const svgCross = svgMethods.cross;
 const svgResult = svgMethods.results;
 
 export class Result {
-
   protected body: HTMLElement;
 
   protected words: IWord[];
@@ -75,34 +74,34 @@ export class Result {
     const allTempCircle: number = allCircle * procent / 100;
     circle.style.strokeDashoffset = (allCircle - allTempCircle).toString();
     const text = document.querySelector('.audio-progress-text') as HTMLElement;
-    text.innerText = procent.toString() + '%';
+    text.innerText = `${procent.toString()}%`;
     const inARow = document.querySelector('.schedule-row') as HTMLLIElement;
-    inARow.style.width = (data.statistics.maxRow / this.words.length * 100).toString() + '%';
+    inARow.style.width = `${(data.statistics.maxRow / this.words.length * 100).toString()}%`;
     const right = document.querySelector('.schedule-right') as HTMLLIElement;
-    right.style.width = (data.statistics.correctly / this.words.length * 100).toString() + '%';
+    right.style.width = `${(data.statistics.correctly / this.words.length * 100).toString()}%`;
     const wrong = document.querySelector('.schedule-mistake') as HTMLLIElement;
-    wrong.style.width = (data.statistics.wrong / this.words.length * 100).toString() + '%';
+    wrong.style.width = `${(data.statistics.wrong / this.words.length * 100).toString()}%`;
   }
 
   protected createSchedule(data: IResultGames): HTMLDivElement {
     const schedule = document.createElement('div') as HTMLDivElement;
     schedule.classList.add('answer-stat-schedule');
-    
+
     const scheduleLines = document.createElement('ul') as HTMLUListElement;
     scheduleLines.classList.add('schedule-lines');
-    
+
     const inARow = document.createElement('li') as HTMLLIElement;
     inARow.classList.add('schedule-row');
     inARow.style.width = '0%';
-    
+
     const right = document.createElement('li') as HTMLLIElement;
     right.classList.add('schedule-right');
     right.style.width = '0%';
-    
+
     const wrong = document.createElement('li') as HTMLLIElement;
     wrong.classList.add('schedule-mistake');
     // wrong.style.width = '0%';
-    
+
     scheduleLines.append(inARow, right, wrong);
 
     const scheduleNumbers = document.createElement('ul') as HTMLUListElement;
@@ -147,14 +146,14 @@ export class Result {
     const answerStatCircle = document.createElement('div') as HTMLDivElement;
     answerStatCircle.classList.add('answer-stat-circle');
     answerStatCircle.innerHTML = `
-      ${svgResult((Math.round(data.statistics.correctly / this.words.length * 100)).toString() + '%')}
+      ${svgResult(`${(Math.round(data.statistics.correctly / this.words.length * 100)).toString()}%`)}
       <span class="text-under-circle">Accuracy</span>`;
     answerStat.append(answerStatCircle, this.createSchedule(data));
     bodyResult.append(
-      answerStat, 
+      answerStat,
       this.createWordsRepeated((data.mistakeWords.length + data.correctWords.length).toString()),
       this.createAnswerWordsResult('Mistakes', data.mistakeWords),
-      this.createAnswerWordsResult('Correct Answer', data.correctWords)
+      this.createAnswerWordsResult('Correct Answer', data.correctWords),
     );
     result.append(resultTitle, bodyResult);
     modalRes.append(result);
@@ -167,18 +166,18 @@ export class Result {
     const modalListen = document.querySelector('.modal-wrapper') as HTMLDivElement;
     const cross = document.querySelector('#cross') as HTMLDivElement;
     const body = document.querySelector('body') as HTMLBodyElement;
-    cross.addEventListener('click', () => { modalListen.remove(); this.renderPageMinigames() });
+    cross.addEventListener('click', () => { modalListen.remove(); this.renderPageMinigames(); });
     const listenerBody = (ev: MouseEvent) => {
-      let td = ev.target as HTMLElement;
-      let audio = td.dataset.word;
-      let clickOnModal = td.closest('.modal-wrapper');
-      let again = td.closest('.btn-result-again');
+      const td = ev.target as HTMLElement;
+      const audio = td.dataset.word;
+      const clickOnModal = td.closest('.modal-wrapper');
+      const again = td.closest('.btn-result-again');
       if (audio) {
-        const takeAudio = this.words.filter((line) => line.word === audio)
-        const newAudioWord = new Audio(baseUrl+takeAudio[0].audio)
-        newAudioWord.play()
+        const takeAudio = this.words.filter((line) => line.word === audio);
+        const newAudioWord = new Audio(baseUrl + takeAudio[0].audio);
+        newAudioWord.play();
       }
-      
+
       if (!clickOnModal) {
         modalListen.remove();
         this.renderPageMinigames();
@@ -186,10 +185,10 @@ export class Result {
       }
       if (again) {
         modalListen.remove();
-        AudioChellenge.run()
+        AudioChellenge.run();
         body.removeEventListener('click', listenerBody);
       }
-    }
+    };
     body.addEventListener('click', listenerBody);
   }
 
@@ -200,11 +199,11 @@ export class Result {
 
   render(data: IResultGames): void {
     console.log(data);
-    this.words = data.correctWords.concat(data.mistakeWords)
+    this.words = data.correctWords.concat(data.mistakeWords);
     this.body.append(this.createModalElement(data));
     setTimeout(() => {
       this.resultTransition(data);
-      this.listener()
+      this.listener();
     }, 100);
   }
 }

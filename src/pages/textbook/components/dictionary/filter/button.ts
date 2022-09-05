@@ -1,4 +1,4 @@
-import { Block } from "../textbook/components/blockTemplate";
+import { Block } from '../../blockTemplate';
 
 export class DictionaryButton extends Block {
   static textObject = {
@@ -14,7 +14,6 @@ export class DictionaryButton extends Block {
     this.container.addEventListener('click', () => {
       this.container.setAttribute('disabled', 'disabled');
       this.container.classList.add(`${Block.modificationClass.active}${name}`);
-      console.log('but click');
     });
   }
 }

@@ -22,6 +22,9 @@
   .bg-easy {
     background: #0080002b !important;
   }
+  .bg-delete {
+    background: #334e333a !important;
+  }
   .bg-disabled {
     background: gray;
   }

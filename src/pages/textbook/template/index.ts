@@ -1,4 +1,4 @@
-import { Filter } from '../../dictioanary/filter';
+import { Filter } from '../components/dictionary/filter/filter';
 import { GameBar } from '../components/gamebar';
 import { Groups } from '../components/groups';
 import { Loader } from '../components/loader';

@@ -1,9 +1,9 @@
-import { getUserId } from '../../modules/user/getUserId';
-import { getUserToken } from '../../modules/user/getUserToken';
-import { IUserWordSchema } from '../../types/types';
-import api from '../../utils/api';
-import { WordCard } from '../textbook/components/card/card';
-import { List } from '../textbook/components/list';
+import { getUserId } from '../../../../modules/user/getUserId';
+import { getUserToken } from '../../../../modules/user/getUserToken';
+import { IUserWordSchema } from '../../../../types/types';
+import api from '../../../../utils/api';
+import { List } from '../list';
+import { DictionaryCard } from './card/card';
 
 export class DictionaryList extends List {
   protected aggData: Promise<IUserWordSchema[]>;
@@ -27,8 +27,10 @@ export class DictionaryList extends List {
         loader.remove();
         val.forEach((wordData) => {
           wordData.then((val) => {
-            const card = new WordCard(val[0]);
-            this.container.append(card.render());
+            if (val[0].userWord?.difficulty !== 'normal') {
+              const card = new DictionaryCard(val[0]);
+              this.container.append(card.render());
+            }
           });
         });
       });
