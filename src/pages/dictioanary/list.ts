@@ -1,6 +1,6 @@
 import { getUserId } from '../../modules/user/getUserId';
 import { getUserToken } from '../../modules/user/getUserToken';
-import { IUserWordSchema, IWord} from '../../types/types';
+import { IUserWordSchema } from '../../types/types';
 import api from '../../utils/api';
 import { WordCard } from '../textbook/components/card/card';
 import { List } from '../textbook/components/list';
@@ -12,7 +12,6 @@ export class DictionaryList extends List {
     super();
     this.container.className = 'list_container';
     this.aggData = api.getUserWords(getUserId(), getUserToken());
-    console.log('dic list', this.aggData);
   }
 
   render() {

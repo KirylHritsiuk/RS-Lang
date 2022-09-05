@@ -8,7 +8,6 @@ export class Dictionary extends Textbook {
       this.createBlock(Page.MainClass.games, this.games),
       this.createBlock(Page.MainClass.filter, this.filter),
       this.createBlock(Page.MainClass.wordsList, this.loader),
-      this.createBlock(Page.MainClass.groups, this.groups),
     );
     return this.container;
   }

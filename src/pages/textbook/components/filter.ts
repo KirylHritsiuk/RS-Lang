@@ -8,7 +8,8 @@ export class Filter extends Block {
 
   render() {
     this.container.innerHTML = `
-        <div class="filter__block active-${this.color}">Difficult words</div>
+        <div class="filter__block active-${this.color}">All</div>
+        <div class="filter__block">Hard words</div>
         <div class="filter__block">Easy words</div>`;
     return this.container;
   }
