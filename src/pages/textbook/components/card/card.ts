@@ -5,7 +5,7 @@ import { IWord } from '../../../../types/types';
 import { baseUrl } from '../../../../utils/api';
 import { AudioBlock } from './audio/AudioBlock';
 import { TextContent } from './text/text';
-/* eslint-disable no-unused-vars */
+
 export class WordCard extends Block {
   static ClassNameData = {
     container: 'word-card',
@@ -25,6 +25,9 @@ export class WordCard extends Block {
     this.group = data.group;
     this.audioBlock = new AudioBlock(data).render();
     this.text = new TextContent(data).render();
+    if (this.data.userWord !== null) {
+      this.container.classList.add(`${Block.modificationClass.bgModificationClass}${this.data.userWord?.difficulty}`);
+    }
   }
 
   create() {
