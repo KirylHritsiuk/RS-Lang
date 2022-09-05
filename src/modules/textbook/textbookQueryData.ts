@@ -18,18 +18,14 @@ export class TextbookQueryData {
   constructor() {
     if (user.getItemLocalStorage() === null) {
       this.local = textbook;
-      console.log('user null');
     } else {
       this.local = textbookUser;
-      console.log('user done');
     }
     this.localData = this.local.getItemLocalStorage();
     if (this.localData === null && this.local instanceof LocalStorageTextbookUser) {
       this.local.addItemLocalStorage([groupQuery, pageQuery, wordsPerPageQuery, filterQuery]);
-      console.log('textbookUser', [groupQuery, pageQuery, wordsPerPageQuery, filterQuery]);
     } else if (this.localData === null) {
       this.local.addItemLocalStorage([groupQuery, pageQuery]);
-      console.log('textbook', [groupQuery, pageQuery]);
     }
   }
 
@@ -79,20 +75,16 @@ export class TextbookQueryData {
 
   getQuery() {
     if (this.local instanceof LocalStorageTextbookUser) {
-      console.log('user', this.local);
       return [groupQuery, pageQuery, wordsPerPageQuery, filterQuery];
     }
-    console.log('get q noUser', this.local);
     return [groupQuery, pageQuery];
   }
 
   updateLocal() {
     if (this.local instanceof LocalStorageTextbookUser) {
       this.local.addItemLocalStorage([groupQuery, pageQuery, wordsPerPageQuery, filterQuery]);
-      console.log('update user');
     } else {
       this.local.addItemLocalStorage([groupQuery, pageQuery]);
-      console.log('update anonim');
     }
   }
 }

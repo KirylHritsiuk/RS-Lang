@@ -29,7 +29,6 @@ export class Pagination extends Block {
     this.container.className = Pagination.textObject.containerClass;
     this.pages = pages - 1;
     this.step = step - 1;
-    // this.pagPages = pages/step
   }
 
   createPageButton(page: number) {
