@@ -8,7 +8,7 @@ const burgerWrapper = <HTMLDivElement>document.querySelector('.burger-wrapper');
 const svgBurger = <HTMLDivElement>document.querySelector('.svg-burger');
 const spanRs = <HTMLSpanElement>document.querySelector('.span-rs');
 const body = <HTMLBodyElement>document.body;
-const allLi: NodeListOf<HTMLElement> = document.querySelectorAll('.li-wrapper')
+const allLi: NodeListOf<HTMLElement> = document.querySelectorAll('.li-wrapper');
 const exit = <HTMLDivElement>document.querySelector('.li-wrapper-log');
 
 export {

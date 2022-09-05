@@ -29,7 +29,7 @@ class PageQuery extends QueryItem {
     super(value, key);
   }
 }
-class WordsPerPage extends QueryItem {
+class WordsPerPageQuery extends QueryItem {
   constructor(value = 20, key = 'wordsPerPage') {
     super(value, key);
   }
@@ -42,5 +42,5 @@ class FilterQuery extends QueryItem {
 
 export const groupQuery = new GroupQuery();
 export const pageQuery = new PageQuery();
-export const wordsPerPage = new WordsPerPage();
-export const filter = new FilterQuery();
+export const wordsPerPageQuery = new WordsPerPageQuery();
+export const filterQuery = new FilterQuery();

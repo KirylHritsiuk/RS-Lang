@@ -107,12 +107,14 @@ export class Api {
 
   async createUserWord(
     userId: string,
+    token: string,
     wordId: string,
     word: IUserWordSchema,
   ): Promise<IUserWordSchema> {
     const res = await fetch(`${this.url}users/${userId}/words/${wordId}`, {
       method: 'POST',
       headers: {
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(word),
@@ -130,11 +132,13 @@ export class Api {
   async updateUserWord(
     userId: string,
     wordId: string,
+    token: string,
     word: IUserWordSchema,
   ): Promise<IUserWordSchema> {
     const res = await fetch(`${this.url}users/${userId}/words/${wordId}`, {
       method: 'PUT',
       headers: {
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(word),
@@ -151,14 +155,30 @@ export class Api {
     return res.status === 204;
   }
 
-  async getUserAggregatedWords(id: string, query: IQueryParameters[]): Promise<IWord> {
-    const res = await fetch(`${this.url}users/${id}/aggregatedWords/${Api.generateQueryString(query)}`);
-    const aggregatedWords: IWord = await res.json();
+  async getUserAggregatedWords(
+    id: string,
+    token: string,
+    query: IQueryParameters[],
+  ): Promise<IAggregatedWords[]> {
+    const res = await fetch(`${this.url}users/${id}/aggregatedWords?${Api.generateQueryString(query)}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const aggregatedWords: IAggregatedWords[] = await res.json();
     return aggregatedWords;
   }
 
-  async getUserAggregatedWordById(userId: string, wordId: string): Promise<IAggregatedWords[]> {
-    const res = await fetch(`${this.url}users/${userId}/aggregatedWords/${wordId}`);
+  async getUserAggregatedWordById(
+    userId: string,
+    token: string,
+    wordId: string,
+  ): Promise<IAggregatedWords[]> {
+    const res = await fetch(`${this.url}users/${userId}/aggregatedWords/${wordId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const aggregatedWord: IAggregatedWords[] = await res.json();
     return aggregatedWord;
   }

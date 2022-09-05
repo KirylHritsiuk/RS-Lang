@@ -179,6 +179,23 @@
     width: 100%;
 }
 
+.accurasy-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+.percent-diagram{
+    font-size: 34px;
+    position: absolute;
+    left: 37%;
+}
+
+.wrapper-diagram{
+    display: flex;
+    
+    align-items: center;
+    position: relative;
+}
+
 @media (max-width: 960px) {
     .container-card {
         flex-direction: column;

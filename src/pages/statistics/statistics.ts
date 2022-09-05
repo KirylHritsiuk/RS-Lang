@@ -1,7 +1,12 @@
 import '../../style/statistics.css';
+import Api from '../../utils/api';
+import { LocalStorageUser } from '../../modules/user/localStorageUser';
+import { IGetUserToken } from '../../types/types';
 
 export class Statistics {
   protected container: HTMLElement;
+
+  public dataLocalUser: IGetUserToken;
 
   static TextObject = {
     containerWrapperName: 'statistics-wrapper',
@@ -9,12 +14,16 @@ export class Statistics {
     containerAll: 'today-wrapper',
   };
 
+  static dataLocalUser: IGetUserToken;
+
   constructor() {
+    this.dataLocalUser = new LocalStorageUser().getItemLocalStorage();
     this.container = <HTMLElement>document.createElement('div');
     this.container.className = Statistics.TextObject.containerWrapperName;
   }
 
   static createContainerToday() {
+    const userlocalStorage = localStorage.getItem('rslang-user');
     const container = <HTMLDivElement>document.createElement('div');
     container.className = Statistics.TextObject.containerAll;
     container.innerHTML = `
@@ -34,7 +43,14 @@ export class Statistics {
                     </div>
                     <div class="accurasy-wrapper">
                         <div class="title-h3">Accuraty</div>
-                        <div class="diagram"></div>
+                        <div class="wrapper-diagram">
+    <svg width = "200px" height = "200px" viewBox="0 0 42 42">
+        <circle cx="21" cy="21" r="15" fill="white"></circle>
+        <circle cx="21" cy="21" r="15" fill="transparent" stroke="rgb(141, 141, 141)" stroke-width="3"></circle>
+        <circle cx="21" cy="21" r="15" fill="transparent" stroke="rgb(247, 153, 40)" stroke-width="3" stroke-dasharray="60 40" id="work"></circle>
+    </svg>
+    <span class="percent-diagram">60%</span>
+</div>
                     </div>
                 </div>
                 <div class="container-games-card">

@@ -80,7 +80,7 @@ export class AudioChellenge {
     this.statistics = {
       maxRow: 0,
       wrong: 0,
-      correctly: 0
+      correctly: 0,
     };
     this.rand = Math.floor(Math.random() * this.words.length);
   }
@@ -136,7 +136,7 @@ export class AudioChellenge {
   listenerAudioButton() {
     const audio: HTMLAudioElement | null = document.querySelector('#audio');
     const buttonAudio = document.querySelector('.audio-button') as HTMLButtonElement;
-    buttonAudio.addEventListener('click', () => audio ? audio.play() : false);
+    buttonAudio.addEventListener('click', () => (audio ? audio.play() : false));
   }
 
   clearPage() {

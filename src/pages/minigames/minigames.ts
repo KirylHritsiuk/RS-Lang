@@ -27,7 +27,7 @@ export class MiniGame {
                 <img src="./assets/img/headphones.png" class="minigame__img" alt="lion">
             </div>
             <div class="title">
-                <span class="game-h2">Audio challenge</span>
+                <span class="minigame-h2">Audio challenge</span>
             </div>
             <div class="game-text-wrapper">
                 <p class="game-text">Check your listening skills, trying to pick the right meaning after hearing a
@@ -44,7 +44,7 @@ export class MiniGame {
                 <img src="./assets/img/shoes.png" class="minigame__img" alt="lion">
             </div>
             <div class="title">
-                <span class="game-h2">Sprint</span>
+                <span class="minigame-h2">Sprint</span>
             </div>
             <div class="game-text-wrapper">
                 <p class="game-text">Check how much points you can get in one minute, making educated guesses about what is right and what is wrong.</p>
