@@ -71,9 +71,6 @@
     background-color: #FA5833;
 }
 
-
-
-
 .wrapper-level{
     max-width: 430px;
     display: flex;
@@ -283,12 +280,6 @@
   height: 100px;
   width: 100px;
   border-radius: 60px;
-}
-
-.game-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
 }
 
 .word-text {
@@ -704,6 +695,12 @@ audio:not([controls]) {
   grid-column-end: 2;
   grid-row-start: 2;
   grid-row-end: 3;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
 
 .audio-button:hover {

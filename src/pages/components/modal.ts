@@ -1,4 +1,5 @@
 import { User } from '../../modules/user/user';
+import localStorageTextbook from '../../modules/textbook/anonymous/localStorageTextbook';
 
 export class Modal {
   protected modal: HTMLDivElement;
@@ -11,10 +12,16 @@ export class Modal {
 
   protected email: string;
 
+  protected avatar: string;
+
+  protected avatarUrl: string;
+
   user: User;
 
   constructor() {
     this.modal = document.createElement('div');
+    this.avatar = ' ';
+    this.avatarUrl = '';
     this.body = document.querySelector('.body')!;
     this.modal.className = 'modal-overlay';
     this.name = '';
@@ -38,7 +45,7 @@ export class Modal {
               <input name="checkbox" class="checkbox_input" id="checkbox" type="checkbox">
               <label class="checkbox_label" for="checkbox">Show password</label>
           </div>
-          <button class="btn-login" type="submit">sign in</button>
+          <button class="btn-login btn-sign" type="submit">sign in</button>
           <div class="register">
               <a href="#">
                   Don't have an account? Sign Up
@@ -57,7 +64,7 @@ export class Modal {
     if (message === 'open') {
       const err: HTMLElement | null = document.querySelector('.error-message-modal');
       if (!err) {
-        const btnModal = document.querySelector('.btn-login') as HTMLButtonElement;
+        const btnModal = document.querySelector('.btn-sign') as HTMLButtonElement;
         btnModal.insertAdjacentHTML('afterend', `
           <div class="error-message-modal" style="color:red;">${mess}</div>`);
       } else {
@@ -173,11 +180,13 @@ export class Modal {
             email: this.email,
             name: this.name,
             password: this.password,
+            avatar: this.avatarUrl,
           });
           newUser.then((data) => {
             if (data) {
               this.errorMesssageInModal('del', '');
               this.modal.classList.add('transition-close-modal');
+              localStorageTextbook.clearItemLocalStorage()
             } else {
               this.errorMesssageInModal('open', 'user email already exists');
             }
@@ -190,6 +199,7 @@ export class Modal {
           });
           loginUser.then((data) => {
             if (data.message === 'Authenticated') {
+              localStorageTextbook.clearItemLocalStorage()
               this.errorMesssageInModal('del', '');
               this.modal.classList.add('transition-close-modal');
             } else {
@@ -219,6 +229,7 @@ export class Modal {
         signUp.innerHTML = '<a href=#>Do you have an account? Sign In<a>';
         btnLogin.textContent = 'sign up';
         inputName = document.querySelector('.input_name');
+        this.createAvatar();
       } else if (forms.length === 3) {
         modalContainer.firstElementChild?.remove();
         modalContainer.firstElementChild?.remove();
@@ -229,9 +240,64 @@ export class Modal {
         signUp.innerHTML = '<a href=#>Don\'t have an account? Sign Up<a>';
         btnLogin.textContent = 'sign in';
         inputName = null;
+        this.removeAvatar();
       }
       forms = document.querySelectorAll('.input_form') as NodeListOf<Element>;
     });
+  }
+
+  createAvatar() {
+    const check = document.querySelector('.checkbox_form') as HTMLDivElement;
+    const avatar = document.createElement('div') as HTMLDivElement;
+    avatar.classList.add('add-avatar');
+    const ava = document.createElement('button') as HTMLButtonElement;
+    ava.classList.add('btn-login');
+    ava.classList.add('avatar-min');
+    ava.textContent = 'choise file';
+
+    const img = document.createElement('img') as HTMLImageElement;
+    img.classList.add('img-avatar');
+    img.src = 'https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg';
+    const inputIMG = document.createElement('input') as HTMLInputElement;
+    inputIMG.classList.add('avatar');
+    inputIMG.hidden = true;
+    inputIMG.type = 'file';
+    inputIMG.accept = 'image';
+
+    avatar.append(img, inputIMG, ava);
+    check.insertAdjacentElement('afterend', avatar);
+
+    ava.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      inputIMG.click();
+      inputIMG.addEventListener('change',async () => {
+        const file = inputIMG.files as FileList;
+        const filereader = new FileReader();
+        filereader.readAsDataURL(file[0]);
+        const formdata = new FormData();
+        filereader.onload =  async (ev) => {
+          const url = ev.target?.result;
+          if (url) {
+            this.avatar = url.toString();
+            formdata.append('file', this.avatar);
+            formdata.append('upload_preset', 'lmaiqtqc');
+            const avatarUrl = await (await fetch('https://api.cloudinary.com/v1_1/dv4y8etpf/upload', {
+              method: 'POST',
+              headers: { 'Sec-Fetch-Mode':'no-cors' },
+              body: formdata
+            })).json();
+            this.avatarUrl = avatarUrl.secure_url;
+            img.src = this.avatarUrl;
+          }
+        }
+      })
+    })
+  }
+
+  removeAvatar() {
+    const check = document.querySelector('.checkbox_form') as HTMLDivElement;
+    const nexCheck = check.nextElementSibling as HTMLElement;
+    nexCheck.remove();
   }
 
   render(): void {
