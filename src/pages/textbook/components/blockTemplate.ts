@@ -2,6 +2,7 @@ import { groupData } from '../../../common/groups';
 import textbookQueryData, { TextbookQueryData } from '../../../modules/textbook/textbookQueryData';
 import { getUserId } from '../../../modules/user/getUserId';
 import { getUserToken } from '../../../modules/user/getUserToken';
+import dictionaryLocal from '../../../modules/dictionary/dictionary';
 
 export abstract class Block {
   protected container: HTMLElement;
@@ -42,9 +43,10 @@ export abstract class Block {
     this.group = Block.textbookQueryData.getGroupe();
     this.page = Block.textbookQueryData.getPage();
     this.filter = Block.textbookQueryData.getFilter();
-    this.color = groupData[this.group];
     this.user = getUserId();
     this.token = getUserToken();
+    if (dictionaryLocal.getItemLocalStorage() === null) this.color = groupData[this.group];
+    else this.color = groupData[groupData.length - 1];
   }
 
   render() {

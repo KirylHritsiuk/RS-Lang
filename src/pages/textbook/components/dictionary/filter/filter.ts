@@ -2,7 +2,6 @@ import { Block } from '../../blockTemplate';
 import { List } from '../../list';
 import { DictionaryButton } from './button';
 import dictionaryLocal from '../../../../../modules/dictionary/dictionary';
-import { IQueryParameters } from '../../../../../types/types';
 import { DictionaryQuery } from '../../../../../common/query';
 
 export class Filter extends Block {
@@ -12,12 +11,6 @@ export class Filter extends Block {
     categoryHard: 'hard',
     categoryEasy: 'easy',
   };
-
-  // protected all: HTMLElement;
-
-  // protected hard: HTMLElement;
-
-  // protected easy: HTMLElement;
 
   static category = dictionaryLocal.getItemLocalStorage();
 
@@ -75,16 +68,5 @@ export class Filter extends Block {
       });
     });
     this.container.append(Filter.all, Filter.hard, Filter.easy);
-    Filter.checkButton();
-  }
-
-  static checkButton() {
-    if (Filter.category === null || Filter.category[0].value === Filter.textObject.categoryAll) {
-      Filter.all.click();
-    } else if (Filter.category[0].value === Filter.textObject.categoryHard) {
-      Filter.hard.click();
-    } else if (Filter.category[0].value === Filter.textObject.categoryEasy) {
-      Filter.easy.click();
-    }
   }
 }

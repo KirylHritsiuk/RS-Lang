@@ -5,6 +5,8 @@ import { IWord } from '../../../../types/types';
 import { baseUrl } from '../../../../utils/api';
 import { AudioBlock } from './audio/AudioBlock';
 import { TextContent } from './text/text';
+import dictionary from '../../../../modules/dictionary/dictionary';
+import { Filter } from '../dictionary/filter/filter';
 
 export class WordCard extends Block {
   static ClassNameData = {
@@ -27,6 +29,13 @@ export class WordCard extends Block {
     this.text = new TextContent(data).render();
     if (this.data.userWord !== null) {
       this.container.classList.add(`${Block.modificationClass.bgModificationClass}${this.data.userWord?.difficulty}`);
+      const category = dictionary.getItemLocalStorage();
+      if (category !== null) {
+        if (category[0].value !== this.data.userWord?.difficulty
+            && category[0].value !== Filter.textObject.categoryAll) {
+          this.container.classList.add(Block.modificationClass.displayNone);
+        } else this.container.classList.remove(Block.modificationClass.displayNone);
+      }
     }
   }
 

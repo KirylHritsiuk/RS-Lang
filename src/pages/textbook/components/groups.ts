@@ -7,6 +7,7 @@ import { Pagination } from './pagination';
 import DictionaryLocal from '../../../modules/dictionary/dictionary';
 import { DictionaryQuery } from '../../../common/query';
 import { Filter } from './dictionary/filter/filter';
+import { getUserId } from '../../../modules/user/getUserId';
 
 export class Groups extends Block {
   static classNames = {
@@ -79,41 +80,45 @@ export class Groups extends Block {
     const container = document.createElement('button');
     container.className = `${Groups.classNames.itemLinkClass} ${Block.modificationClass.bgModificationClass}${color}`;
     // todo  add dictionary
-    // if (group === 6) {
-    //   console.log('group if', group);
-    //   container.textContent = 'D';
-    //   container.addEventListener('click', () => {
-    //     if (DictionaryLocal.getItemLocalStorage() === null) {
-    //       DictionaryLocal.addItemLocalStorage([DictionaryQuery]);
-    //     }
-    //     changeList(new DictionaryList());
-    //     Groups.toDefaultItem();
-    //     container
-    //       .parentElement?.classList
-    //       .add(Block.modificationClass.borderModificationClass + color);
-    //     Groups.changeColorTame(color);
-    //     const pagiantion = Array.from(document.querySelectorAll('.pagination'));
-    //     pagiantion.forEach((el) => {
-    //       el.classList.add(Block.modificationClass.displayNone);
-    //     })
-    //   });
-    // } else {
-    container.textContent = (group + 1).toString();
-    container.addEventListener('click', () => {
-      Block.textbookQueryData.setGroup(group);
-      Block.textbookQueryData.updateLocal();
-      changeList();
-      Groups.toDefaultItem();
-      container
-        .parentElement?.classList
-        .add(Block.modificationClass.borderModificationClass + color);
-      Groups.changeColorTame(color);
-      const pagiantion = Array.from(document.querySelectorAll('.pagination'));
-      pagiantion.forEach((el) => {
-        el.classList.remove(Block.modificationClass.displayNone);
+    if (group === 6) {
+      container.textContent = 'D';
+      container.addEventListener('click', () => {
+        if (DictionaryLocal.getItemLocalStorage() === null) {
+          DictionaryLocal.addItemLocalStorage([DictionaryQuery]);
+        }
+        changeList(new DictionaryList());
+        Groups.toDefaultItem();
+        container
+          .parentElement?.classList
+          .add(Block.modificationClass.borderModificationClass + color);
+        Groups.changeColorTame(color);
+        const pagination = Array.from(document.querySelectorAll('.pagination'));
+        pagination.forEach((el) => {
+          el.classList.add(Block.modificationClass.displayNone);
+        });
+        
       });
-    });
-    // }
+      if (getUserId() === '') container.classList.add(Block.modificationClass.displayNone);
+    } else {
+      container.textContent = (group + 1).toString();
+      container.addEventListener('click', () => {
+        Block.textbookQueryData.setGroup(group);
+        Block.textbookQueryData.updateLocal();
+        changeList();
+        Groups.toDefaultItem();
+        container
+          .parentElement?.classList
+          .add(Block.modificationClass.borderModificationClass + color);
+        Groups.changeColorTame(color);
+        const pagination = Array.from(document.querySelectorAll('.pagination'));
+        pagination.forEach((el) => {
+          el.classList.remove(Block.modificationClass.displayNone);
+          if (DictionaryLocal.getItemLocalStorage() !== null) {
+            DictionaryLocal.clearItemLocalStorage();
+          }
+        });
+      });
+    }
 
     return container;
   }
