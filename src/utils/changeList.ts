@@ -15,6 +15,6 @@ export function changeList(list: List | DictionaryList = new List()) {
     container.append(
       loader,
       list.render(),
-      );
+    );
   }
 }
