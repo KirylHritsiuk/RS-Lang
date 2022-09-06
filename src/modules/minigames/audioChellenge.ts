@@ -333,20 +333,20 @@ export class AudioChellenge {
     const groupButtonsContainer = document.querySelector('.chellenge-multi-buttons') as HTMLDivElement;
     const groupButtonsContainerListener = async (event: MouseEvent) => {
       const clickButton = event.target as HTMLElement;
-      if (clickButton.dataset.group) {
+      if (clickButton.tagName === 'BUTTON') {
         this.clearVar();
         this.clearPage();
         const rand = Math.floor(Math.random() * 30);
         const data = await Api.getWords([
-          { key: 'group', value: (Number(clickButton.dataset.group)).toString() },
+          { key: 'group', value: (Number(clickButton.textContent) - 1).toString() },
           { key: 'page', value: rand },
         ]);
         this.words = Array.from(data);
         this.wordsTemp = Array.from(data);
         this.rand = Math.floor(Math.random() * this.words.length);
         this.startGame();
+        groupButtonsContainer.removeEventListener('click', groupButtonsContainerListener);
       }
-      groupButtonsContainer.removeEventListener('click', groupButtonsContainerListener);
     };
     groupButtonsContainer.addEventListener('click', groupButtonsContainerListener);
   }
