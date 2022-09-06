@@ -83,8 +83,45 @@ export class Modal {
 
   addModalListener() {
     const login: HTMLElement | null = document.querySelector('#login');
+    const loginBottom: HTMLElement | null = document.querySelector('#login-bottom');
+    const loginSingUp: HTMLElement | null = document.querySelector('#sing-up-bottom');
     if (login) {
       login.addEventListener('click', () => {
+        this.modal.classList.add('transition-open-modal');
+        this.body.classList.add('no-scroll');
+      });
+      this.modal.addEventListener('animationend', (e) => {
+        if (e.animationName === 'close-modal') {
+          this.modal.classList.remove('open-modal');
+          this.modal.classList.remove('transition-close-modal');
+          this.body.classList.remove('no-scroll');
+        }
+        if (e.animationName === 'open-modal') {
+          this.modal.classList.add('open-modal');
+          this.modal.classList.remove('transition-open-modal');
+        }
+      });
+    }
+    if (loginBottom) {
+      loginBottom.addEventListener('click', () => {
+        this.modal.classList.add('transition-open-modal');
+        this.body.classList.add('no-scroll');
+      });
+      this.modal.addEventListener('animationend', (e) => {
+        if (e.animationName === 'close-modal') {
+          this.modal.classList.remove('open-modal');
+          this.modal.classList.remove('transition-close-modal');
+          this.body.classList.remove('no-scroll');
+        }
+        if (e.animationName === 'open-modal') {
+          this.modal.classList.add('open-modal');
+          this.modal.classList.remove('transition-open-modal');
+        }
+      });
+    }
+
+    if (loginSingUp) {
+      loginSingUp.addEventListener('click', () => {
         this.modal.classList.add('transition-open-modal');
         this.body.classList.add('no-scroll');
       });
@@ -186,7 +223,9 @@ export class Modal {
               localStorageTextbook.clearItemLocalStorage();
               inputPassword.value = '';
               inputEmail.value = '';
-            } else this.errorMesssageInModal('open', 'user email already exists');
+            } else {
+              this.errorMesssageInModal('open', 'user email already exists');
+            }
           });
         }
         if (btnLogin.textContent === 'sign in') {
@@ -210,7 +249,43 @@ export class Modal {
       }
     });
 
+    loginBottom.addEventListener('click', (ev) => {
+      const temp = ev.target as HTMLElement;
+      if (temp.classList[0] === 'modal-overlay') {
+        this.modal.classList.add('transition-close-modal');
+      }
+    });
+
     signUp.addEventListener('click', () => {
+      if (forms.length === 2) {
+        modalContainer.firstElementChild?.remove();
+        const nameElement = document.createElement('div');
+        nameElement.classList.add('input_form');
+        nameElement.innerHTML = '<input id="name" type="text" value="" name="name" placeholder="Name" class="input input_name">';
+        const titleElement = document.createElement('h1');
+        titleElement.classList.add('modal-header');
+        titleElement.innerText = 'Register';
+        modalContainer.prepend(titleElement, nameElement);
+        signUp.innerHTML = '<a href=#>Do you have an account? Sign In<a>';
+        btnLogin.textContent = 'sign up';
+        inputName = document.querySelector('.input_name');
+        this.createAvatar();
+      } else if (forms.length === 3) {
+        modalContainer.firstElementChild?.remove();
+        modalContainer.firstElementChild?.remove();
+        const titleElement = document.createElement('h1');
+        titleElement.classList.add('modal-header');
+        titleElement.innerText = 'Login';
+        modalContainer.prepend(titleElement);
+        signUp.innerHTML = '<a href=#>Don\'t have an account? Sign Up<a>';
+        btnLogin.textContent = 'sign in';
+        inputName = null;
+        this.removeAvatar();
+      }
+      forms = document.querySelectorAll('.input_form') as NodeListOf<Element>;
+    });
+
+    loginSingUp.addEventListener('click', () => {
       if (forms.length === 2) {
         modalContainer.firstElementChild?.remove();
         const nameElement = document.createElement('div');
@@ -264,12 +339,12 @@ export class Modal {
     ava.addEventListener('click', (ev) => {
       ev.preventDefault();
       inputIMG.click();
-      inputIMG.addEventListener('change',async () => {
+      inputIMG.addEventListener('change', async () => {
         const file = inputIMG.files as FileList;
         const filereader = new FileReader();
         filereader.readAsDataURL(file[0]);
         const formdata = new FormData();
-        filereader.onload =  async (ev) => {
+        filereader.onload = async (ev) => {
           const url = ev.target?.result;
           if (url) {
             this.avatar = url.toString();
@@ -277,15 +352,15 @@ export class Modal {
             formdata.append('upload_preset', 'lmaiqtqc');
             const avatarUrl = await (await fetch('https://api.cloudinary.com/v1_1/dv4y8etpf/upload', {
               method: 'POST',
-              headers: { 'Sec-Fetch-Mode':'no-cors' },
-              body: formdata
+              headers: { 'Sec-Fetch-Mode': 'no-cors' },
+              body: formdata,
             })).json();
             this.avatarUrl = avatarUrl.secure_url;
             img.src = this.avatarUrl;
           }
-        }
-      })
-    })
+        };
+      });
+    });
   }
 
   removeAvatar() {
@@ -300,5 +375,5 @@ export class Modal {
     if (localStorage.getItem('rslang-user')) {
       this.user.logout();
     }
-  }
+   }
 }

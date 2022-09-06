@@ -18,7 +18,6 @@ export class CardButtons extends Block {
     super();
     this.container.className = CardButtons.textObject.containerClass;
     if (this.user === '' || data.userWord !== undefined) {
-      console.log('if add dn', this.user, data.userWord);
       this.container.classList.add(Block.modificationClass.displayNone);
     }
     this.difficult = new Button(data, CardButtons.textObject.difficultHard).render();

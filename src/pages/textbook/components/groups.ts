@@ -7,6 +7,7 @@ import DictionaryLocal from '../../../modules/dictionary/dictionary';
 import { DictionaryQuery } from '../../../common/query';
 import { getUserId } from '../../../modules/user/getUserId';
 import { Pagination } from './pagination/index';
+import { PageId } from '../../../app/app';
 
 export class Groups extends Block {
   static classNames = {
@@ -39,7 +40,6 @@ export class Groups extends Block {
     replaceClasses(games, color, Block.modificationClass.hoverModificationClass);
     replaceClasses(pag, color, Pagination.textObject.hoverMod);
     const pos = title!.className.indexOf(Groups.modificationClass.colorModificationClass);
-    // eslint-disable-next-line no-param-reassign
     title!.className = `${title!.className.slice(0, pos)} ${Groups.modificationClass.colorModificationClass}${color}`;
   }
 
@@ -99,23 +99,25 @@ export class Groups extends Block {
       if (getUserId() === '') container.classList.add(Block.modificationClass.displayNone);
     } else {
       container.textContent = (group + 1).toString();
-      container.addEventListener('click', () => {
-        Block.textbookQueryData.setGroup(group);
-        Block.textbookQueryData.updateLocal();
-        changeList();
-        Groups.toDefaultItem();
-        container
-          .parentElement?.classList
-          .add(Block.modificationClass.borderModificationClass + color);
-        Groups.changeColorTame(color);
-        const pagination = Array.from(document.querySelectorAll('.pagination'));
-        pagination.forEach((el) => {
-          el.classList.remove(Block.modificationClass.displayNone);
-          if (DictionaryLocal.getItemLocalStorage() !== null) {
-            DictionaryLocal.clearItemLocalStorage();
-          }
+      if (window.location.hash.slice(1) !== PageId.minigames) {
+        container.addEventListener('click', () => {
+          Block.textbookQueryData.setGroup(group);
+          Block.textbookQueryData.updateLocal();
+          changeList();
+          Groups.toDefaultItem();
+          container
+            .parentElement?.classList
+            .add(Block.modificationClass.borderModificationClass + color);
+          Groups.changeColorTame(color);
+          const pagination = Array.from(document.querySelectorAll('.pagination'));
+          pagination.forEach((el) => {
+            el.classList.remove(Block.modificationClass.displayNone);
+            if (DictionaryLocal.getItemLocalStorage() !== null) {
+              DictionaryLocal.clearItemLocalStorage();
+            }
+          });
         });
-      });
+      }
     }
 
     return container;

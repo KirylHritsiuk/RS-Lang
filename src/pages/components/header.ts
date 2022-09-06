@@ -10,8 +10,6 @@ export class Header {
     this.container.className = Header.TextObject.ClassName;
   }
 
-
-
   render() {
     this.container.innerHTML = `<div class="login-wrapper">
         <h1 id="headerTitle" class="style-h1"></h1>

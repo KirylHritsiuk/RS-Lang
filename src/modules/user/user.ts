@@ -69,7 +69,7 @@ export class User extends Api {
     const logPole = document.querySelector('.log-pole') as HTMLElement;
     if (login.classList.contains('hidden')) {
       logPole.firstElementChild?.remove();
-      login.classList.remove('hidden')
+      login.classList.remove('hidden');
     } else {
       const autorize = document.createElement('div') as HTMLDivElement;
       autorize.classList.add('user-autorize');

@@ -114,11 +114,11 @@ export class AudioChellenge {
     const tempText: string | null = progressText.textContent;
     if (tempText) {
       if (flag) {
-        const progTextArray = [parseInt(tempText.split('/')[0]) + 1, tempText.split('/')[1]];
+        const progTextArray = [Number(tempText.split('/')[0]) + 1, tempText.split('/')[1]];
         progressText.textContent = progTextArray.join('/');
         this.wordAnswer = false;
       } else {
-        const progTextArray = [parseInt(tempText.split('/')[0]), tempText.split('/')[1]];
+        const progTextArray = [Number(tempText.split('/')[0]), tempText.split('/')[1]];
         progressText.textContent = progTextArray.join('/');
       }
     }
@@ -167,7 +167,8 @@ export class AudioChellenge {
       this.rand = Math.floor(Math.random() * this.words.length);
       this.word = this.words[this.rand];
       audioCurrent.src = `${baseUrl}${this.words[this.rand].audio}`;
-      changeButtons.innerHTML = this.randomWords(this.wordsTemp.filter((line) => line.word !== this.word?.word));
+      changeButtons.innerHTML = this.randomWords(this.wordsTemp
+        .filter((line) => line.word !== this.word?.word));
       if (this.btnContainer.children.length === 3) {
         this.btnContainer.lastElementChild?.remove();
         this.btnContainer.firstElementChild?.remove();
@@ -177,21 +178,6 @@ export class AudioChellenge {
       }
       this.listenerAudioButton();
     }
-    console.log({
-      words: this.words,
-      word: this.word,
-      wordsTemp: this.wordsTemp,
-      rand: this.rand,
-      mistakeWords: this.mistakeWords,
-      correctWords: this.correctWords,
-      btnContainer: this.btnContainer,
-      page: this.page,
-      progressWords: this.progressWords,
-      step: this.step,
-      currentWord: this.currentWord,
-      result: this.result,
-      statistics: this.statistics,
-    });
   }
 
   randomWords(arrWords: IWord[]) {
@@ -298,7 +284,7 @@ export class AudioChellenge {
 
   changeButton(selector: string) {
     const next = document.querySelector('#next') as HTMLButtonElement;
-    if (selector === 'next') next.textContent = 'i don\`t know';
+    if (selector === 'next') next.textContent = 'i don\'t know';
     if (selector === 'change') next.textContent = 'next word';
   }
 
@@ -352,7 +338,7 @@ export class AudioChellenge {
         this.clearPage();
         const rand = Math.floor(Math.random() * 30);
         const data = await Api.getWords([
-          { key: 'group', value: (parseInt(clickButton.dataset.group)).toString() },
+          { key: 'group', value: (Number(clickButton.dataset.group)).toString() },
           { key: 'page', value: rand },
         ]);
         this.words = Array.from(data);

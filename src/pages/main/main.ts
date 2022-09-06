@@ -47,7 +47,7 @@ export class MainPage {
     <span class="text blond" style="margin-top: 20px;">Learning English has never been so easy</span>
     <p class="text">Memorizing English words can be fun and challenging.<br> Play games, listen to
         pronunciation, improve your<br> knowledge. With our app, learning is a joy</p>
-    <a href="https://rss-lang-team-53.web.app/textbook"><button class="button">let's start</button></a>
+    <a href="#textbook"><button class="button">let's start</button></a>
 </div>`;
     return container;
   }
@@ -91,10 +91,8 @@ export class MainPage {
                 <div class="text-center">If you want to see statistics for all time and have <br> access to the
                     dictionary, please login or sign up first.</div>
                 <div class="button-wrapper">
-                    <a href="https://rss-lang-team-53.web.app/textbook"><button
-                            class="button small new-color">login</button></a>
-                    <a href="https://rss-lang-team-53.web.app/textbook"><button class="button small">sing
-                            up</button></a>
+                    <button id="login-bottom" class="button small new-color">login</button>
+                    <button id="sing-up-bottom" class="button small">sing up</button></a>
                 </div>
                 <div class = "place-computer">
                 <img class="img-saze-computer" src="./assets/svg/computer.svg" alt="computer">
