@@ -1,6 +1,7 @@
 import { Api } from '../../utils/api';
 import localStorageUser, { LocalStorageUser } from './localStorageUser';
 import { IUserSchema, IGetUserToken } from '../../types/types';
+import { changeList } from '../../utils/changeList';
 
 export class User extends Api {
   protected client: IUserSchema;
@@ -30,8 +31,9 @@ export class User extends Api {
   async checkLogin() {
     const result = localStorageUser.getItemLocalStorage();
     const login = document.querySelector('#login') as HTMLElement;
-    console.log(result);
     if (result) {
+      const hash = window.location.hash.slice(1);
+      // if (hash === 'textbook') changeList();
       const data = await this.getUser(result.userId, result.token);
       if (login.classList.contains('hidden')) {
         const text = document.querySelector('.text-login') as HTMLDivElement;
