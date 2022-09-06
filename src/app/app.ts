@@ -78,7 +78,7 @@ export class App {
     App.renderNewPage(hash);
     App.routeChange();
     burger.controlBurger();
-    this.modal.render();
+    this.modal.render('#login');
     await User.checkLogin();
   }
 }

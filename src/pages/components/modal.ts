@@ -81,7 +81,7 @@ export class Modal {
     }
   }
 
-  addModalListener() {
+  addModalListener(id: string) {
     const login: HTMLElement | null = document.querySelector('#login');
 
     if (login) {
@@ -300,11 +300,12 @@ export class Modal {
     nexCheck.remove();
   }
 
-  render(): void {
+  render(id: string): void {
     this.body.append(this.createModalElement());
-    this.addModalListener();
+    this.addModalListener('#login');
     if (localStorage.getItem('rslang-user')) {
       this.user.listenerLogout();
     }
+    this.addModalListener('#login-bottom');
   }
 }
