@@ -380,7 +380,5 @@ export class Modal {
     if (localStorage.getItem('rslang-user')) {
       this.user.listenerLogout();
     }
-    // this.addModalListener('#login-bottom');
-    // this.addModalListener('#sing-up-bottom');
-  }
+   }
 }
