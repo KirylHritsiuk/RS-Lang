@@ -1,6 +1,5 @@
 import {
   btnBurger, nawWrapper, icon, modal, containerUL, svgBurger, spanRs, allLi, exit,
-
 } from '../components/dataPageMain';
 
 class Burger {

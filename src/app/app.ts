@@ -61,7 +61,10 @@ export class App {
         page.listenerGames();
       }
     }
+    const footerVisibility = document.querySelector('.footer') as HTMLElement;
     await User.checkLogin();
+    if (idPage === 'minigames') footerVisibility.style.visibility = 'hidden';
+    else footerVisibility.style.visibility = 'initial';
   }
 
   private static routeChange() {

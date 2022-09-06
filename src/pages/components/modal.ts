@@ -102,7 +102,6 @@ export class Modal {
         }
       });
     }
-
     if (loginBottom) {
       loginBottom.addEventListener('click', () => {
         this.modal.classList.add('transition-open-modal');
@@ -138,10 +137,8 @@ export class Modal {
         }
       });
     }
-
     const checkbox = document.querySelector('#checkbox') as HTMLInputElement;
     const password = document.querySelector('.input_password') as HTMLInputElement;
-
     checkbox.addEventListener('click', () => {
       if (password.type === 'password') {
         password.type = 'text';
@@ -159,7 +156,7 @@ export class Modal {
     const signUp = document.querySelector('.register') as HTMLElement;
     const btnLogin = document.querySelector('.btn-login') as HTMLButtonElement;
 
-    form.onsubmit = async (ev) => {
+    form.onsubmit = (ev) => {
       ev.preventDefault();
       let flagPass = false;
       let flagName = true;
@@ -224,24 +221,23 @@ export class Modal {
               this.errorMesssageInModal('del', '');
               this.modal.classList.add('transition-close-modal');
               localStorageTextbook.clearItemLocalStorage();
+              inputPassword.value = '';
+              inputEmail.value = '';
             } else {
               this.errorMesssageInModal('open', 'user email already exists');
             }
           });
         }
         if (btnLogin.textContent === 'sign in') {
-          const loginUser = this.user.loginUser({
-            email: this.email,
-            password: this.password,
-          });
+          const loginUser = this.user.loginUser({ email: this.email, password: this.password });
           loginUser.then((data) => {
             if (data.message === 'Authenticated') {
               localStorageTextbook.clearItemLocalStorage();
               this.errorMesssageInModal('del', '');
               this.modal.classList.add('transition-close-modal');
-            } else {
-              this.errorMesssageInModal('open', data.message);
-            }
+              inputPassword.value = '';
+              inputEmail.value = '';
+            } else this.errorMesssageInModal('open', data.message);
           });
         }
       }
@@ -377,7 +373,7 @@ export class Modal {
     this.body.append(this.createModalElement());
     this.addModalListener();
     if (localStorage.getItem('rslang-user')) {
-      this.user.listenerLogout();
+      this.user.logout();
     }
    }
 }
