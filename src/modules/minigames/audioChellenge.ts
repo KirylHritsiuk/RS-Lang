@@ -4,7 +4,7 @@ import { groupData } from '../../common/groups';
 import { App } from '../../app/app';
 import { Api as API, baseUrl } from '../../utils/api';
 import { IWord, IStatisticGame } from '../../types/types';
-import { svgMethods } from "../../common/svg";
+import { svgMethods } from '../../common/svg';
 
 const svgAudio = svgMethods.audio;
 const svgResult = svgMethods.results('0/20');
@@ -17,9 +17,9 @@ export class AudioChellenge {
   protected progressWords: number | null;
 
   protected step: number;
-  
+
   protected wordAnswer: boolean;
-  
+
   protected word: IWord | null;
 
   protected words: IWord[];
@@ -43,9 +43,9 @@ export class AudioChellenge {
   protected result: Result;
 
   constructor() {
-    this.wasWords = []
-    this.mistakeWords = []
-    this.correctWords = []
+    this.wasWords = [];
+    this.mistakeWords = [];
+    this.correctWords = [];
     this.btnContainer = null;
     this.page = null;
     this.progressWords = null;
@@ -55,19 +55,19 @@ export class AudioChellenge {
     this.words = [];
     this.wordsTemp = [];
     this.wordAnswer = false;
-    this.result = new Result;
+    this.result = new Result();
     this.statistics = {
       maxRow: 0,
       wrong: 0,
-      correctly: 0
+      correctly: 0,
     };
     this.rand = Math.floor(Math.random() * this.words.length);
   }
 
   clearVar() {
-    this.wasWords = []
-    this.mistakeWords = []
-    this.correctWords = []
+    this.wasWords = [];
+    this.mistakeWords = [];
+    this.correctWords = [];
     this.btnContainer = null;
     this.page = null;
     this.progressWords = null;
@@ -76,7 +76,7 @@ export class AudioChellenge {
     this.word = null;
     this.words = [];
     this.wordsTemp = [];
-    this.result = new Result;
+    this.result = new Result();
     this.statistics = {
       maxRow: 0,
       wrong: 0,
@@ -104,7 +104,7 @@ export class AudioChellenge {
         </div>`;
     }
     const groups = document.querySelector('.chellenge-multi-buttons') as HTMLDivElement;
-    for (let i = 0; i < groupData.length; i++) {
+    for (let i = 0; i < 6; i++) {
       groups.append(group.createLink(i, groupData[i]));
     }
   }
@@ -123,11 +123,11 @@ export class AudioChellenge {
       }
     }
     const progress = document.querySelector('.audio-progress-path') as HTMLElement;
-    
+
     const stroke = progress.style.strokeDashoffset.replace('px', '');
     if (!this.progressWords) {
       this.progressWords = parseFloat(stroke);
-      this.step = Math.floor((parseFloat(stroke) / 20) *100) /100;
+      this.step = Math.floor((parseFloat(stroke) / 20) * 100) / 100;
     }
     this.progressWords -= this.step;
     progress.style.strokeDashoffset = `${this.progressWords}px`;
@@ -149,25 +149,25 @@ export class AudioChellenge {
   nextWord() {
     const audioCurrent = document.querySelector('#audio') as HTMLAudioElement;
     const changeButtons = document.querySelector('.audio-option') as HTMLDivElement;
-    this.words = this.words.filter((line, index) => index === this.rand ? false : line);
+    this.words = this.words.filter((line, index) => (index === this.rand ? false : line));
     if (!this.btnContainer) this.btnContainer = document.querySelector('.audio-button-container') as HTMLDivElement;
     if (this.words.length === 0) {
       this.removeListenerButtonNext();
       this.removeListenerButtons();
       setTimeout(() => {
-        this.result.render({ 
-          statistics: this.statistics, 
-          mistakeWords: this.mistakeWords, 
-          correctWords: this.correctWords
+        this.result.render({
+          statistics: this.statistics,
+          mistakeWords: this.mistakeWords,
+          correctWords: this.correctWords,
         });
-        this.clearPage()
+        this.clearPage();
         this.clearVar();
       }, 1000);
     } else {
       this.rand = Math.floor(Math.random() * this.words.length);
       this.word = this.words[this.rand];
       audioCurrent.src = `${baseUrl}${this.words[this.rand].audio}`;
-      changeButtons.innerHTML = this.randomWords(this.wordsTemp.filter(line => line.word !== this.word?.word));
+      changeButtons.innerHTML = this.randomWords(this.wordsTemp.filter((line) => line.word !== this.word?.word));
       if (this.btnContainer.children.length === 3) {
         this.btnContainer.lastElementChild?.remove();
         this.btnContainer.firstElementChild?.remove();
@@ -175,7 +175,7 @@ export class AudioChellenge {
         this.btnContainer.classList.remove('game-grid');
         this.listenerButtons();
       }
-      this.listenerAudioButton();      
+      this.listenerAudioButton();
     }
     console.log({
       words: this.words,
@@ -190,7 +190,7 @@ export class AudioChellenge {
       step: this.step,
       currentWord: this.currentWord,
       result: this.result,
-      statistics: this.statistics,  
+      statistics: this.statistics,
     });
   }
 
@@ -228,7 +228,7 @@ export class AudioChellenge {
           <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path>
         </svg>
       </button>`;
-    this.btnContainer.innerHTML =  `
+    this.btnContainer.innerHTML = `
       <div class="word-image">
         <img class="word-image-current" src="${baseUrl}${this.word?.image}" alt="${this.word?.word}">
       </div>
@@ -242,16 +242,16 @@ export class AudioChellenge {
   private listenBtn = (event: MouseEvent) => {
     const select = event.target as HTMLDivElement;
     select.classList.add('choise');
-    if(this.word) {
+    if (this.word) {
       if (this.word.wordTranslate === select.dataset.word) {
         this.currentWord += 1;
-        this.statistics.maxRow = Math.max(this.currentWord, this.statistics.maxRow)
+        this.statistics.maxRow = Math.max(this.currentWord, this.statistics.maxRow);
         this.statistics.correctly += 1;
-        this.correctWords.push(this.word)
+        this.correctWords.push(this.word);
         select.insertAdjacentHTML('afterend', this.getAudio(true));
         this.wordAnswer = true;
       } else {
-        this.mistakeWords.push(this.word)
+        this.mistakeWords.push(this.word);
         this.currentWord = 0;
         this.statistics.wrong += 1;
         select.insertAdjacentHTML('afterend', this.getAudio(false));
@@ -260,8 +260,8 @@ export class AudioChellenge {
     }
     this.showWord();
     this.changeButton('change');
-    this.removeListenerButtons()
-  }
+    this.removeListenerButtons();
+  };
 
   listenerButtons() {
     const btnWordsAll = document.querySelector('.audio-option') as HTMLElement;
@@ -277,7 +277,7 @@ export class AudioChellenge {
     this.progressIncrement(this.wordAnswer);
     this.changeButton('next');
     this.nextWord();
-  }
+  };
 
   listenerButtonNext() {
     const next = document.querySelector('#next') as HTMLButtonElement;
@@ -291,7 +291,7 @@ export class AudioChellenge {
 
   getAudio(flag: boolean): string {
     return `<audio id="audio-choise" 
-        src="${baseUrl}files/${ flag ? 'correct' : 'error' }.mp3" autoplay="">
+        src="${baseUrl}files/${flag ? 'correct' : 'error'}.mp3" autoplay="">
         <track kind="captions">
       </audio>`;
   }
@@ -342,7 +342,7 @@ export class AudioChellenge {
       const hash = window.location.hash.slice(1);
       App.renderNewPage(hash);
       buttonBack.removeEventListener('click', buttonBackListener);
-    }
+    };
     buttonBack.addEventListener('click', buttonBackListener);
     const groupButtonsContainer = document.querySelector('.chellenge-multi-buttons') as HTMLDivElement;
     const groupButtonsContainerListener = async (event: MouseEvent) => {
@@ -361,7 +361,7 @@ export class AudioChellenge {
         this.startGame();
       }
       groupButtonsContainer.removeEventListener('click', groupButtonsContainerListener);
-    }
+    };
     groupButtonsContainer.addEventListener('click', groupButtonsContainerListener);
   }
 

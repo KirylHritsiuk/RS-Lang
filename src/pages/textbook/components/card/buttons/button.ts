@@ -1,3 +1,4 @@
+import { groupData } from '../../../../../common/groups';
 import { IWord } from '../../../../../types/types';
 import { Block } from '../../blockTemplate';
 
@@ -16,7 +17,7 @@ export class Button extends Block {
     this.container.classList.add(`${Button.textObject.containerClass}_${Block.modificationClass.sizeL}`);
     this.container.addEventListener('click', () => {
       this.container.parentElement!.classList.add(Block.modificationClass.displayNone);
-      document.getElementById(`${this.data.word}`)?.classList.toggle(`${Block.modificationClass.bgModificationClass}${name}`);
+      document.getElementById(`${this.data.word}`)?.classList.toggle(`${Block.modificationClass.bgModificationClass}${groupData[data.group]}`);
     });
   }
 }

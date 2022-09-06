@@ -1,4 +1,4 @@
-import { DictionaryList } from '../pages/dictioanary/list';
+import { DictionaryList } from '../pages/textbook/components/dictionary/list';
 import { List } from '../pages/textbook/components/list';
 import { Loader } from '../pages/textbook/components/loader';
 

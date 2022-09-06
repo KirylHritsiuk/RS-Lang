@@ -16,11 +16,17 @@
   .bg-purple {
     background: purple !important;
   }
+  .bg-coral {
+    background: coral !important;
+  }
   .bg-hard {
     background: rgba(173, 5, 5, 0.16) !important;
   }
   .bg-easy {
     background: #0080002b !important;
+  }
+  .bg-delete {
+    background: #334e333a !important;
   }
   .bg-disabled {
     background: gray;
@@ -40,8 +46,8 @@
   .border-darkslateblue {
     border-color: darkslateblue !important;
   }
-  .color-purple {
-    color: purple !important;
+  .border-coral {
+    border-color: coral !important;
   }
   .border-left-red {
     border-color: red !important;
@@ -58,8 +64,8 @@
   .border-left-darkslateblue {
     border-color: darkslateblue !important;
   }
-  .color-purple {
-    color: purple !important;
+  .border-left-coral {
+    border-color: coral !important;
   }
   .color-red {
     color: red !important;
@@ -78,6 +84,9 @@
   }
   .color-purple {
     color: purple !important;
+  }
+  .color-coral {
+    color: coral !important;
   }
   .active-red {
     color: red;
@@ -102,6 +111,10 @@
   .active-purple {
     color: purple;
     border-color: purple;
+  }
+  .active-coral {
+    color: coral;
+    border-color: coral;
   }
   .active-all {
     color: purple;

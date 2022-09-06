@@ -26,13 +26,13 @@ export class TextContent extends Block {
         </div>
       </div>
       <div class="card-meaning">
-          <div class="word-text">
+          <div class="word__text">
             <div class="word-meaning__sentence">${this.data.textMeaning}</div>
           </div>
           <div class="word-meaning__translate translate">${this.data.textMeaningTranslate}</div>
       </div>
         <div class="card-example">
-          <div class="word-text">
+          <div class="word__text">
             <div class="word-example__sentence">${this.data.textExample}</div>
             </div>
             <div class="word_example__translate translate">${this.data.textExampleTranslate}</div>

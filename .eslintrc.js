@@ -24,6 +24,8 @@ module.exports = {
     'no-shadow': 'off',
     'class-methods-use-this': 'warn',
     'no-restricted-syntax': 'warn',
+    'no-underscore-dangle': 'warn',
+    'no-unused-vars': 'warn',
 
   },
 };
