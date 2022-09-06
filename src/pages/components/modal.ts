@@ -85,7 +85,6 @@ export class Modal {
     const login: HTMLElement | null = document.querySelector('#login');
     const loginBottom: HTMLElement | null = document.querySelector('#login-bottom');
     const loginSingUp: HTMLElement | null = document.querySelector('#sing-up-bottom');
-    console.log(loginSingUp)
     if (login) {
       login.addEventListener('click', () => {
         this.modal.classList.add('transition-open-modal');
