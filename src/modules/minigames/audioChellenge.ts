@@ -332,11 +332,7 @@ export class AudioChellenge {
     buttonBack.addEventListener('click', buttonBackListener);
     const groupButtonsContainer = document.querySelector('.chellenge-multi-buttons') as HTMLDivElement;
     const groupButtonsContainerListener = async (event: MouseEvent) => {
-      console.log(event);
-      
       const clickButton = event.target as HTMLElement;
-      console.log(clickButton.tagName);
-      
       if (clickButton.tagName === 'BUTTON') {
         this.clearVar();
         this.clearPage();
