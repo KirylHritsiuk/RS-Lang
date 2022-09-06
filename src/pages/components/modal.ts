@@ -186,7 +186,7 @@ export class Modal {
             if (data) {
               this.errorMesssageInModal('del', '');
               this.modal.classList.add('transition-close-modal');
-              localStorageTextbook.clearItemLocalStorage()
+              localStorageTextbook.clearItemLocalStorage();
             } else {
               this.errorMesssageInModal('open', 'user email already exists');
             }
@@ -199,7 +199,7 @@ export class Modal {
           });
           loginUser.then((data) => {
             if (data.message === 'Authenticated') {
-              localStorageTextbook.clearItemLocalStorage()
+              localStorageTextbook.clearItemLocalStorage();
               this.errorMesssageInModal('del', '');
               this.modal.classList.add('transition-close-modal');
             } else {
@@ -270,12 +270,12 @@ export class Modal {
     ava.addEventListener('click', (ev) => {
       ev.preventDefault();
       inputIMG.click();
-      inputIMG.addEventListener('change',async () => {
+      inputIMG.addEventListener('change', async () => {
         const file = inputIMG.files as FileList;
         const filereader = new FileReader();
         filereader.readAsDataURL(file[0]);
         const formdata = new FormData();
-        filereader.onload =  async (ev) => {
+        filereader.onload = async (ev) => {
           const url = ev.target?.result;
           if (url) {
             this.avatar = url.toString();
@@ -283,15 +283,15 @@ export class Modal {
             formdata.append('upload_preset', 'lmaiqtqc');
             const avatarUrl = await (await fetch('https://api.cloudinary.com/v1_1/dv4y8etpf/upload', {
               method: 'POST',
-              headers: { 'Sec-Fetch-Mode':'no-cors' },
-              body: formdata
+              headers: { 'Sec-Fetch-Mode': 'no-cors' },
+              body: formdata,
             })).json();
             this.avatarUrl = avatarUrl.secure_url;
             img.src = this.avatarUrl;
           }
-        }
-      })
-    })
+        };
+      });
+    });
   }
 
   removeAvatar() {

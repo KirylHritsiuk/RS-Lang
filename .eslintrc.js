@@ -26,6 +26,7 @@ module.exports = {
     'no-restricted-syntax': 'warn',
     'no-underscore-dangle': 'warn',
     'no-unused-vars': 'warn',
+    'no-continue': 'warn',
 
   },
 };
