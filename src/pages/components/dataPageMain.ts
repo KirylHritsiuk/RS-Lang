@@ -12,7 +12,16 @@ const allLi: NodeListOf<HTMLElement> = document.querySelectorAll('.li-wrapper');
 const exit = <HTMLDivElement>document.querySelector('.li-wrapper-log');
 
 export {
-  allLi, exit, btnBurger, nawWrapper, icon, modal, containerUL, burgerWrapper, svgBurger, spanRs, body,
+  allLi,
+  exit,
+  btnBurger,
+  nawWrapper,
+  icon, modal,
+  containerUL,
+  burgerWrapper,
+  svgBurger,
+  spanRs,
+  body,
 };
 
 export interface IArrAdvantages{

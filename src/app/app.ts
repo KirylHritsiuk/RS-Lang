@@ -10,7 +10,7 @@ import { DictionaryList } from '../pages/textbook/components/dictionary/list';
 import dictionaryLocal from '../modules/dictionary/dictionary';
 import User from '../modules/user/user';
 
-const enum PageId {
+export const enum PageId {
   main = 'main',
   textbook = 'textbook',
   minigames = 'minigames',
@@ -21,7 +21,7 @@ export class App {
   protected pageContent: PageContent;
 
   protected modal: Modal;
-  
+
   constructor() {
     this.pageContent = new PageContent();
     this.modal = new Modal();

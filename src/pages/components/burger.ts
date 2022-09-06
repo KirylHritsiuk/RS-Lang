@@ -20,8 +20,6 @@ class Burger {
   }
 
   controlBurger() {
-    exit.onclick = () => location.reload();
-
     allLi.forEach((e) => {
       e.addEventListener('click', (e) => {
         const target = <HTMLElement>(e.currentTarget);
