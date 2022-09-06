@@ -26,7 +26,8 @@ export interface IUserSchema {
   name?: string,
   complete?: boolean,
   email: string,
-  password: string
+  password: string,
+  avatar?: string
 }
 
 export interface IStatisticSchema {

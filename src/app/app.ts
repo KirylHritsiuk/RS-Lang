@@ -8,6 +8,7 @@ import burger from '../pages/components/burger';
 import { changeList } from '../utils/changeList';
 import { DictionaryList } from '../pages/textbook/components/dictionary/list';
 import dictionaryLocal from '../modules/dictionary/dictionary';
+import User from '../modules/user/user';
 
 const enum PageId {
   main = 'main',
@@ -15,14 +16,20 @@ const enum PageId {
   minigames = 'minigames',
   statistics = 'statistics',
 }
+
 export class App {
   protected pageContent: PageContent;
 
   protected modal: Modal;
+  
+  constructor() {
+    this.pageContent = new PageContent();
+    this.modal = new Modal();
+  }
 
   static pageContainer: HTMLElement;
 
-  static renderNewPage(idPage: string) {
+  static async renderNewPage(idPage: string) {
     const pageContainer = <HTMLElement>document.getElementById('main');
     const title = <HTMLTitleElement>document.querySelector('#headerTitle');
     title.textContent = idPage;
@@ -54,6 +61,7 @@ export class App {
         page.listenerGames();
       }
     }
+    await User.checkLogin();
   }
 
   private static routeChange() {
@@ -61,11 +69,6 @@ export class App {
       const hash = window.location.hash.slice(1);
       App.renderNewPage(hash);
     });
-  }
-
-  constructor() {
-    this.pageContent = new PageContent();
-    this.modal = new Modal();
   }
 
   async run() {
@@ -76,5 +79,6 @@ export class App {
     App.routeChange();
     burger.controlBurger();
     this.modal.render();
+    await User.checkLogin();
   }
 }

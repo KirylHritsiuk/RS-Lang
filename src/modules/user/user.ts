@@ -1,9 +1,6 @@
 import { Api } from '../../utils/api';
-import { LocalStorageUser } from './localStorageUser';
-import {
-  IUserSchema,
-  IGetUserToken,
-} from '../../types/types';
+import localStorageUser, { LocalStorageUser } from './localStorageUser';
+import { IUserSchema, IGetUserToken } from '../../types/types';
 
 export class User extends Api {
   protected client: IUserSchema;
@@ -14,6 +11,7 @@ export class User extends Api {
     super();
     this.client = {
       name: '',
+      avatar: '',
       email: '',
       password: '',
       complete: false,
@@ -21,11 +19,65 @@ export class User extends Api {
     this.local = new LocalStorageUser('rslang-user');
   }
 
+  async checkLogin() {
+    const result = localStorageUser.getItemLocalStorage();
+    if (result) {
+      const data = await this.getUser(result.userId, result.token);
+      const login = document.querySelector('#login') as HTMLElement;
+      if (login.classList.contains('hidden')) {
+        const text = document.querySelector('.text-login') as HTMLDivElement;
+        text.innerHTML = `<span>${data.name}</span><span>${data.email}</span>`;
+        const img = document.querySelector('avatar-minim') as HTMLImageElement;
+        if (data.avatar) img.src = data.avatar;
+        else img.src = 'https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg';
+      } else {
+        const logPole = document.querySelector('.log-pole') as HTMLElement;
+        const autorize = document.createElement('div') as HTMLDivElement;
+        autorize.classList.add('user-autorize');
+        const text = document.createElement('div') as HTMLDivElement;
+        text.classList.add('text-login');
+        text.innerHTML = `<span>${data.name}</span><span>${data.email}</span>`;
+        const img = document.createElement('img') as HTMLImageElement;
+        img.classList.add('img-avatar');
+        img.classList.add('avatar-minim');
+        if (data.avatar) img.src = data.avatar;
+        else img.src = 'https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg';
+        autorize.append(text, img);
+        logPole.insertAdjacentElement('afterbegin', autorize);
+        login.classList.add('hidden');
+      }
+    }
+  }
+
+  changeLoginHeader() {
+    const login = document.querySelector('#login') as HTMLElement;
+    const logPole = document.querySelector('.log-pole') as HTMLElement;
+    if (login.classList.contains('hidden')) {
+      logPole.firstElementChild?.remove();
+      login.classList.remove('hidden')
+    } else {
+      const autorize = document.createElement('div') as HTMLDivElement;
+      autorize.classList.add('user-autorize');
+      const text = document.createElement('div') as HTMLDivElement;
+      text.classList.add('text-login');
+      text.innerHTML = `<span>${this.client.name}</span><span>${this.client.email}</span>`;
+      const img = document.createElement('img') as HTMLImageElement;
+      img.classList.add('img-avatar');
+      img.classList.add('avatar-minim');
+      // img.src = this.client.avatar ? this.client.avatar : 'https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg';
+      autorize.append(text, img);
+      logPole.insertAdjacentElement('afterbegin', autorize);
+      login.classList.add('hidden');
+    }
+  }
+
   registerUser = async (user: IUserSchema) => {
     const data = await this.createUser(user);
-    if (!data.complete) {
-      return false;
-    }
+    if (!data.complete) return false;
+    this.client.name = user.name;
+    this.client.password = user.password;
+    this.client.email = user.email;
+    this.client.avatar = user.avatar;
     const userToken: IGetUserToken = await this.signin({
       email: user.email,
       password: user.password,
@@ -46,6 +98,10 @@ export class User extends Api {
     if (userToken.token) {
       this.local.addItemLocalStorage(userToken);
       const userData: IUserSchema = await this.getUser(userToken.userId, userToken.token);
+      this.client.name = userData.name;
+      this.client.password = user.password;
+      this.client.email = user.email;
+      this.client.avatar = userData.avatar;
       this.listenerLogout();
       return userToken;
     }
@@ -53,6 +109,7 @@ export class User extends Api {
   }
 
   listenerLogout() {
+    this.checkLogin();
     const logout = document.querySelector('#logout') as HTMLElement;
     logout.addEventListener('click', (ev) => {
       ev.preventDefault();
@@ -61,6 +118,12 @@ export class User extends Api {
   }
 
   logoutUser() {
+    this.client.name = '';
+    this.client.password = '';
+    this.client.email = '';
+    this.client.avatar = '';
     this.local.clearItemLocalStorage();
   }
 }
+
+export default new User();
