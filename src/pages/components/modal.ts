@@ -94,6 +94,7 @@ export class Modal {
           this.modal.classList.remove('open-modal');
           this.modal.classList.remove('transition-close-modal');
           this.body.classList.remove('no-scroll');
+          location.reload();
         }
         if (e.animationName === 'open-modal') {
           this.modal.classList.add('open-modal');
