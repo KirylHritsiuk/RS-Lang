@@ -9,6 +9,7 @@ import {
   pageQuery,
   wordsPerPageQuery,
 } from '../../common/query';
+import { Query } from '../../common/queryTemplate';
 
 export class TextbookQueryData {
   protected local: LocalStorage<IQueryParameters[]>;
@@ -23,9 +24,11 @@ export class TextbookQueryData {
     }
     this.localData = this.local.getItemLocalStorage();
     if (this.localData === null && this.local instanceof LocalStorageTextbookUser) {
-      this.local.addItemLocalStorage([groupQuery, pageQuery, wordsPerPageQuery, filterQuery]);
+      this.local.addItemLocalStorage(this.getQuery());
     } else if (this.localData === null) {
-      this.local.addItemLocalStorage([groupQuery, pageQuery]);
+      this.local.addItemLocalStorage(this.getQuery());
+    } else {
+      this.updateQuery();
     }
   }
 
@@ -78,6 +81,18 @@ export class TextbookQueryData {
       return [groupQuery, pageQuery, wordsPerPageQuery, filterQuery];
     }
     return [groupQuery, pageQuery];
+  }
+
+  updateQuery() {
+    let query: Query[] = [];
+    if (this.local instanceof LocalStorageTextbookUser) {
+      query = [groupQuery, pageQuery, wordsPerPageQuery, filterQuery];
+    } else {
+      query = [groupQuery, pageQuery];
+    }
+    this.localData!.forEach((item, index) => {
+      query[index].set(item.value);
+    });
   }
 
   updateLocal() {

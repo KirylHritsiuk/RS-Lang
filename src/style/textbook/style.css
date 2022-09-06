@@ -113,9 +113,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  -moz-column-gap: 2%;
-       column-gap: 2%;
   font-size: large;
+}
+.pagination ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45%;
+  justify-content: space-between !important;
 }
 
 .game-button {
@@ -134,6 +139,7 @@
   font-weight: 500;
   font-size: x-large;
   text-align: center;
+  background: #f3f3f3;
   cursor: pointer;
   transition: 0.2s linear;
 }

@@ -102,8 +102,13 @@
 //----------------------------------------------------------------------------------------------------
 .pagination {
   @include flexCenter();
-  column-gap: 2%;
   font-size: large;
+  ul {
+    @include flexCenter();
+    width: 45%;
+    justify-content: space-between !important;
+    
+  }
   
 }
 .game-button {
@@ -119,6 +124,7 @@
   font-weight: 500;
   font-size: x-large;
   text-align: center;
+  background: #f3f3f3;
   cursor: pointer;
   transition: 0.2s linear;
 }

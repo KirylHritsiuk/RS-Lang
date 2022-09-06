@@ -3,11 +3,10 @@ import { groupData } from '../../../common/groups';
 import { changeList } from '../../../utils/changeList';
 import { Block } from './blockTemplate';
 import { DictionaryList } from './dictionary/list';
-import { Pagination } from './pagination';
 import DictionaryLocal from '../../../modules/dictionary/dictionary';
 import { DictionaryQuery } from '../../../common/query';
-import { Filter } from './dictionary/filter/filter';
 import { getUserId } from '../../../modules/user/getUserId';
+import { Pagination } from './pagination/index';
 
 export class Groups extends Block {
   static classNames = {
@@ -96,7 +95,6 @@ export class Groups extends Block {
         pagination.forEach((el) => {
           el.classList.add(Block.modificationClass.displayNone);
         });
-        
       });
       if (getUserId() === '') container.classList.add(Block.modificationClass.displayNone);
     } else {
