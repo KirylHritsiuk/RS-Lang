@@ -43,7 +43,6 @@ export abstract class Block {
     this.group = Block.textbookQueryData.getGroupe();
     this.page = Block.textbookQueryData.getPage();
     this.filter = Block.textbookQueryData.getFilter();
-    console.log('getpage', Block.textbookQueryData.getPage());
     this.user = getUserId();
     this.token = getUserToken();
     if (dictionaryLocal.getItemLocalStorage() === null) this.color = groupData[this.group];

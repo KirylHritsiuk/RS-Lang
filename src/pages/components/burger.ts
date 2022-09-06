@@ -1,6 +1,5 @@
 import {
   btnBurger, nawWrapper, icon, modal, containerUL, svgBurger, spanRs, allLi, exit,
-
 } from '../components/dataPageMain';
 
 class Burger {
@@ -20,8 +19,6 @@ class Burger {
   }
 
   controlBurger() {
-    exit.onclick = () => location.reload();
-
     allLi.forEach((e) => {
       e.addEventListener('click', (e) => {
         const target = <HTMLElement>(e.currentTarget);

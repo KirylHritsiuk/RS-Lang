@@ -82,6 +82,10 @@
     color: #C4C4C4;
 }
 
+.wrapper-log-out {
+    cursor: pointer;
+}
+
 .a-nav{
     width: 240px;
 }

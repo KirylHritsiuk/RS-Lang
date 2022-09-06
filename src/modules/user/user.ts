@@ -7,6 +7,14 @@ export class User extends Api {
 
   protected local: LocalStorageUser;
 
+  logoutUserTemp() {
+    this.client.name = '';
+    this.client.password = '';
+    this.client.email = '';
+    this.client.avatar = '';
+    this.local.clearItemLocalStorage();
+  }
+
   constructor() {
     super();
     this.client = {
@@ -21,9 +29,10 @@ export class User extends Api {
 
   async checkLogin() {
     const result = localStorageUser.getItemLocalStorage();
+    const login = document.querySelector('#login') as HTMLElement;
+    console.log(result);
     if (result) {
       const data = await this.getUser(result.userId, result.token);
-      const login = document.querySelector('#login') as HTMLElement;
       if (login.classList.contains('hidden')) {
         const text = document.querySelector('.text-login') as HTMLDivElement;
         text.innerHTML = `<span>${data.name}</span><span>${data.email}</span>`;
@@ -46,6 +55,12 @@ export class User extends Api {
         logPole.insertAdjacentElement('afterbegin', autorize);
         login.classList.add('hidden');
       }
+    } else {
+      if (login.classList.contains('hidden')) {
+        login.classList.remove('hidden');
+        const autorize: HTMLDivElement | null  = document.querySelector('.user-autorize') as HTMLDivElement;
+        if (autorize) autorize.remove();
+      } 
     }
   }
 
@@ -84,7 +99,8 @@ export class User extends Api {
     });
     if (userToken.token) {
       this.local.addItemLocalStorage(userToken);
-      this.listenerLogout();
+      this.checkLogin();
+      this.logout();
       return data;
     }
     return false;
@@ -102,28 +118,25 @@ export class User extends Api {
       this.client.password = user.password;
       this.client.email = user.email;
       this.client.avatar = userData.avatar;
-      this.listenerLogout();
+      this.checkLogin();
+      this.logout();
       return userToken;
     }
     return userToken;
   }
-
-  listenerLogout() {
-    this.checkLogin();
-    const logout = document.querySelector('#logout') as HTMLElement;
-    logout.addEventListener('click', (ev) => {
+  
+  logout() {
+    const listenerLogout = (ev: MouseEvent) => {
       ev.preventDefault();
-      this.logoutUser();
-    });
+      this.logoutUserTemp();
+      const logout = document.querySelector('#logout') as HTMLElement;
+      this.checkLogin();
+      logout.removeEventListener('click', listenerLogout);
+    }
+    const logout = document.querySelector('#logout') as HTMLElement;
+    logout.addEventListener('click', listenerLogout);
   }
-
-  logoutUser() {
-    this.client.name = '';
-    this.client.password = '';
-    this.client.email = '';
-    this.client.avatar = '';
-    this.local.clearItemLocalStorage();
-  }
+  
 }
 
 export default new User();

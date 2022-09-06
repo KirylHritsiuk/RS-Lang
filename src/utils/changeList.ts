@@ -10,9 +10,11 @@ export function changeList(list: List | DictionaryList = new List()) {
     new Loader().render(),
       <HTMLElement>document.querySelector('.words-list'),
   ];
-  container.innerHTML = '';
-  container.append(
-    loader,
-    list.render(),
-  );
+  if (container) {
+    container.innerHTML = '';
+    container.append(
+      loader,
+      list.render(),
+      );
+  }
 }
