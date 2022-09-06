@@ -249,7 +249,7 @@ export class Modal {
       }
     });
 
-    loginBottom.addEventListener('click', (ev) => {
+    loginBottom!.addEventListener('click', (ev) => {
       const temp = ev.target as HTMLElement;
       if (temp.classList[0] === 'modal-overlay') {
         this.modal.classList.add('transition-close-modal');
@@ -285,7 +285,7 @@ export class Modal {
       forms = document.querySelectorAll('.input_form') as NodeListOf<Element>;
     });
 
-    loginSingUp.addEventListener('click', () => {
+    loginSingUp!.addEventListener('click', () => {
       if (forms.length === 2) {
         modalContainer.firstElementChild?.remove();
         const nameElement = document.createElement('div');
