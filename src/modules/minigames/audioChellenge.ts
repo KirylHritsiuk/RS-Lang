@@ -104,7 +104,7 @@ export class AudioChellenge {
         </div>`;
     }
     const groups = document.querySelector('.chellenge-multi-buttons') as HTMLDivElement;
-    for (let i = 0; i < groupData.length; i++) {
+    for (let i = 0; i < 6; i++) {
       groups.append(group.createLink(i, groupData[i]));
     }
   }

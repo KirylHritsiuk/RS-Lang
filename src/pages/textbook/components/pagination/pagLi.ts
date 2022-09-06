@@ -55,13 +55,15 @@ export class PagLi extends Block {
       default:
         li.innerHTML = `<span>${page}</span>`;
     }
-    li.addEventListener('click', () => {
-      this.container.innerHTML = '';
-      this.createPagination(page);
-      textbookQuery.setPage(page! - 1);
-      textbookQuery.updateLocal();
-      changeList();
-    });
+    if (btn !== PagLi.textObject.dots) {
+      li.addEventListener('click', () => {
+        this.container.innerHTML = '';
+        this.createPagination(page);
+        textbookQuery.setPage(page! - 1);
+        textbookQuery.updateLocal();
+        changeList();
+      });
+    }
     return li;
   }
 

@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
 import { PageContent } from '../pages/components/pageContent';
-import { Dictionary } from '../pages/textbook/components/dictionary/index';
 import { MainPage } from '../pages/main/main';
 import { MiniGame } from '../pages/minigames/minigames';
 import { Statistics } from '../pages/statistics/statistics';
@@ -14,7 +12,6 @@ import dictionaryLocal from '../modules/dictionary/dictionary';
 const enum PageId {
   main = 'main',
   textbook = 'textbook',
-  dictionary = 'dictionary',
   minigames = 'minigames',
   statistics = 'statistics',
 }
@@ -35,8 +32,6 @@ export class App {
       title.textContent = PageId.main;
     } else if (idPage === PageId.textbook) {
       page = new Textbook();
-    } else if (idPage === PageId.dictionary) {
-      page = new Dictionary();
     } else if (idPage === PageId.minigames) {
       page = new MiniGame();
     } else if (idPage === PageId.statistics) {
@@ -55,10 +50,6 @@ export class App {
           changeList(new DictionaryList());
         }
       }
-      // else if (idPage === PageId.dictionary) {
-      //   console.log('app dic');
-      //   changeList(new DictionaryList());
-      // }
       if ('listenerGames' in page) {
         page.listenerGames();
       }
