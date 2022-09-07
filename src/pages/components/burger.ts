@@ -20,43 +20,45 @@ class Burger {
   }
 
   controlBurger() {
-    // let hashA: string = window.location.hash.slice(1);
-    // const plaseA = <HTMLElement>document.querySelector(`#${hashA}ForColor`);
-    // plaseA.classList.add('dark-burger')
-
-    // window.addEventListener('hashchange', async () => {
-    //   // let hash: string = window.location.hash.slice(1);
-    //   let hash: string = window.location.hash.slice(1, 11);
-    //   let q = window.location.hash
-    //   let num = q.indexOf('/')
-    //   console.log('num===')
-    //   // let e = q.slice(1, (q.indexOf('/')+1))
-    //   // console.log('q==', e)
-    //   // let hash: string = window.location.hash.slice(1, (window.location.hash.indexOf('/')));
-    //   // let hash: string = window.location.hash.slice(1, (window.location.hash.indexOf('/')));
-    
-    //   console.log(hash)
-    //   console.log('hashdddddddddddddddddd')
-    //   const color = <HTMLElement>document.querySelector(`.dark-burger`);
-    //   console.log(color)
-    //   color.classList.remove('dark-burger')
-    //   const plase = <HTMLElement>document.querySelector(`#${hash}ForColor`);
-    //   // console.log(plase)
-    //   plase.classList.add('dark-burger')
-    // });
-    
 
 
-    allLi.forEach((e) => {
-      e.addEventListener('click', (e) => {
-        const target = <HTMLElement>(e.currentTarget);
-        const dark = <HTMLElement>document.querySelector('.dark-burger');
-        dark.classList.remove('dark-burger');
-        if (target.className === 'li-wrapper') {
-          target.classList.add('dark-burger');
-        }
-      });
+    let hashA: string = window.location.hash.slice(1);
+    if(hashA === ''){
+      hashA = 'main'
+    }
+    const plaseA = <HTMLElement>document.querySelector(`#${hashA}ForColor`);
+    // const color = <HTMLElement>document.querySelector(`.dark-burger`);
+      // color.classList.remove('dark-burger')
+    plaseA.classList.add('dark-burger')
+    // color.classList.remove('dark-burger')
+
+    window.addEventListener('hashchange', async () => {
+      let allHash = window.location.hash
+      let end 
+      if(allHash.split('').indexOf('/')===-1){
+        end = allHash.length
+      }else{
+        end = allHash.split('').indexOf('/')
+      }
+      // console.log('allHesh===', allHash)
+      // console.log('end===', end)
+      let hash: string = allHash.slice(1, end);
+      const color = <HTMLElement>document.querySelector(`.dark-burger`);
+      color.classList.remove('dark-burger')
+      const plase = <HTMLElement>document.querySelector(`#${hash}ForColor`);
+      plase.classList.add('dark-burger')
     });
+    
+    // allLi.forEach((e) => {
+    //   e.addEventListener('click', (e) => {
+    //     const target = <HTMLElement>(e.currentTarget);
+    //     const dark = <HTMLElement>document.querySelector('.dark-burger');
+    //     dark.classList.remove('dark-burger');
+    //     if (target.className === 'li-wrapper') {
+    //       target.classList.add('dark-burger');
+    //     }
+    //   });
+    // });
 
     const windowInnerWidth = window.innerWidth;
     if (windowInnerWidth > 800) {

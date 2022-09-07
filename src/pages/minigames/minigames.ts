@@ -27,7 +27,7 @@ export class MiniGame {
                 <img src="./assets/img/headphones.png" class="minigame__img" alt="lion">
             </div>
             <div class="title">
-                <span class="minigame-h2">Произношение слов </span>
+                <span class="minigame-h2">Аудиовызов</span>
             </div>
             <div class="game-text-wrapper">
                 <p class="game-text">Проверьте свои навыки слушания, пытаясь подобрать правильное значение после услышанного слова. </p>
@@ -43,7 +43,7 @@ export class MiniGame {
                 <img src="./assets/img/shoes.png" class="minigame__img" alt="lion">
             </div>
             <div class="title">
-                <span class="minigame-h2">Быстрое изучение </span>
+                <span class="minigame-h2">Спринт</span>
             </div>
             <div class="game-text-wrapper">
                 <p class="game-text">Проверьте, сколько очков вы можете получить за одну минуту, выбирая правельные ответы.</p>
