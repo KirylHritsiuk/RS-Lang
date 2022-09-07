@@ -1,3 +1,4 @@
+import { App } from '../../app/app';
 import {
   btnBurger, nawWrapper, icon, modal, containerUL, svgBurger, spanRs, allLi, exit,
 } from '../components/dataPageMain';
@@ -19,6 +20,33 @@ class Burger {
   }
 
   controlBurger() {
+    // let hashA: string = window.location.hash.slice(1);
+    // const plaseA = <HTMLElement>document.querySelector(`#${hashA}ForColor`);
+    // plaseA.classList.add('dark-burger')
+
+    // window.addEventListener('hashchange', async () => {
+    //   // let hash: string = window.location.hash.slice(1);
+    //   let hash: string = window.location.hash.slice(1, 11);
+    //   let q = window.location.hash
+    //   let num = q.indexOf('/')
+    //   console.log('num===')
+    //   // let e = q.slice(1, (q.indexOf('/')+1))
+    //   // console.log('q==', e)
+    //   // let hash: string = window.location.hash.slice(1, (window.location.hash.indexOf('/')));
+    //   // let hash: string = window.location.hash.slice(1, (window.location.hash.indexOf('/')));
+    
+    //   console.log(hash)
+    //   console.log('hashdddddddddddddddddd')
+    //   const color = <HTMLElement>document.querySelector(`.dark-burger`);
+    //   console.log(color)
+    //   color.classList.remove('dark-burger')
+    //   const plase = <HTMLElement>document.querySelector(`#${hash}ForColor`);
+    //   // console.log(plase)
+    //   plase.classList.add('dark-burger')
+    // });
+    
+
+
     allLi.forEach((e) => {
       e.addEventListener('click', (e) => {
         const target = <HTMLElement>(e.currentTarget);

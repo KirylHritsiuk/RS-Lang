@@ -23,7 +23,7 @@ export class Header {
                   </svg>
               </div>
               <div class="svg-login-plase">
-                  <span class="login-text">LOGIN</span>
+                  <span class="login-text">Авторизоваться</span>
               </div>
           </button>
         </div>
