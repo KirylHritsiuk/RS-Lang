@@ -17,7 +17,7 @@ export class Button extends Block {
     this.container.classList.add(`${Button.textObject.containerClass}_${Block.modificationClass.sizeL}`);
     this.container.addEventListener('click', () => {
       this.container.parentElement!.classList.add(Block.modificationClass.displayNone);
-      document.getElementById(`${this.data.word}`)?.classList.toggle(`${Block.modificationClass.bgModificationClass}${groupData[data.group]}`);
+      document.getElementById(`${this.data.word}`)?.classList.toggle(`${Block.modificationClass.bgModificationClass}${name}`);
     });
   }
 }
