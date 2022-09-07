@@ -1,5 +1,5 @@
 import { IResultGames, IWord } from '../../types/types';
-import { svg, svgMethods } from '../../common/svg';
+import { svgMethods } from '../../common/svg';
 import { App } from '../../app/app';
 import AudioChellenge from '../../modules/minigames/audioChellenge';
 import { baseUrl } from '../../utils/api';
