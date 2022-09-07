@@ -39,7 +39,7 @@ export class MainPage {
     const container = <HTMLDivElement>document.createElement('div');
     container.className = MainPage.TextObject.manAndLangClassName;
     container.innerHTML = `<div class="svg-man-wrapper">
-    <img class="svg-man img-saze-computer" src="./assets/svg/man.svg" alt="svg">
+    <img class="svg-man img-saze-computer" src="./assets/png/man.png" alt="svg">
 </div>
 <div class="rs-lang-wrapper">
     <span class="big-text">RS Lang</span>
@@ -94,7 +94,7 @@ export class MainPage {
                     <button id="sing-up-bottom" class="button small">Регистрация</button></a>
                 </div>
                 <div class = "place-computer">
-                <img class="img-saze-computer" src="./assets/svg/computer.svg" alt="computer">
+                <img class="img-saze-computer" src="./assets/png/mans.png" alt="computer">
                 </div>`;
     return container;
   }
