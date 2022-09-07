@@ -17,14 +17,12 @@ export class List extends Block {
     this.container.className = List.textObject.containerClass;
     if (this.user === '') {
       this.data = api.getWords(Block.textbookQueryData.getQuery());
-      console.log('Block query', Block.textbookQueryData.getQuery());
     } else {
       this.data = api.getUserAggregatedWords(
         getUserId(),
         getUserToken(),
         Block.textbookQueryData.getQuery(),
       ).then((val) => val[0].paginatedResults);
-      console.log('Block query', Block.textbookQueryData.getQuery());
     }
   }
 

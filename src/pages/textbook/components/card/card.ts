@@ -27,7 +27,7 @@ export class WordCard extends Block {
     this.group = data.group;
     this.audioBlock = new AudioBlock(data).render();
     this.text = new TextContent(data).render();
-    if (this.data.userWord !== null) {
+    if (this.data.userWord !== undefined) {
       this.container.classList.add(`${Block.modificationClass.bgModificationClass}${this.data.userWord?.difficulty}`);
       const category = dictionary.getItemLocalStorage();
       if (category !== null) {

@@ -6,12 +6,12 @@ export interface IGames {
 
 export const gamesData: IGames[] = [
   {
-    name: 'sprint',
+    name: 'спринт',
     href: '#minigames/sprint',
     img: './assets/png/sprint.png',
   },
   {
-    name: 'audio-challenge',
+    name: 'аудиовызов',
     href: '#minigames/audio-challenge',
     img: './assets/png/audio-challenge.png',
   },

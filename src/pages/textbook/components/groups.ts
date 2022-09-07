@@ -18,6 +18,11 @@ export class Groups extends Block {
     itemLinkClass: 'groups__link',
   };
 
+  static textContent = {
+    title: 'Уровень',
+    dictionary: 'D',
+  };
+
   static toDefaultItem() {
     const groupsList = Array.from(document
       .getElementsByClassName(Groups.classNames.itemClass));
@@ -51,7 +56,7 @@ export class Groups extends Block {
   createTitle() {
     const container = document.createElement('div');
     container.className = `${Groups.classNames.titleClass} ${Block.modificationClass.colorModificationClass + this.color}`;
-    container.textContent = 'Groups';
+    container.textContent = Groups.textContent.title;
     return container;
   }
 
@@ -78,9 +83,9 @@ export class Groups extends Block {
   createLink(group: number, color: string) {
     const container = document.createElement('button');
     container.className = `${Groups.classNames.itemLinkClass} ${Block.modificationClass.bgModificationClass}${color}`;
-    // todo  add dictionary
+
     if (group === 6) {
-      container.textContent = 'D';
+      container.textContent = Groups.textContent.dictionary;
       container.addEventListener('click', () => {
         if (DictionaryLocal.getItemLocalStorage() === null) {
           DictionaryLocal.addItemLocalStorage([DictionaryQuery]);

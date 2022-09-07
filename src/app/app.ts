@@ -15,6 +15,10 @@ export const enum PageId {
   textbook = 'textbook',
   minigames = 'minigames',
   statistics = 'statistics',
+  mainRU = 'главная',
+  textbookRU = 'учебник',
+  minigamesRU = 'мини-игры',
+  statisticsRU = 'статистика',
 }
 
 export class App {
@@ -32,17 +36,19 @@ export class App {
   static async renderNewPage(idPage: string) {
     const pageContainer = <HTMLElement>document.getElementById('main');
     const title = <HTMLTitleElement>document.querySelector('#headerTitle');
-    title.textContent = idPage;
     let page: MainPage | Textbook | Statistics | MiniGame | null = null;
     if (idPage === PageId.main || idPage === '') {
       page = new MainPage();
-      title.textContent = PageId.main;
+      title.textContent = PageId.mainRU;
     } else if (idPage === PageId.textbook) {
       page = new Textbook();
+      title.textContent = PageId.textbookRU;
     } else if (idPage === PageId.minigames) {
       page = new MiniGame();
+      title.textContent = PageId.minigamesRU;
     } else if (idPage === PageId.statistics) {
       page = new Statistics();
+      title.textContent = PageId.statisticsRU;
     } else {
       pageContainer.innerHTML = '<h2>Ooops! Something wrong! Enter Correct address</h2>';
     }
