@@ -27,15 +27,14 @@ export class MiniGame {
                 <img src="./assets/img/headphones.png" class="minigame__img" alt="lion">
             </div>
             <div class="title">
-                <span class="minigame-h2">Audio challenge</span>
+                <span class="minigame-h2">Произношение слов </span>
             </div>
             <div class="game-text-wrapper">
-                <p class="game-text">Check your listening skills, trying to pick the right meaning after hearing a
-                    word. Be careful, as you just have one guess.</p>
+                <p class="game-text">Проверьте свои навыки слушания, пытаясь подобрать правильное значение после услышанного слова. </p>
             </div>
             <div class="game-btn-wrapper">
                 <button class="game-btn audio-btn-color" id="audio_chellenge">
-                    <span class="game-btn-text">play</span>
+                    <span class="game-btn-text">играть</span>
                 </button></a>
             </div>
         </div>
@@ -44,14 +43,14 @@ export class MiniGame {
                 <img src="./assets/img/shoes.png" class="minigame__img" alt="lion">
             </div>
             <div class="title">
-                <span class="minigame-h2">Sprint</span>
+                <span class="minigame-h2">Быстрое изучение </span>
             </div>
             <div class="game-text-wrapper">
-                <p class="game-text">Check how much points you can get in one minute, making educated guesses about what is right and what is wrong.</p>
+                <p class="game-text">Проверьте, сколько очков вы можете получить за одну минуту, выбирая правельные ответы.</p>
             </div>
             <div class="game-btn-wrapper">
                 <button class="game-btn sprint-btn-color">
-                    <span class="game-btn-text">play</span>
+                    <span class="game-btn-text">играть</span>
                 </button>
             </div>
         </div>

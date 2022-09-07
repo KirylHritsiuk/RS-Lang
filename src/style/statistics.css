@@ -196,6 +196,22 @@
     position: relative;
 }
 
+.wrapp-sory{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    
+}
+
+.sory{
+    text-align: center;
+    font-size: 2.1rem;
+    line-height: 1.5;
+}
+
+.sory-img{
+    max-width: 500px;
+}
 @media (max-width: 960px) {
     .container-card {
         flex-direction: column;

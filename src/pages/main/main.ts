@@ -23,7 +23,6 @@ export class MainPage {
 
   constructor() {
     this.container = document.createElement('div');
-    // this.container.className = MainPage.TextObject.containerClassName;
   }
 
   static createBlock(data: string | HTMLElement) {
@@ -44,10 +43,11 @@ export class MainPage {
 </div>
 <div class="rs-lang-wrapper">
     <span class="big-text">RS Lang</span>
-    <span class="text blond" style="margin-top: 20px;">Learning English has never been so easy</span>
-    <p class="text">Memorizing English words can be fun and challenging.<br> Play games, listen to
-        pronunciation, improve your<br> knowledge. With our app, learning is a joy</p>
-    <a href="#textbook"><button class="button">let's start</button></a>
+    <span class="text blond" style="margin-top: 20px;">Выучить английский язык просто</span>
+    <p class="text">Запоминание английских слов может быть увлекательным и сложным.</br>
+    Играйте в игры, слушайте произношение, улучшайте свои
+    знания.<br> С нашим приложением учиться в радость.</p>
+    <a href="#textbook"><button class="button">Давайте начнем</button></a>
 </div>`;
     return container;
   }
@@ -66,7 +66,7 @@ export class MainPage {
     const [container, listContainer] = [<HTMLDivElement>document.createElement('div'), <HTMLDivElement>document.createElement('div')];
     container.className = MainPage.TextObject.advantagesWrapperClassName;
     listContainer.className = MainPage.TextObject.advantagWrapClassName;
-    container.innerHTML = '<h2 class="style-h2">Advantages</h2>';
+    container.innerHTML = '<h2 class="style-h2">Преимущества</h2>';
     arrAdvantages.forEach((el) => listContainer.append(MainPage.createAdvantages(el)));
     container.append(listContainer);
 
@@ -76,7 +76,7 @@ export class MainPage {
   static createPossibilities() {
     const container = <HTMLDivElement>document.createElement('div');
     container.className = MainPage.TextObject.posibilitiesWrapperClassName;
-    container.innerHTML = `<h2 class="style-h2">All posibilities</h2>
+    container.innerHTML = `<h2 class="style-h2">Все возможности</h2>
     <iframe class="video" src="https://www.youtube.com/embed/AD7eMN2phjc" title="YouTube video player"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -87,12 +87,11 @@ export class MainPage {
   static createNotForget() {
     const container = <HTMLDivElement>document.createElement('div');
     container.innerHTML = `
-                <span class="big-text">Don't forget</span>
-                <div class="text-center">If you want to see statistics for all time and have <br> access to the
-                    dictionary, please login or sign up first.</div>
+                <span class="big-text">Помните</span>
+                <div class="text-center">Если вы хотите видеть статистику за все время и иметь <br> доступ к словарю, сначала войдите или зарегистрируйтесь.</div>
                 <div class="button-wrapper">
-                    <button id="login-bottom" class="button small new-color">login</button>
-                    <button id="sing-up-bottom" class="button small">sing up</button></a>
+                    <button id="login-bottom" class="button small new-color">Авторизоваться</button>
+                    <button id="sing-up-bottom" class="button small">Регистрация</button></a>
                 </div>
                 <div class = "place-computer">
                 <img class="img-saze-computer" src="./assets/svg/computer.svg" alt="computer">
@@ -103,7 +102,7 @@ export class MainPage {
   static createTeamList() {
     const [container, listContainer] = [<HTMLDivElement>document.createElement('div'), <HTMLDivElement>document.createElement('div')];
     listContainer.className = 'wrapper-persons';
-    container.innerHTML = '<h2 class="style-h2">Our team</h2>';
+    container.innerHTML = '<h2 class="style-h2">Наша команда</h2>';
     team.forEach((el) => listContainer.append(MainPage.createTeam(el)));
     container.append(listContainer);
     return container;
