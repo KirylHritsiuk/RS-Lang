@@ -39,8 +39,8 @@ export class User extends Api {
         const text = document.querySelector('.text-login') as HTMLDivElement;
         text.innerHTML = `<span>${data.name}</span><span>${data.email}</span>`;
         const img = document.querySelector('avatar-minim') as HTMLImageElement;
-        if (data.avatar) img.src = data.avatar;
-        else img.src = 'https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg';
+        if (data.avatar === ' ') img.src = 'https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg';
+        else img.src = data.avatar as string;
       } else {
         const logPole = document.querySelector('.log-pole') as HTMLElement;
         const autorize = document.createElement('div') as HTMLDivElement;
@@ -51,8 +51,8 @@ export class User extends Api {
         const img = document.createElement('img') as HTMLImageElement;
         img.classList.add('img-avatar');
         img.classList.add('avatar-minim');
-        if (data.avatar) img.src = data.avatar;
-        else img.src = 'https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg';
+        if (data.avatar === ' ') img.src = 'https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg';
+        else img.src = data.avatar as string;
         autorize.append(text, img);
         logPole.insertAdjacentElement('afterbegin', autorize);
         login.classList.add('hidden');

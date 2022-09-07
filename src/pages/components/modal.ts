@@ -21,7 +21,7 @@ export class Modal {
   constructor() {
     this.modal = document.createElement('div');
     this.avatar = ' ';
-    this.avatarUrl = '';
+    this.avatarUrl = ' ';
     this.body = document.querySelector('.body')!;
     this.modal.className = 'modal-overlay';
     this.name = '';
