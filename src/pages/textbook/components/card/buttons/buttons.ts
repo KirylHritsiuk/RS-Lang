@@ -8,6 +8,7 @@ export class CardButtons extends Block {
     containerClass: 'card-buttons',
     difficultHard: 'hard',
     difficultEasy: 'easy',
+    difficultNormal: 'normal',
   };
 
   protected difficult: HTMLElement;
@@ -17,7 +18,8 @@ export class CardButtons extends Block {
   constructor(protected data: IWord) {
     super();
     this.container.className = CardButtons.textObject.containerClass;
-    if (this.user === '' || data.userWord !== undefined) {
+    if (this.user === ''
+    || data.userWord?.difficulty !== CardButtons.textObject.difficultNormal) {
       this.container.classList.add(Block.modificationClass.displayNone);
     }
     this.difficult = new Button(data, CardButtons.textObject.difficultHard).render();
