@@ -26,14 +26,23 @@ export class CardButtons extends Block {
     this.easy = new Button(data, CardButtons.textObject.difficultEasy).render();
     this.container.append(this.difficult, this.easy);
     [this.difficult, this.easy].forEach((btn) => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', async () => {
         this.addedCard();
-        api.createUserWord(
-          this.user,
-          this.token,
-          data._id,
-          { difficulty: (btn.textContent as string) },
-        );
+        if (data.userWord === undefined) {
+          await api.createUserWord(
+            this.user,
+            this.token,
+            data._id,
+            { difficulty: (btn.textContent as string) },
+          );
+        } else {
+          await api.updateUserWord(
+            this.user,
+            data._id,
+            this.token,
+            { difficulty: (btn.textContent as string) },
+          );
+        }
       });
     });
   }
