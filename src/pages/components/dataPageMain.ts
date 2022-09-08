@@ -67,20 +67,20 @@ export const team:ITeam[] = [
     speciality: 'Фронтенд-разработчик',
     contribution: 'Спроектировал верстку приложения, сделал главную страницу и статистику, участвовал в разработке компонента селектора групп.',
     github: 'https://github.com/Sergei5431',
-    photo: '<svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(2, 82, 204); font-size: 56px;"><path d="M12 11.55C9.64 9.35 6.48 8 3 8v11c3.48 0 6.64 1.35 9 3.55 2.36-2.19 5.52-3.55 9-3.55V8c-3.48 0-6.64 1.35-9 3.55zM12 8c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"></path></svg>',
+    photo: '<img class="photo-jpg" src="./assets/jpg/i.jpg" alt="i">',
   },
   {
     nickName: 'Artem Korotkov',
     speciality: 'Фронтенд-разработчик',
     contribution: 'Разработал мини-игру «Audio Challenge», общие компоненты для мини-игр, настройку маршрутизатора, форму входа, серверную часть.',
     github: 'https://github.com/avkor66',
-    photo: '<svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(2, 82, 204); font-size: 56px;"><path d="M12 11.55C9.64 9.35 6.48 8 3 8v11c3.48 0 6.64 1.35 9 3.55 2.36-2.19 5.52-3.55 9-3.55V8c-3.48 0-6.64 1.35-9 3.55zM12 8c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"></path></svg>',
+    photo: '<img class="photo-jpg" src="./assets/jpg/artem.jpg" alt="i">',
   },
   {
     nickName: 'Kiryl Hritsiuk',
     speciality: 'Лидер группы, Фронтенд-разработчик',
     contribution: 'Cелал базовые настройки проекта, разработку страниц Учебника и Словаря. Сделал карточки для слов, реализовал настройки учебника.',
     github: 'https://github.com/KirylHritsiuk',
-    photo: '<svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" style="color: rgb(2, 82, 204); font-size: 56px;"><path d="M12 11.55C9.64 9.35 6.48 8 3 8v11c3.48 0 6.64 1.35 9 3.55 2.36-2.19 5.52-3.55 9-3.55V8c-3.48 0-6.64 1.35-9 3.55zM12 8c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"></path></svg>',
+    photo: '<img class="photo-jpg" src="./assets/jpg/kiryl.jpg" alt="i">',
   },
 ];
