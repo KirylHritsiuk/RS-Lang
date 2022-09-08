@@ -6,7 +6,6 @@ import { baseUrl } from '../../../../utils/api';
 import { AudioBlock } from './audio/AudioBlock';
 import { TextContent } from './text/text';
 import dictionary from '../../../../modules/dictionary/dictionary';
-import { Filter } from '../dictionary/filter/filter';
 
 export class WordCard extends Block {
   static ClassNameData = {
@@ -31,10 +30,10 @@ export class WordCard extends Block {
       this.container.classList.add(`${Block.modificationClass.bgModificationClass}${this.data.userWord?.difficulty}`);
       const category = dictionary.getItemLocalStorage();
       if (category !== null) {
-        if (category[0].value !== this.data.userWord?.difficulty
-            && category[0].value !== Filter.textObject.categoryAll) {
+        if (category[0].value !== this.data.userWord?.difficulty) {
           this.container.classList.add(Block.modificationClass.displayNone);
-        } else this.container.classList.remove(Block.modificationClass.displayNone);
+        }
+        // else this.container.classList.remove(Block.modificationClass.displayNone);
       }
     }
   }
@@ -44,9 +43,34 @@ export class WordCard extends Block {
     this.container.append(this.text, this.audioBlock);
     return this.container;
   }
+  
+  isLearnedPage() {
+    if (dictionary.getItemLocalStorage() === null) {
+      const cards = Array.from(document.querySelectorAll('.word-card'))
+      const styleArr = cards.map((el) => el.className).filter((el) => el.includes('hard') || el.includes('easy'));
+      console.log(styleArr.length === cards.length);
+      return styleArr.length === cards.length;
+   }
+   return false;
+  }
+
+  changeLearnPage() {
+    const pagPAge = document.querySelector(`.active-${this.color}`);
+    const list = document.querySelectorAll('.game_link');
+      if (this.isLearnedPage()) {
+        list?.forEach((el) => {el.classList.toggle(Block.modificationClass.bgDisabled)});
+        pagPAge?.classList.toggle(Block.modificationClass.bgDisabled);
+        return;
+      }
+      // list?.forEach((el) => {el.className = `game_link `});
+      pagPAge?.classList.toggle(Block.modificationClass.bgDisabled);
+    }
+
+ 
 
   render() {
     const card = this.create();
+    this.changeLearnPage();
     return card;
   }
 }
