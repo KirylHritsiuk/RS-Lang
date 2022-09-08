@@ -111,7 +111,7 @@ export class MainPage {
   static createTeam(data: ITeam) {
     const container = <HTMLDivElement>document.createElement('div');
     container.className = MainPage.TextObject.teamClassName;
-    container.innerHTML = `<div class="foto"></div>
+    container.innerHTML = `<div class="foto">${data.photo}</div>
                     <div class="information">
                         <h3 class="style-h3">${data.nickName}</h3>
                         <span class="text blond indent">${data.speciality}</span>
