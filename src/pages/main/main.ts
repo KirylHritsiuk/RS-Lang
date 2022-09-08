@@ -127,7 +127,7 @@ export class MainPage {
     this.container.append(
       MainPage.createManAndLang(),
       MainPage.createAdvantagesList(),
-      MainPage.createPossibilities(),
+      // MainPage.createPossibilities(),
       MainPage.createNotForget(),
       MainPage.createTeamList(),
     );
