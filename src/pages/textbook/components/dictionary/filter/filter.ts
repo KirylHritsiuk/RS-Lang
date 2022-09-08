@@ -7,14 +7,11 @@ import { DictionaryQuery } from '../../../../../common/query';
 export class Filter extends Block {
   static textObject = {
     containerClass: 'card-buttons',
-    categoryAll: 'all',
     categoryHard: 'hard',
     categoryEasy: 'easy',
   };
 
   static category = dictionaryLocal.getItemLocalStorage();
-
-  static all = new DictionaryButton(Filter.textObject.categoryAll).render();
 
   static hard = new DictionaryButton(Filter.textObject.categoryHard).render();
 
@@ -24,7 +21,7 @@ export class Filter extends Block {
     super();
     this.container.className = 'filter-container';
 
-    [Filter.all, Filter.hard, Filter.easy].forEach((el) => {
+    [Filter.hard, Filter.easy].forEach((el) => {
       el.addEventListener('click', (e) => {
         const btn = <HTMLButtonElement>e.target;
         const cardsEasy = document.querySelectorAll(`.bg-${Filter.textObject.categoryEasy}`);
@@ -32,19 +29,8 @@ export class Filter extends Block {
         const list = <HTMLDivElement>document.querySelector(`.${List.textObject.containerClass}`);
         btn.setAttribute('disabled', 'disabled');
         switch (btn.dataset.name) {
-          case (Filter.textObject.categoryAll):
-            [Filter.easy, Filter.hard].forEach((el) => {
-              el.className = DictionaryButton.textObject.containerClass;
-              el.removeAttribute('disabled');
-            });
-            Array.from(list.children).forEach((el) => {
-              el.classList.remove(Block.modificationClass.displayNone);
-            });
-            DictionaryQuery.set(Filter.textObject.categoryAll);
-            dictionaryLocal.addItemLocalStorage([DictionaryQuery]);
-            break;
           case (Filter.textObject.categoryHard):
-            [Filter.all, Filter.easy].forEach((el) => {
+            [Filter.easy].forEach((el) => {
               el.className = DictionaryButton.textObject.containerClass;
               el.removeAttribute('disabled');
             });
@@ -54,7 +40,7 @@ export class Filter extends Block {
             dictionaryLocal.addItemLocalStorage([DictionaryQuery]);
             break;
           case (Filter.textObject.categoryEasy):
-            [Filter.all, Filter.hard].forEach((el) => {
+            [Filter.hard].forEach((el) => {
               el.className = DictionaryButton.textObject.containerClass;
               el.removeAttribute('disabled');
             });
@@ -67,6 +53,6 @@ export class Filter extends Block {
         }
       });
     });
-    this.container.append(Filter.all, Filter.hard, Filter.easy);
+    this.container.append(Filter.hard, Filter.easy);
   }
 }

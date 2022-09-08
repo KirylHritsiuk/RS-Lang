@@ -96,8 +96,14 @@ export class Groups extends Block {
           .parentElement?.classList
           .add(Block.modificationClass.borderModificationClass + color);
         Groups.changeColorTame(color);
-        const pagination = Array.from(document.querySelectorAll('.pagination'));
-        pagination.forEach((el) => {
+        Array.from(
+          document.querySelectorAll('.pagination')
+        ).forEach((el) => {
+          el.classList.add(Block.modificationClass.displayNone);
+        });
+        Array.from(
+          document.querySelectorAll('.game_link')
+        ).forEach((el) => {
           el.classList.add(Block.modificationClass.displayNone);
         });
       });
@@ -135,6 +141,7 @@ export class Groups extends Block {
 }
 // todo fix change active classs
 function replaceClasses(arr: Element[], color: string, modif: string) {
+  console.log('replace', arr);
   arr.forEach((item) => {
     const pos = item.className.indexOf(modif);
     if (item.className.indexOf(Pagination.textObject.disableMod) === -1) {
