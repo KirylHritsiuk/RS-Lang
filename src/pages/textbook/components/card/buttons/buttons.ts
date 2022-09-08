@@ -18,11 +18,12 @@ export class CardButtons extends Block {
   constructor(protected data: IWord) {
     super();
     this.container.className = CardButtons.textObject.containerClass;
-    if (this.user === '') {
-      if (data.userWord === undefined
-        || data.userWord?.difficulty !== CardButtons.textObject.difficultNormal) {
-        this.container.classList.add(Block.modificationClass.displayNone);
-      }
+    if (this.user === '' && (data.userWord === undefined
+        || data.userWord?.difficulty !== CardButtons.textObject.difficultNormal)) {
+      this.container.classList.add(Block.modificationClass.displayNone);
+    } else if (data.userWord?.difficulty === CardButtons.textObject.difficultEasy
+        || data.userWord?.difficulty === CardButtons.textObject.difficultHard) {
+      this.container.classList.add(Block.modificationClass.displayNone);
     }
     this.difficult = new Button(data, CardButtons.textObject.difficultHard).render();
     this.easy = new Button(data, CardButtons.textObject.difficultEasy).render();
