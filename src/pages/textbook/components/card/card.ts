@@ -43,30 +43,6 @@ export class WordCard extends Block {
     this.container.append(this.text, this.audioBlock);
     return this.container;
   }
-  
-  isLearnedPage() {
-    if (dictionary.getItemLocalStorage() === null) {
-      const cards = Array.from(document.querySelectorAll('.word-card'))
-      const styleArr = cards.map((el) => el.className).filter((el) => el.includes('hard') || el.includes('easy'));
-      console.log(styleArr.length === cards.length);
-      return styleArr.length === cards.length;
-   }
-   return false;
-  }
-
-  changeLearnPage() {
-    const pagPAge = document.querySelector(`.active-${this.color}`);
-    const list = document.querySelectorAll('.game_link');
-      if (this.isLearnedPage()) {
-        list?.forEach((el) => {el.classList.toggle(Block.modificationClass.bgDisabled)});
-        pagPAge?.classList.toggle(Block.modificationClass.bgDisabled);
-        return;
-      }
-      // list?.forEach((el) => {el.className = `game_link `});
-      pagPAge?.classList.toggle(Block.modificationClass.bgDisabled);
-    }
-
- 
 
   render() {
     const card = this.create();

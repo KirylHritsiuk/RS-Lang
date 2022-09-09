@@ -18,7 +18,7 @@ export class GameBar extends Block {
 
   protected create(game: IGames) {
     const element: string = `
-      <a class="${GameBar.textObject.linkClass} ${GameBar.textObject.modificationClass}${this.color}" href="${game.href}" name="game">
+      <button class="${GameBar.textObject.linkClass} ${GameBar.textObject.modificationClass}${this.color}" name="game">
         <div class="${GameBar.textObject.containerClass}">
           <img 
             class="${GameBar.textObject.iconClass}"
@@ -26,7 +26,7 @@ export class GameBar extends Block {
             alt="${game.name}"/>
           <span class="${GameBar.textObject.titleClass}">${game.name}</span>
         </div>
-      </a>`;
+      </button>`;
     return element;
   }
 

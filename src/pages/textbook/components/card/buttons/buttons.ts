@@ -31,6 +31,7 @@ export class CardButtons extends Block {
     [this.difficult, this.easy].forEach((btn) => {
       btn.addEventListener('click', async () => {
         this.addedCard();
+        this.changeLearnPage();
         if (data.userWord === undefined) {
           await api.createUserWord(
             this.user,

@@ -3,13 +3,14 @@
   grid-row-gap: 32px;
   grid-column-gap: 32px;
   padding: 2%;
+  border-radius: 10px;
 }
 
 .textbook {
   grid-template-areas: "games games" "pagination-top pagination-top" "words-list groups" "pagination-bottom pagination-bottom";
   grid-template-rows: -webkit-max-content -webkit-max-content 1fr 50px;
   grid-template-rows: max-content max-content 1fr 50px;
-  grid-template-columns: 1fr 72px;
+  grid-template-columns: 1fr 100px;
   grid-row-gap: 32px;
   grid-column-gap: 32px;
 }
@@ -18,7 +19,7 @@
   grid-template-areas: "games games" "pagination-top pagination-top" "filter filter" "words-list groups" "pagination-bottom pagination-bottom";
   grid-template-rows: -webkit-max-content -webkit-max-content -webkit-max-content 1fr 50px;
   grid-template-rows: max-content max-content max-content 1fr 50px;
-  grid-template-columns: 1fr 72px;
+  grid-template-columns: 1fr 100px;
 }
 
 .filters {
@@ -56,6 +57,7 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   height: 5em;
   width: 270px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -19,8 +19,26 @@
   .bg-coral {
     background: coral !important;
   }
+  .bg-textbook-red {
+    background: rgba(255, 0, 0, 0.1) !important;
+  }
+  .bg-textbook-orange {
+    background: rgba(255, 166, 0, 0.1) !important;
+  }
+  .bg-textbook-palevioletred {
+    background: rgba(216, 112, 147, 0.1) !important;
+  }
+  .bg-textbook-slateblue {
+    background: rgba(105, 90, 205, 0.1) !important;
+  }
+  .bg-textbook-darkslateblue {
+    background: rgba(71, 61, 139, 0.1) !important;
+  }
+  .bg-textbook-purple {
+    background: rgba(128, 0, 128, 0.1) !important;
+  }
   .bg-hard {
-    background: rgba(173, 5, 5, 0.16) !important;
+    background: rgba(173, 5, 5, 0.1) !important;
   }
   .bg-easy {
     background: #0080002b !important;
@@ -30,6 +48,9 @@
   }
   .bg-disabled {
     background: gray !important;
+    opacity: 0.8;
+    cursor: auto !important;
+    box-shadow: none !important;
   }
   .border-red {
     border-color: red !important;
@@ -91,30 +112,37 @@
   .active-red {
     color: red;
     border-color: red;
+    cursor: auto !important;
   }
   .active-orange {
     color: orange;
     border-color: orange;
+    cursor: auto !important;
   }
   .active-palevioletred {
     color: palevioletred;
     border-color: palevioletred;
+    cursor: auto !important;
   }
   .active-slateblue {
     color: slateblue;
     border-color: slateblue;
+    cursor: auto !important;
   }
   .active-darkslateblue {
     color: darkslateblue;
     border-color: darkslateblue;
+    cursor: auto !important;
   }
   .active-purple {
     color: purple;
     border-color: purple;
+    cursor: auto !important;
   }
   .active-coral {
     color: coral;
     border-color: coral;
+    cursor: auto !important ;
   }
   .active-all {
     color: purple;
