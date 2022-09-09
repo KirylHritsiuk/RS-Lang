@@ -28,7 +28,7 @@ export class Item extends Block {
 
   createItem(btn: string, page?: number) {
     const li = document.createElement('li');
-    li.className = `${Item.textObject.itemClass} ${Item.textObject.itemClass}-${Item.modificationClass.hoverModificationClass}${this.color}`;
+    li.className = `${Item.textObject.itemClass} ${Item.textObject.itemClass}-${Item.modificationClass.hover}${this.color}`;
     switch (btn.trim()) {
       case Item.textObject.prev:
         li.innerHTML = svg.chevron_left;

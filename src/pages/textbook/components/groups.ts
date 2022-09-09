@@ -42,10 +42,10 @@ export class Groups extends Block {
       document.querySelector(`.${Groups.classNames.titleClass}`),
     ];
 
-    replaceClasses(games, color, Block.modificationClass.hoverModificationClass);
+    replaceClasses(games, color, Block.modificationClass.hover);
     replaceClasses(pag, color, Pagination.textObject.hoverMod);
-    const pos = title!.className.indexOf(Groups.modificationClass.colorModificationClass);
-    title!.className = `${title!.className.slice(0, pos)} ${Groups.modificationClass.colorModificationClass}${color}`;
+    const pos = title!.className.indexOf(Groups.modificationClass.color);
+    title!.className = `${title!.className.slice(0, pos)} ${Groups.modificationClass.color}${color}`;
   }
 
   constructor() {
@@ -55,7 +55,7 @@ export class Groups extends Block {
 
   createTitle() {
     const container = document.createElement('div');
-    container.className = `${Groups.classNames.titleClass} ${Block.modificationClass.colorModificationClass + this.color}`;
+    container.className = `${Groups.classNames.titleClass} ${Block.modificationClass.color + this.color}`;
     container.textContent = Groups.textContent.title;
     return container;
   }
@@ -72,7 +72,7 @@ export class Groups extends Block {
   createItem(group: number, color: string) {
     const item = document.createElement('li');
     if (color === this.color) {
-      item.className = `${Groups.classNames.itemClass} ${Groups.modificationClass.borderModificationClass + color}`;
+      item.className = `${Groups.classNames.itemClass} ${Groups.modificationClass.border + color}`;
     } else {
       item.className = Groups.classNames.itemClass;
     }
@@ -82,7 +82,7 @@ export class Groups extends Block {
 
   createLink(group: number, color: string) {
     const container = document.createElement('button');
-    container.className = `${Groups.classNames.itemLinkClass} ${Block.modificationClass.bgModificationClass}${color}`;
+    container.className = `${Groups.classNames.itemLinkClass} ${Block.modificationClass.bg}${color}`;
 
     if (group === 6) {
       container.textContent = Groups.textContent.dictionary;
@@ -90,19 +90,20 @@ export class Groups extends Block {
         if (DictionaryLocal.getItemLocalStorage() === null) {
           DictionaryLocal.addItemLocalStorage([DictionaryQuery]);
         }
+        this.color = groupData[group];
         changeList(new DictionaryList());
         Groups.toDefaultItem();
         container
           .parentElement?.classList
-          .add(Block.modificationClass.borderModificationClass + color);
+          .add(Block.modificationClass.border + color);
         Groups.changeColorTame(color);
         Array.from(
-          document.querySelectorAll('.pagination')
+          document.querySelectorAll('.pagination'),
         ).forEach((el) => {
           el.classList.add(Block.modificationClass.displayNone);
         });
         Array.from(
-          document.querySelectorAll('.game_link')
+          document.querySelectorAll('.game_link'),
         ).forEach((el) => {
           el.classList.add(Block.modificationClass.displayNone);
         });
@@ -112,21 +113,28 @@ export class Groups extends Block {
       container.textContent = (group + 1).toString();
       if (window.location.hash.slice(1) !== PageId.minigames) {
         container.addEventListener('click', () => {
+          this.color = groupData[group];
           Block.textbookQueryData.setGroup(group);
           Block.textbookQueryData.updateLocal();
           changeList();
           Groups.toDefaultItem();
           container
             .parentElement?.classList
-            .add(Block.modificationClass.borderModificationClass + color);
+            .add(Block.modificationClass.border + color);
           Groups.changeColorTame(color);
-          const pagination = Array.from(document.querySelectorAll('.pagination'));
-          pagination.forEach((el) => {
+          Array.from(
+            document.querySelectorAll('.pagination'),
+          ).forEach((el) => {
             el.classList.remove(Block.modificationClass.displayNone);
-            if (DictionaryLocal.getItemLocalStorage() !== null) {
-              DictionaryLocal.clearItemLocalStorage();
-            }
           });
+          Array.from(
+            document.querySelectorAll('.game_link'),
+          ).forEach((el) => {
+            el.classList.remove(Block.modificationClass.displayNone);
+          });
+          if (DictionaryLocal.getItemLocalStorage() !== null) {
+            DictionaryLocal.clearItemLocalStorage();
+          }
         });
       }
     }

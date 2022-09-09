@@ -26,11 +26,12 @@ export abstract class Block {
   static textbookQueryData: TextbookQueryData = textbookQueryData;
 
   static modificationClass = {
-    bgModificationClass: 'bg-',
-    colorModificationClass: 'color-',
-    borderModificationClass: 'border-',
-    borderLeftModificationClass: 'border-left-',
-    hoverModificationClass: 'hover-',
+    bg: 'bg-',
+    color: 'color-',
+    border: 'border-',
+    borderLeft: 'border-left-',
+    borderTop: 'border-top-',
+    hover: 'hover-',
     displayNone: 'ds-none',
     bgDisabled: 'bg-disabled',
     active: 'active-',
@@ -47,8 +48,9 @@ export abstract class Block {
     this.token = getUserToken();
     if (dictionaryLocal.getItemLocalStorage() === null) this.color = groupData[this.group];
     else this.color = groupData[groupData.length - 1];
+    console.log(this.color, this.group)
   }
-
+ 
   isLearnedPage() {
     const cards = Array.from(document.querySelectorAll('.word-card'));
     const styleArr = cards.map((el) => el.className).filter((el) => el.includes('hard') || el.includes('easy'));

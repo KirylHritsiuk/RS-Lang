@@ -88,6 +88,27 @@
   .border-left-coral {
     border-color: coral !important;
   }
+  .border-top-red {
+    border-top: 16px solid red !important;
+  }
+  .border-top-orange {
+    border-top: 16px solid orange !important;
+  }
+  .border-top-palevioletred {
+    border-top: 16px solid palevioletred !important;
+  }
+  .border-top-slateblue {
+    border-top: 16px solid slateblue !important;
+  }
+  .border-top-darkslateblue {
+    border-top: 16px solid darkslateblue !important;
+  }
+  .border-top-purple {
+    border-top: 16px solid purple !important;
+  }
+  .border-top-coral {
+    border-top: 16px solid coral !important;
+  }  
   .color-red {
     color: red !important;
   }
