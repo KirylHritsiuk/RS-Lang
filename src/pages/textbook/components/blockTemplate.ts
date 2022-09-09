@@ -53,13 +53,8 @@ export abstract class Block {
     const cards = Array.from(document.querySelectorAll('.word-card'));
     const styleArr = cards.map((el) => el.className).filter((el) => el.includes('hard') || el.includes('easy'));
     if (styleArr.length !== 0 && (styleArr.length === cards.length)) {
-      console.log(styleArr.length === cards.length);
-      console.log('style', styleArr.length);
-      console.log('card', cards.length);
       return true;
     }
-    console.log('style', styleArr.length);
-    console.log('card', cards.length);
     return false;
   }
 
@@ -68,15 +63,21 @@ export abstract class Block {
     const list = document.querySelectorAll('.game_link');
     const main = document.querySelector('.main_content');
     if (this.isLearnedPage() === true) {
-      console.log('add bg-dis');
-      list?.forEach((el) => {el.classList.add(Block.modificationClass.bgDisabled)});
-      pagPAge?.forEach((el) => {el.classList.add(Block.modificationClass.bgDisabled)});
+      list?.forEach((el) => {
+        el.classList.add(Block.modificationClass.bgDisabled);
+      });
+      pagPAge?.forEach((el) => {
+        el.classList.add(Block.modificationClass.bgDisabled);
+      });
       main?.classList.add(`bg-textbook-${this.color}`);
       return;
     }
-    console.log('remove bg-dis');
-    list?.forEach((el) => {el.classList.remove(Block.modificationClass.bgDisabled)});
-    pagPAge?.forEach((el) => {el.classList.remove(Block.modificationClass.bgDisabled)});
+    list?.forEach((el) => {
+      el.classList.remove(Block.modificationClass.bgDisabled);
+    });
+    pagPAge?.forEach((el) => {
+      el.classList.remove(Block.modificationClass.bgDisabled);
+    });
     main?.classList.remove(`bg-textbook-${this.color}`);
   }
 
