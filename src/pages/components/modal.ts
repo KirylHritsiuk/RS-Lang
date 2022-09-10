@@ -375,5 +375,5 @@ export class Modal {
     if (localStorage.getItem('rslang-user')) {
       this.user.logout();
     }
-   }
+  }
 }

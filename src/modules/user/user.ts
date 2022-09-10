@@ -57,12 +57,10 @@ export class User extends Api {
         logPole.insertAdjacentElement('afterbegin', autorize);
         login.classList.add('hidden');
       }
-    } else {
-      if (login.classList.contains('hidden')) {
-        login.classList.remove('hidden');
-        const autorize: HTMLDivElement | null  = document.querySelector('.user-autorize') as HTMLDivElement;
-        if (autorize) autorize.remove();
-      } 
+    } else if (login.classList.contains('hidden')) {
+      login.classList.remove('hidden');
+      const autorize: HTMLDivElement | null = document.querySelector('.user-autorize') as HTMLDivElement;
+      if (autorize) autorize.remove();
     }
   }
 
@@ -126,7 +124,7 @@ export class User extends Api {
     }
     return userToken;
   }
-  
+
   logout() {
     const listenerLogout = (ev: MouseEvent) => {
       ev.preventDefault();
@@ -134,11 +132,10 @@ export class User extends Api {
       const logout = document.querySelector('#logout') as HTMLElement;
       this.checkLogin();
       logout.removeEventListener('click', listenerLogout);
-    }
+    };
     const logout = document.querySelector('#logout') as HTMLElement;
     logout.addEventListener('click', listenerLogout);
   }
-  
 }
 
 export default new User();

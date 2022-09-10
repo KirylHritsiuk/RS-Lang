@@ -20,35 +20,33 @@ class Burger {
   }
 
   controlBurger() {
-
-
     let hashA: string = window.location.hash.slice(1);
-    if(hashA === ''){
-      hashA = 'main'
+    if (hashA === '') {
+      hashA = 'main';
     }
     const plaseA = <HTMLElement>document.querySelector(`#${hashA}ForColor`);
     // const color = <HTMLElement>document.querySelector(`.dark-burger`);
-      // color.classList.remove('dark-burger')
-    plaseA.classList.add('dark-burger')
+    // color.classList.remove('dark-burger')
+    plaseA.classList.add('dark-burger');
     // color.classList.remove('dark-burger')
 
     window.addEventListener('hashchange', async () => {
-      let allHash = window.location.hash
-      let end 
-      if(allHash.split('').indexOf('/')===-1){
-        end = allHash.length
-      }else{
-        end = allHash.split('').indexOf('/')
+      const allHash = window.location.hash;
+      let end;
+      if (allHash.split('').indexOf('/') === -1) {
+        end = allHash.length;
+      } else {
+        end = allHash.split('').indexOf('/');
       }
       // console.log('allHesh===', allHash)
       // console.log('end===', end)
-      let hash: string = allHash.slice(1, end);
-      const color = <HTMLElement>document.querySelector(`.dark-burger`);
-      color.classList.remove('dark-burger')
+      const hash: string = allHash.slice(1, end);
+      const color = <HTMLElement>document.querySelector('.dark-burger');
+      color.classList.remove('dark-burger');
       const plase = <HTMLElement>document.querySelector(`#${hash}ForColor`);
-      plase.classList.add('dark-burger')
+      plase.classList.add('dark-burger');
     });
-    
+
     // allLi.forEach((e) => {
     //   e.addEventListener('click', (e) => {
     //     const target = <HTMLElement>(e.currentTarget);

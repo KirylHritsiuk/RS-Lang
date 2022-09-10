@@ -10,25 +10,25 @@ export class List extends Block {
     containerClass: 'list_container',
   };
 
-  protected data: Promise<IWord[]>;
+  protected words: Promise<IWord[]>;
 
   constructor() {
     super();
     this.container.className = List.textObject.containerClass;
     if (this.user === '') {
-      this.data = api.getWords(Block.textbookQueryData.getQuery());
+      this.words = api.getWords(this.data.getQuery());
     } else {
-      this.data = api.getUserAggregatedWords(
+      this.words = api.getUserAggregatedWords(
         getUserId(),
         getUserToken(),
-        Block.textbookQueryData.getQuery(),
+        this.data.getQuery(),
       ).then((val) => val[0].paginatedResults);
     }
   }
 
   render() {
     this.container.innerHTML = '';
-    this.data
+    this.words
       .then((val) => {
         const loader = <HTMLDivElement>document.getElementById('loader');
         loader.remove();

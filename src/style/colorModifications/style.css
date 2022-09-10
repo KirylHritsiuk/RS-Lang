@@ -177,5 +177,41 @@
     color: green;
     border-color: green;
   }
+  .hover-red:hover {
+    box-shadow: 0px 0px 10px red;
+  }
+  
+  .hover-orange:hover {
+    box-shadow: 0px 0px 10px orange;
+  }
+  
+  .hover-palevioletred:hover {
+    box-shadow: 0px 0px 10px palevioletred;
+  }
+  
+  .hover-slateblue:hover {
+    box-shadow: 0px 0px 10px slateblue;
+  }
+  
+  .hover-darkslateblue:hover {
+    box-shadow: 0px 0px 10px darkslateblue;
+  }
+  
+  .hover-purple:hover {
+    box-shadow: 0px 0px 10px purple;
+  }
+  
+  .hover-coral:hover {
+    box-shadow: 0px 0px 10px coral;
+  }
 
+.box-shadow-coral {
+  box-shadow: 0px 0px 10px coral !important;
+}
+.box-shadow-hard {
+  box-shadow: 0px 0px 10px red !important;
+}
+.box-shadow-easy {
+  box-shadow: 0px 0px 10px green !important;
+}
   

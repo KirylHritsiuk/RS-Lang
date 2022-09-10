@@ -18,19 +18,18 @@ export class WordCard extends Block {
 
   protected text: HTMLElement;
 
-  constructor(protected data: IWord) {
+  constructor(protected wordData: IWord) {
     super();
     this.container.className = WordCard.ClassNameData.container;
-    this.container.id = data.word;
-    this.data = data;
-    this.group = data.group;
-    this.audioBlock = new AudioBlock(data).render();
-    this.text = new TextContent(data).render();
-    if (this.data.userWord !== undefined) {
-      this.container.classList.add(`${Block.modificationClass.bg}${this.data.userWord?.difficulty}`);
+    this.container.id = wordData.word;
+    this.group = wordData.group;
+    this.audioBlock = new AudioBlock(wordData).render();
+    this.text = new TextContent(wordData).render();
+    if (wordData.userWord !== undefined) {
+      this.container.classList.add(`${Block.modificationClass.bg}${wordData.userWord?.difficulty}`);
       const category = dictionary.getItemLocalStorage();
       if (category !== null) {
-        if (category[0].value !== this.data.userWord?.difficulty) {
+        if (category[0].value !== wordData.userWord?.difficulty) {
           this.container.classList.add(Block.modificationClass.displayNone);
         }
         // else this.container.classList.remove(Block.modificationClass.displayNone);
@@ -39,7 +38,7 @@ export class WordCard extends Block {
   }
 
   create() {
-    this.container.innerHTML = `<img class="word-card_image" src="${baseUrl}${this.data.image}" alt="${this.data.word}">`;
+    this.container.innerHTML = `<img class="word-card_image" src="${baseUrl}${this.wordData.image}" alt="${this.wordData.word}">`;
     this.container.append(this.text, this.audioBlock);
     return this.container;
   }

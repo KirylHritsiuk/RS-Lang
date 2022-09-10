@@ -16,14 +16,14 @@ export class AudioBlock extends Block {
 
   protected audioExample: HTMLAudioElement;
 
-  constructor(protected data: IWord) {
+  constructor(protected wordData: IWord) {
     super();
     this.container.className = AudioBlock.textObject.containerClass;
     this.container.dataset.status = AudioBlock.textObject.stopStatus;
     this.container.innerHTML = `${svg.play}`;
-    this.audio = new Audio(`${baseUrl}${data.audio}`);
-    this.audioMeaning = new Audio(`${baseUrl}${data.audioMeaning}`);
-    this.audioExample = new Audio(`${baseUrl}${data.audioExample}`);
+    this.audio = new Audio(`${baseUrl}${wordData.audio}`);
+    this.audioMeaning = new Audio(`${baseUrl}${wordData.audioMeaning}`);
+    this.audioExample = new Audio(`${baseUrl}${wordData.audioExample}`);
     this.container.addEventListener('click', async (e) => {
       const button = <HTMLElement>e.currentTarget;
       switch (button.dataset.status) {

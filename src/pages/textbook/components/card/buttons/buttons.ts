@@ -7,7 +7,9 @@ export class CardButtons extends Block {
   static textObject = {
     containerClass: 'card-buttons',
     difficultHard: 'hard',
+    difficultHardRu: 'сложно',
     difficultEasy: 'easy',
+    difficultEasyRu: 'легко',
     difficultNormal: 'normal',
   };
 
@@ -15,34 +17,42 @@ export class CardButtons extends Block {
 
   protected easy: HTMLElement;
 
-  constructor(protected data: IWord) {
+  constructor(protected wordData: IWord) {
     super();
     this.container.className = CardButtons.textObject.containerClass;
-    if (this.user === '' && (data.userWord === undefined
-        || data.userWord?.difficulty !== CardButtons.textObject.difficultNormal)) {
+    if (this.user === '' && (wordData.userWord === undefined
+        || wordData.userWord?.difficulty !== CardButtons.textObject.difficultNormal)) {
       this.container.classList.add(Block.modificationClass.displayNone);
-    } else if (data.userWord?.difficulty === CardButtons.textObject.difficultEasy
-        || data.userWord?.difficulty === CardButtons.textObject.difficultHard) {
+    } else if (wordData.userWord?.difficulty === CardButtons.textObject.difficultEasy
+        || wordData.userWord?.difficulty === CardButtons.textObject.difficultHard) {
       this.container.classList.add(Block.modificationClass.displayNone);
     }
-    this.difficult = new Button(data, CardButtons.textObject.difficultHard).render();
-    this.easy = new Button(data, CardButtons.textObject.difficultEasy).render();
+    this.difficult = new Button(
+      wordData,
+      CardButtons.textObject.difficultHard,
+      CardButtons.textObject.difficultHardRu,
+    ).render();
+    this.easy = new Button(
+      wordData,
+      CardButtons.textObject.difficultEasy,
+      CardButtons.textObject.difficultEasyRu,
+    ).render();
     this.container.append(this.difficult, this.easy);
     [this.difficult, this.easy].forEach((btn) => {
       btn.addEventListener('click', async () => {
         this.addedCard();
         this.changeLearnPage();
-        if (data.userWord === undefined) {
+        if (wordData.userWord === undefined) {
           await api.createUserWord(
             this.user,
             this.token,
-            data._id,
+            wordData._id,
             { difficulty: (btn.textContent as string) },
           );
         } else {
           await api.updateUserWord(
             this.user,
-            data._id,
+            wordData._id,
             this.token,
             { difficulty: (btn.textContent as string) },
           );

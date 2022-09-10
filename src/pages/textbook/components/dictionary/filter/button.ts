@@ -1,3 +1,4 @@
+import dictionary from '../../../../../modules/dictionary/dictionary';
 import { Block } from '../../blockTemplate';
 import { Filter } from './filter';
 
@@ -10,15 +11,24 @@ export class DictionaryButton extends Block {
     super();
     this.container = document.createElement('button');
     this.container.dataset.name = name;
+    this.container.className = `${DictionaryButton.textObject.containerClass} ${Block.modificationClass.hover}${this.color}`;
+
     if (name === 'hard') {
       this.container.textContent = 'cложные слова';
     } else {
       this.container.textContent = 'легкие слова';
     }
-    this.container.className = DictionaryButton.textObject.containerClass;
+    if (dictionary.getItemLocalStorage() !== null) {
+      if (dictionary.getItemLocalStorage()![0].value === name) {
+        this.container.setAttribute('disabled', 'disabled');
+        this.container.classList.add(`${Block.modificationClass.active}${name}`);
+        this.container.classList.add(`${Block.modificationClass.boxShadow}${name}`);
+      }
+    }
     this.container.addEventListener('click', () => {
       this.container.setAttribute('disabled', 'disabled');
       this.container.classList.add(`${Block.modificationClass.active}${name}`);
+      this.container.classList.add(`${Block.modificationClass.boxShadow}${name}`);
     });
   }
 }

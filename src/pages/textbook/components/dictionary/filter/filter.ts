@@ -19,7 +19,10 @@ export class Filter extends Block {
 
   constructor() {
     super();
-    this.container.className = 'filter-container';
+    this.container.className = 'filter';
+    if (dictionaryLocal.getItemLocalStorage() === null) {
+      this.container.classList.add(Block.modificationClass.displayNone);
+    }
 
     [Filter.hard, Filter.easy].forEach((el) => {
       el.addEventListener('click', (e) => {
