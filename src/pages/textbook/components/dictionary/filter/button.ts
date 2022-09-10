@@ -1,4 +1,5 @@
 import { Block } from '../../blockTemplate';
+import { Filter } from './filter';
 
 export class DictionaryButton extends Block {
   static textObject = {
@@ -9,7 +10,11 @@ export class DictionaryButton extends Block {
     super();
     this.container = document.createElement('button');
     this.container.dataset.name = name;
-    this.container.textContent = `${name} words`;
+    if (name === 'hard') {
+      this.container.textContent = 'cложные слова';
+    } else {
+      this.container.textContent = 'легкие слова';
+    }
     this.container.className = DictionaryButton.textObject.containerClass;
     this.container.addEventListener('click', () => {
       this.container.setAttribute('disabled', 'disabled');

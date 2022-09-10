@@ -3,7 +3,7 @@ import textbookQuery from '../../../../modules/textbook/textbookQueryData';
 import { changeList } from '../../../../utils/changeList';
 import { Block } from '../blockTemplate';
 
-export class PagLi extends Block {
+export class Item extends Block {
   static textObject = {
     containerClass: 'pagination',
     itemClass: 'pag-item',
@@ -26,36 +26,36 @@ export class PagLi extends Block {
     this.pages = pages;
   }
 
-  createLi(btn: string, page?: number) {
+  createItem(btn: string, page?: number) {
     const li = document.createElement('li');
-    li.className = `${PagLi.textObject.itemClass} ${PagLi.textObject.itemClass}-${PagLi.modificationClass.hoverModificationClass}${this.color}`;
+    li.className = `${Item.textObject.itemClass} ${Item.textObject.itemClass}-${Item.modificationClass.hover}${this.color}`;
     switch (btn.trim()) {
-      case PagLi.textObject.prev:
+      case Item.textObject.prev:
         li.innerHTML = svg.chevron_left;
         break;
-      case PagLi.textObject.first:
+      case Item.textObject.first:
         li.innerHTML = '<span>1</span></li>';
         break;
-      case PagLi.textObject.dots:
+      case Item.textObject.dots:
         li.innerHTML = '<span>...</span>';
         break;
-      case `${PagLi.textObject.numb} ${PagLi.textObject.active}`:
+      case `${Item.textObject.numb} ${Item.textObject.active}`:
         li.innerHTML = `<span>${page}</span></li>`;
         li.classList.add(`${Block.modificationClass.active}${this.color}`);
         break;
-      case PagLi.textObject.numb:
+      case Item.textObject.numb:
         li.innerHTML = `<span>${page}</span></li>`;
         break;
-      case PagLi.textObject.last:
+      case Item.textObject.last:
         li.innerHTML = `<span>${this.pages}</span>`;
         break;
-      case PagLi.textObject.next:
+      case Item.textObject.next:
         li.innerHTML = svg.chevron_right;
         break;
       default:
         li.innerHTML = `<span>${page}</span>`;
     }
-    if (btn !== PagLi.textObject.dots) {
+    if (btn !== `${Item.textObject.numb} ${Item.textObject.active}`) {
       li.addEventListener('click', () => {
         this.container.innerHTML = '';
         this.createPagination(page);
@@ -72,12 +72,12 @@ export class PagLi extends Block {
     let beforePage = page - 1;
     let afterPage = page + 1;
     if (page > 1) {
-      this.container.append(this.createLi(PagLi.textObject.prev, page - 1));
+      this.container.append(this.createItem(Item.textObject.prev, page - 1));
     }
     if (page > 2) {
-      this.container.append(this.createLi(PagLi.textObject.first, 1));
+      this.container.append(this.createItem(Item.textObject.first, 1));
       if (page > 3) {
-        this.container.append(this.createLi(PagLi.textObject.dots));
+        this.container.append(this.createItem(Item.textObject.dots, page - 2));
       }
     }
 
@@ -104,18 +104,18 @@ export class PagLi extends Block {
       } else {
         active = '';
       }
-      this.container.append(this.createLi(`numb ${active}`, pagLength));
+      this.container.append(this.createItem(`numb ${active}`, pagLength));
     }
 
     if (page < this.pages - 1) {
       if (page < this.pages - 2) {
-        this.container.append(this.createLi(PagLi.textObject.dots));
+        this.container.append(this.createItem(Item.textObject.dots, page + 2));
       }
-      this.container.append(this.createLi(PagLi.textObject.last, this.pages));
+      this.container.append(this.createItem(Item.textObject.last, this.pages));
     }
 
     if (page < this.pages) {
-      this.container.append(this.createLi(PagLi.textObject.next, page + 1));
+      this.container.append(this.createItem(Item.textObject.next, page + 1));
     }
     return this.container;
   }

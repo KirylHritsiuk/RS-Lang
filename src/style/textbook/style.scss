@@ -9,6 +9,7 @@
   grid-row-gap: 32px;
   grid-column-gap: 32px;
   padding: 2%;
+  border-radius: 10px;
 }
 .textbook {
   grid-template-areas:
@@ -17,7 +18,7 @@
   "words-list groups"
   "pagination-bottom pagination-bottom";
   grid-template-rows: max-content max-content 1fr 50px;
-  grid-template-columns: 1fr 72px;
+  grid-template-columns: 1fr 100px;
   grid-row-gap: 32px;
   grid-column-gap: 32px;
 }
@@ -30,7 +31,7 @@
   "words-list groups"
   "pagination-bottom pagination-bottom";
   grid-template-rows: max-content max-content max-content 1fr 50px;
-  grid-template-columns: 1fr 72px;
+  grid-template-columns: 1fr 100px;
  
 }
 .filters {
@@ -59,6 +60,7 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   height: 5em;
   width: 270px;
+  cursor: pointer;
   @include flexCenter();
 }
 
@@ -375,42 +377,6 @@
   }
 }
 
-.border-top-red {
-  border-top: 16px solid red;
-}
-.border-top-orange {
-  border-top: 16px solid orange;
-}
-.border-top-palevioletred {
-  border-top: 16px solid palevioletred;
-}
-.border-top-slateblue {
-  border-top: 16px solid slateblue;
-}
-.border-top-darkslateblue {
-  border-top: 16px solid darkslateblue;
-}
-.border-top-purple {
-  border-top: 16px solid purple;
-}
-.border-left-red {
-  border-left-color: red !important;
-}
-.border-left-orange {
-  border-left-color: orange !important;
-}
-.border-left-palevioletred {
-  border-left-color: palevioletred !important;
-}
-.border-left-slateblue {
-  border-left-color: slateblue !important;
-}
-.border-left-darkslateblue {
-  border-left-color: darkslateblue !important;
-}
-.border-left-purple {
-  border-left-color: purple !important;
-}
 .ds-none {
   display: none !important;
 }

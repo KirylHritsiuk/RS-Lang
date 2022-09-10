@@ -1,6 +1,5 @@
-/* eslint-disable max-classes-per-file */
 import { Block } from '../blockTemplate';
-import { PagLi } from './pagLi';
+import { Item } from './items';
 
 export class Pagination extends Block {
   static textObject = {
@@ -11,12 +10,12 @@ export class Pagination extends Block {
     hoverMod: 'pag-item-hover-',
   };
 
-  public list: HTMLElement;
+  private items: HTMLElement;
 
   constructor(private pages: number = 30) {
     super();
     this.container.className = Pagination.textObject.containerClass;
-    this.list = new PagLi(pages).createPagination(this.page + 1);
-    this.container.append(this.list);
+    this.items = new Item(pages).createPagination(this.page + 1);
+    this.container.append(this.items);
   }
 }

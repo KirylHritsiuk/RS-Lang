@@ -26,11 +26,12 @@ export abstract class Block {
   static textbookQueryData: TextbookQueryData = textbookQueryData;
 
   static modificationClass = {
-    bgModificationClass: 'bg-',
-    colorModificationClass: 'color-',
-    borderModificationClass: 'border-',
-    borderLeftModificationClass: 'border-left-',
-    hoverModificationClass: 'hover-',
+    bg: 'bg-',
+    color: 'color-',
+    border: 'border-',
+    borderLeft: 'border-left-',
+    borderTop: 'border-top-',
+    hover: 'hover-',
     displayNone: 'ds-none',
     bgDisabled: 'bg-disabled',
     active: 'active-',
@@ -47,6 +48,39 @@ export abstract class Block {
     this.token = getUserToken();
     if (dictionaryLocal.getItemLocalStorage() === null) this.color = groupData[this.group];
     else this.color = groupData[groupData.length - 1];
+    console.log(this.color, this.group)
+  }
+ 
+  isLearnedPage() {
+    const cards = Array.from(document.querySelectorAll('.word-card'));
+    const styleArr = cards.map((el) => el.className).filter((el) => el.includes('hard') || el.includes('easy'));
+    if (styleArr.length !== 0 && (styleArr.length === cards.length)) {
+      return true;
+    }
+    return false;
+  }
+
+  changeLearnPage() {
+    const pagPAge = document.querySelectorAll(`.active-${this.color}`);
+    const list = document.querySelectorAll('.game_link');
+    const main = document.querySelector('.main_content');
+    if (this.isLearnedPage() === true) {
+      list?.forEach((el) => {
+        el.classList.add(Block.modificationClass.bgDisabled);
+      });
+      pagPAge?.forEach((el) => {
+        el.classList.add(Block.modificationClass.bgDisabled);
+      });
+      main?.classList.add(`bg-textbook-${this.color}`);
+      return;
+    }
+    list?.forEach((el) => {
+      el.classList.remove(Block.modificationClass.bgDisabled);
+    });
+    pagPAge?.forEach((el) => {
+      el.classList.remove(Block.modificationClass.bgDisabled);
+    });
+    main?.classList.remove(`bg-textbook-${this.color}`);
   }
 
   render() {
