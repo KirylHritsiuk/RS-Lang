@@ -7,6 +7,7 @@ export class GameBar extends Block {
     linkClass: 'game_link',
     iconClass: 'game__icon',
     titleClass: 'game__title',
+    nameAttr: 'game',
     containerClass: 'game',
   };
 
@@ -17,7 +18,7 @@ export class GameBar extends Block {
 
   create(game: IGames) {
     const element: string = `
-      <button class="${GameBar.textObject.linkClass} ${Block.modificationClass.hover}${this.color}" name="game">
+      <button class="${GameBar.textObject.linkClass} ${Block.modificationClass.hover}${this.color}" name="${GameBar.textObject.nameAttr}">
         <div class="${GameBar.textObject.containerClass}">
           <img 
             class="${GameBar.textObject.iconClass}"

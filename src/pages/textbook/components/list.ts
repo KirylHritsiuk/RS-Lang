@@ -1,7 +1,9 @@
 import { getUserId } from '../../../modules/user/getUserId';
 import { getUserToken } from '../../../modules/user/getUserToken';
-import { IWord } from '../../../types/types';
+import { IQueryParameters, IWord } from '../../../types/types';
 import api from '../../../utils/api';
+import textbook from '../../../modules/textbook/anonymous/localStorageTextbook';
+import textbookUser from '../../../modules/textbook/user/localStorageTextbookUser';
 import { Block } from './blockTemplate';
 import { WordCard } from './card/card';
 
@@ -16,12 +18,12 @@ export class List extends Block {
     super();
     this.container.className = List.textObject.containerClass;
     if (this.user === '') {
-      this.words = api.getWords(this.data.getQuery());
+      this.words = api.getWords(textbook.getItemLocalStorage()!);
     } else {
       this.words = api.getUserAggregatedWords(
         getUserId(),
         getUserToken(),
-        this.data.getQuery(),
+        textbookUser.getItemLocalStorage()!,
       ).then((val) => val[0].paginatedResults);
     }
   }

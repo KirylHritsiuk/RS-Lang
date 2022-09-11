@@ -24,6 +24,12 @@ export class DictionaryButton extends Block {
         this.container.classList.add(`${Block.modificationClass.active}${name}`);
         this.container.classList.add(`${Block.modificationClass.boxShadow}${name}`);
       }
+    } else if (dictionary.getItemLocalStorage() === null) {
+      if (name === 'hard') {
+        this.container.setAttribute('disabled', 'disabled');
+        this.container.classList.add(`${Block.modificationClass.active}${name}`);
+        this.container.classList.add(`${Block.modificationClass.boxShadow}${name}`);
+      }
     }
     this.container.addEventListener('click', () => {
       this.container.setAttribute('disabled', 'disabled');
