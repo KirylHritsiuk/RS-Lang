@@ -4,24 +4,39 @@ import {
 } from '../components/dataPageMain';
 
 class Burger {
+
+  // hideBlockRemember(){
+  //   const btnLogin = <HTMLDivElement>document.querySelector('btn-login btn-sign')
+  //   const wrapperRemember = <HTMLDivElement>document. querySelector('.wrapper-remember')
+  //   btnLogin.addEventListener('click', ()=>{
+    
+  //   console.log(wrapperRemember)
+  //   console.log('sssssssssssssssssssssssss')
+  //   if(localStorage.getItem('rslang-user') === null){
+  //     wrapperRemember.style.display = 'block'
+  //   }else{
+  //     wrapperRemember.style.display = 'none'
+  //   }
+
+  //   })
+  // }
+  
   closeSmallBurger() {
     modal.classList.add('hide');
     icon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>';
     btnBurger.classList.remove('a');
-
     setTimeout(() => {
       containerUL.style.display = 'none';
     }, 500);
     svgBurger.style.fill = ' black';
-    nawWrapper.style.backgroundColor = 'white';
+    nawWrapper.style.backgroundColor = '#efecec';
     nawWrapper.classList.remove('scroll');
     exit.style.display = 'none';
     document.body.style.overflow = 'scroll';
   }
 
   controlBurger() {
-
-
+    
     let hashA: string = window.location.hash.slice(1);
     if(hashA === ''){
       hashA = 'main'
@@ -61,7 +76,7 @@ class Burger {
     // });
 
     const windowInnerWidth = window.innerWidth;
-    if (windowInnerWidth > 800) {
+    if (windowInnerWidth > 768) {
       btnBurger.addEventListener('click', () => {
         if (btnBurger.className === 'plase-burger') {
           nawWrapper.classList.add('scroll');
