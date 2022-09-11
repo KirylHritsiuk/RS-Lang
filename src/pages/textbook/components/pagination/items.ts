@@ -1,10 +1,7 @@
 import { groupData } from '../../../../common/groups';
 import { svg } from '../../../../common/svg';
-import textbookQuery from '../../../../modules/textbook/textbookQueryData';
 import { changeList } from '../../../../utils/changeList';
 import { Block } from '../blockTemplate';
-import dictionaryLocal from '../../../../modules/dictionary/dictionary';
-import { Pagination } from './index';
 
 export class Item extends Block {
   static textObject = {

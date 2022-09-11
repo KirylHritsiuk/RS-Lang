@@ -51,7 +51,7 @@ export class Groups extends Block {
       pag,
       title,
     ] = [
-      Array.from(document.getElementsByName(`${GameBar.textObject.nameAttr}`)),
+      Array.from(document.querySelectorAll(`.${GameBar.textObject.linkClass}`)),
       Array.from(document.querySelectorAll(`.${Pagination.textObject.itemClass}`)),
       document.querySelector(`.${Groups.classNames.titleClass}`),
     ];
