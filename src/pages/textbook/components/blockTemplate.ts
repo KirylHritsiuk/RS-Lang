@@ -48,7 +48,7 @@ export abstract class Block {
     this.token = getUserToken();
     if (dictionaryLocal.getItemLocalStorage() === null) this.color = groupData[this.group];
     else this.color = groupData[groupData.length - 1];
-    console.log(this.color, this.group)
+    // console.log(this.color, this.group)
   }
  
   isLearnedPage() {

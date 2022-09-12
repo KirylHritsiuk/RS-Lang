@@ -2,11 +2,16 @@ import { Api } from '../../utils/api';
 import localStorageUser, { LocalStorageUser } from './localStorageUser';
 import { IUserSchema, IGetUserToken } from '../../types/types';
 import { changeList } from '../../utils/changeList';
+import { App } from '../../app/app';
+import localStorageTextbookUser, { LocalStorageTextbookUser } from '../textbook/user/localStorageTextbookUser';
+import localStorageTextbook from '../textbook/anonymous/localStorageTextbook';
 
 export class User extends Api {
   protected client: IUserSchema;
 
   protected local: LocalStorageUser;
+
+  protected LocalUser: LocalStorageTextbookUser;
 
   logoutUserTemp() {
     this.client.name = '';
@@ -14,6 +19,7 @@ export class User extends Api {
     this.client.email = '';
     this.client.avatar = '';
     this.local.clearItemLocalStorage();
+    this.LocalUser.clearItemLocalStorage();
   }
 
   constructor() {
@@ -26,21 +32,22 @@ export class User extends Api {
       complete: false,
     };
     this.local = new LocalStorageUser('rslang-user');
+    this.LocalUser = new LocalStorageTextbookUser('rslang-textbook');
   }
 
   async checkLogin() {
     const result = localStorageUser.getItemLocalStorage();
     const login = document.querySelector('#login') as HTMLElement;
     if (result) {
-      const hash = window.location.hash.slice(1);
+      // const hash = window.location.hash.slice(1);
       // if (hash === 'textbook') changeList();
       const data = await this.getUser(result.userId, result.token);
       if (login.classList.contains('hidden')) {
         const text = document.querySelector('.text-login') as HTMLDivElement;
         text.innerHTML = `<span>${data.name}</span><span>${data.email}</span>`;
-        const img = document.querySelector('avatar-minim') as HTMLImageElement;
+        const img = document.querySelector('.avatar-minim') as HTMLImageElement;
         if (data.avatar === ' ') img.src = 'https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg';
-        else img.src = data.avatar as string;
+        else img.src = data.avatar || 'https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg';
       } else {
         const logPole = document.querySelector('.log-pole') as HTMLElement;
         const autorize = document.createElement('div') as HTMLDivElement;
@@ -52,7 +59,7 @@ export class User extends Api {
         img.classList.add('img-avatar');
         img.classList.add('avatar-minim');
         if (data.avatar === ' ') img.src = 'https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg';
-        else img.src = data.avatar as string;
+        else img.src = data.avatar || 'https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg';
         autorize.append(text, img);
         logPole.insertAdjacentElement('afterbegin', autorize);
         login.classList.add('hidden');
@@ -62,7 +69,7 @@ export class User extends Api {
         login.classList.remove('hidden');
         const autorize: HTMLDivElement | null  = document.querySelector('.user-autorize') as HTMLDivElement;
         if (autorize) autorize.remove();
-      } 
+      }
     }
   }
 
@@ -103,6 +110,11 @@ export class User extends Api {
       this.local.addItemLocalStorage(userToken);
       this.checkLogin();
       this.logout();
+      localStorageTextbook.clearItemLocalStorage()
+      const hash = window.location.hash.slice(1);
+      if (hash === 'textbook') {
+        App.renderNewPage(hash);
+      }
       return data;
     }
     return false;
@@ -122,6 +134,11 @@ export class User extends Api {
       this.client.avatar = userData.avatar;
       this.checkLogin();
       this.logout();
+      localStorageTextbook.clearItemLocalStorage()
+      const hash = window.location.hash.slice(1);
+      if (hash === 'textbook') {
+        App.renderNewPage(hash);
+      }
       return userToken;
     }
     return userToken;
@@ -133,6 +150,12 @@ export class User extends Api {
       this.logoutUserTemp();
       const logout = document.querySelector('#logout') as HTMLElement;
       this.checkLogin();
+      const hash = window.location.hash.slice(1);
+      if (hash === 'textbook') {
+        App.renderNewPage(hash);
+      } else {
+        App.renderNewPage('main');
+      }
       logout.removeEventListener('click', listenerLogout);
     }
     const logout = document.querySelector('#logout') as HTMLElement;

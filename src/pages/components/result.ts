@@ -74,7 +74,7 @@ export class Result {
 
   protected resultTransition(data: IResultGames) {
     const circle = document.querySelector('.audio-progress-path') as HTMLElement;
-    const allCircle: number = Number(circle.style.strokeDashoffset);
+    const allCircle: number = parseInt(circle.style.strokeDashoffset);
     const procent = Math.round(data.statistics.correctly / this.words.length * 100);
     const allTempCircle: number = allCircle * procent / 100;
     circle.style.strokeDashoffset = (allCircle - allTempCircle).toString();

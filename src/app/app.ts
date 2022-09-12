@@ -9,6 +9,7 @@ import { changeList } from '../utils/changeList';
 import { DictionaryList } from '../pages/textbook/components/dictionary/list';
 import dictionaryLocal from '../modules/dictionary/dictionary';
 import User from '../modules/user/user';
+import { GameBar } from '../pages/textbook/components/gamebar';
 
 export const enum PageId {
   main = 'main',

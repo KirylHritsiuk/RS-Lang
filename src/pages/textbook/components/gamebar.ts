@@ -15,8 +15,8 @@ export class GameBar extends Block {
     super();
     this.container.className = GameBar.textObject.mainContainerClass;
   }
-
   protected create(game: IGames) {
+    console.log(game);
     const element: string = `
       <button class="${GameBar.textObject.linkClass} ${GameBar.textObject.modificationClass}${this.color}" name="game">
         <div class="${GameBar.textObject.containerClass}">

@@ -16,7 +16,10 @@ export class Modal {
 
   protected avatarUrl: string;
 
+  protected loginBottom: HTMLElement | null;
+
   user: User;
+
 
   constructor() {
     this.modal = document.createElement('div');
@@ -27,13 +30,14 @@ export class Modal {
     this.name = '';
     this.password = '';
     this.email = '';
+    this.loginBottom = null;
     this.user = new User();
   }
 
   protected createModalElement() {
     this.modal.innerHTML = `
       <form class="modal-user" action="" novalidate>
-          <h1 class="modal-header">Login</h1>
+          <h1 class="modal-header">Вход</h1>
 
           <div class="input_form">
               <input type="email" value="" name="email" placeholder="Email" class="input input_email">
@@ -43,7 +47,7 @@ export class Modal {
           </div>
           <div class="checkbox_form">
               <input name="checkbox" class="checkbox_input" id="checkbox" type="checkbox">
-              <label class="checkbox_label" for="checkbox">Show password</label>
+              <label class="checkbox_label" for="checkbox">Показать пароль</label>
           </div>
           <button class="btn-login btn-sign" type="submit">sign in</button>
           <div class="register">
@@ -83,8 +87,8 @@ export class Modal {
 
   addModalListener() {
     const login: HTMLElement | null = document.querySelector('#login');
-    const loginBottom: HTMLElement | null = document.querySelector('#login-bottom');
-    const loginSingUp: HTMLElement | null = document.querySelector('#sing-up-bottom');
+    this.loginBottom = document.querySelector('#login-bottom') as HTMLDivElement;
+    const loginSingUp = document.querySelector('#sing-up-bottom') as HTMLElement;
     if (login) {
       login.addEventListener('click', () => {
         this.modal.classList.add('transition-open-modal');
@@ -102,8 +106,8 @@ export class Modal {
         }
       });
     }
-    if (loginBottom) {
-      loginBottom.addEventListener('click', () => {
+    if (this.loginBottom) {
+      this.loginBottom.addEventListener('click', () => {
         this.modal.classList.add('transition-open-modal');
         this.body.classList.add('no-scroll');
       });
@@ -229,7 +233,7 @@ export class Modal {
           });
         }
         if (btnLogin.textContent === 'sign in') {
-          const loginUser = this.user.loginUser({ email: this.email, password: this.password });
+          const loginUser = this.user.loginUser({ email: this.email, password: this.password, avatar: ' ' });
           loginUser.then((data) => {
             if (data.message === 'Authenticated') {
               localStorageTextbook.clearItemLocalStorage();
@@ -249,14 +253,9 @@ export class Modal {
       }
     });
 
-    loginBottom!.addEventListener('click', (ev) => {
-      const temp = ev.target as HTMLElement;
-      if (temp.classList[0] === 'modal-overlay') {
-        this.modal.classList.add('transition-close-modal');
-      }
-    });
 
-    signUp.addEventListener('click', () => {
+    signUp.addEventListener('click', (ev) => {
+      ev.preventDefault();
       if (forms.length === 2) {
         modalContainer.firstElementChild?.remove();
         const nameElement = document.createElement('div');
@@ -264,7 +263,7 @@ export class Modal {
         nameElement.innerHTML = '<input id="name" type="text" value="" name="name" placeholder="Name" class="input input_name">';
         const titleElement = document.createElement('h1');
         titleElement.classList.add('modal-header');
-        titleElement.innerText = 'Register';
+        titleElement.innerText = 'Регистрация';
         modalContainer.prepend(titleElement, nameElement);
         signUp.innerHTML = '<a href=#>Do you have an account? Sign In<a>';
         btnLogin.textContent = 'sign up';
@@ -275,7 +274,7 @@ export class Modal {
         modalContainer.firstElementChild?.remove();
         const titleElement = document.createElement('h1');
         titleElement.classList.add('modal-header');
-        titleElement.innerText = 'Login';
+        titleElement.innerText = 'Вход';
         modalContainer.prepend(titleElement);
         signUp.innerHTML = '<a href=#>Don\'t have an account? Sign Up<a>';
         btnLogin.textContent = 'sign in';
@@ -283,36 +282,58 @@ export class Modal {
         this.removeAvatar();
       }
       forms = document.querySelectorAll('.input_form') as NodeListOf<Element>;
+      this.user.logout();
     });
+    if (loginSingUp) {
+      loginSingUp.addEventListener('click', () => {
+        if (forms.length === 2) {
+          modalContainer.firstElementChild?.remove();
+          const nameElement = document.createElement('div');
+          nameElement.classList.add('input_form');
+          nameElement.innerHTML = '<input id="name" type="text" value="" name="name" placeholder="Name" class="input input_name">';
+          const titleElement = document.createElement('h1');
+          titleElement.classList.add('modal-header');
+          titleElement.innerText = 'Регистрация';
+          modalContainer.prepend(titleElement, nameElement);
+          signUp.innerHTML = '<a href=#>Do you have an account? Sign In<a>';
+          btnLogin.textContent = 'sign up';
+          inputName = document.querySelector('.input_name');
+          this.createAvatar();
+        } else if (forms.length === 3) {
+          modalContainer.firstElementChild?.remove();
+          modalContainer.firstElementChild?.remove();
+          const titleElement = document.createElement('h1');
+          titleElement.classList.add('modal-header');
+          titleElement.innerText = 'Вход';
+          modalContainer.prepend(titleElement);
+          signUp.innerHTML = '<a href=#>Don\'t have an account? Sign Up<a>';
+          btnLogin.textContent = 'sign in';
+          inputName = null;
+          this.removeAvatar();
+        }
+        forms = document.querySelectorAll('.input_form') as NodeListOf<Element>;
+      });
+    }
+  }
 
-    loginSingUp!.addEventListener('click', () => {
-      if (forms.length === 2) {
-        modalContainer.firstElementChild?.remove();
-        const nameElement = document.createElement('div');
-        nameElement.classList.add('input_form');
-        nameElement.innerHTML = '<input id="name" type="text" value="" name="name" placeholder="Name" class="input input_name">';
-        const titleElement = document.createElement('h1');
-        titleElement.classList.add('modal-header');
-        titleElement.innerText = 'Register';
-        modalContainer.prepend(titleElement, nameElement);
-        signUp.innerHTML = '<a href=#>Do you have an account? Sign In<a>';
-        btnLogin.textContent = 'sign up';
-        inputName = document.querySelector('.input_name');
-        this.createAvatar();
-      } else if (forms.length === 3) {
-        modalContainer.firstElementChild?.remove();
-        modalContainer.firstElementChild?.remove();
-        const titleElement = document.createElement('h1');
-        titleElement.classList.add('modal-header');
-        titleElement.innerText = 'Login';
-        modalContainer.prepend(titleElement);
-        signUp.innerHTML = '<a href=#>Don\'t have an account? Sign Up<a>';
-        btnLogin.textContent = 'sign in';
-        inputName = null;
-        this.removeAvatar();
-      }
-      forms = document.querySelectorAll('.input_form') as NodeListOf<Element>;
-    });
+
+  loginBottomListener() {
+    if (this.loginBottom) {
+      this.loginBottom.addEventListener('click', (ev) => {
+        const temp = ev.target as HTMLElement;
+        if (temp.classList[0] === 'modal-overlay') {
+          this.modal.classList.add('transition-close-modal');
+        }
+      });
+    } else {
+      this.loginBottom = document.querySelector('#login-bottom') as HTMLDivElement;
+      this.loginBottom.addEventListener('click', (ev) => {
+        const temp = ev.target as HTMLElement;
+        if (temp.classList[0] === 'modal-overlay') {
+          this.modal.classList.add('transition-close-modal');
+        }
+      });
+    }
   }
 
   createAvatar() {

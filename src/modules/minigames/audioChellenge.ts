@@ -5,6 +5,11 @@ import { App } from '../../app/app';
 import { Api as API, baseUrl } from '../../utils/api';
 import { IWord, IStatisticGame } from '../../types/types';
 import { svgMethods } from '../../common/svg';
+import localStorageTextbookUser, { LocalStorageTextbookUser } from '../textbook/user/localStorageTextbookUser';
+import localStorageTextbook from '../textbook/anonymous/localStorageTextbook';
+import { List } from '../../pages/textbook/components/list';
+import { getUserId } from '../user/getUserId';
+import { getUserToken } from '../user/getUserToken';
 
 const svgAudio = svgMethods.audio;
 const svgResult = svgMethods.results('0/20');
@@ -34,6 +39,8 @@ export class AudioChellenge {
 
   protected currentWord: number;
 
+  protected wrongWord: number;
+
   protected statistics: IStatisticGame;
 
   protected btnContainer: HTMLDivElement | null;
@@ -51,6 +58,7 @@ export class AudioChellenge {
     this.progressWords = null;
     this.step = 0;
     this.currentWord = 0;
+    this.wrongWord = 0;
     this.word = null;
     this.words = [];
     this.wordsTemp = [];
@@ -151,7 +159,8 @@ export class AudioChellenge {
     const changeButtons = document.querySelector('.audio-option') as HTMLDivElement;
     this.words = this.words.filter((line, index) => (index === this.rand ? false : line));
     if (!this.btnContainer) this.btnContainer = document.querySelector('.audio-button-container') as HTMLDivElement;
-    if (this.words.length === 0) {
+    
+    if (this.words.length === 0 || this.wrongWord >= 5) {
       this.removeListenerButtonNext();
       this.removeListenerButtons();
       setTimeout(() => {
@@ -191,16 +200,21 @@ export class AudioChellenge {
     const three = Math.floor(Math.random() * (arrWords.length - 1));
     const threeArr = arrWords[three];
     arrWords = arrWords.filter((line, index) => three !== index);
+    const four = Math.floor(Math.random() * (arrWords.length - 1));
+    const fourArr = arrWords[four];
+    arrWords = arrWords.filter((line, index) => four !== index);
     if (this.word) arr.push(this.word);
     arr.push(oneArr);
     arr.push(twoArr);
     arr.push(threeArr);
+    arr.push(fourArr);
     arr.sort(() => Math.random() - 0.5);
     return `
       <div class="audio-option-word" data-word="${arr[0].wordTranslate}">1&ensp;${arr[0].wordTranslate}</div>
       <div class="audio-option-word" data-word="${arr[1].wordTranslate}">2&ensp;${arr[1].wordTranslate}</div>
       <div class="audio-option-word" data-word="${arr[2].wordTranslate}">3&ensp;${arr[2].wordTranslate}</div>
-      <div class="audio-option-word" data-word="${arr[3].wordTranslate}">4&ensp;${arr[3].wordTranslate}</div>`;
+      <div class="audio-option-word" data-word="${arr[3].wordTranslate}">3&ensp;${arr[3].wordTranslate}</div>
+      <div class="audio-option-word" data-word="${arr[4].wordTranslate}">4&ensp;${arr[4].wordTranslate}</div>`;
   }
 
   showWord() {
@@ -227,6 +241,7 @@ export class AudioChellenge {
 
   private listenBtn = (event: MouseEvent) => {
     const select = event.target as HTMLDivElement;
+    const selectWords = document.querySelectorAll('.audio-option-word') as NodeListOf<HTMLDivElement>;
     select.classList.add('choise');
     if (this.word) {
       if (this.word.wordTranslate === select.dataset.word) {
@@ -236,7 +251,15 @@ export class AudioChellenge {
         this.correctWords.push(this.word);
         select.insertAdjacentHTML('afterend', this.getAudio(true));
         this.wordAnswer = true;
+        this.wrongWord = 0;
       } else {
+        selectWords.forEach((elem) => {
+          const el = elem.dataset.word as string;
+          if (el === this.word?.wordTranslate) {
+            elem.classList.add('correct_word');
+          }
+        })
+        this.wrongWord += 1;
         this.mistakeWords.push(this.word);
         this.currentWord = 0;
         this.statistics.wrong += 1;
@@ -333,22 +356,89 @@ export class AudioChellenge {
     const groupButtonsContainer = document.querySelector('.chellenge-multi-buttons') as HTMLDivElement;
     const groupButtonsContainerListener = async (event: MouseEvent) => {
       const clickButton = event.target as HTMLElement;
-      if (clickButton.tagName === 'BUTTON') {
-        this.clearVar();
-        this.clearPage();
-        const rand = Math.floor(Math.random() * 30);
-        const data = await Api.getWords([
-          { key: 'group', value: (Number(clickButton.textContent) - 1).toString() },
-          { key: 'page', value: rand },
-        ]);
-        this.words = Array.from(data);
-        this.wordsTemp = Array.from(data);
-        this.rand = Math.floor(Math.random() * this.words.length);
-        this.startGame();
-        groupButtonsContainer.removeEventListener('click', groupButtonsContainerListener);
+      const localTextbookUser = localStorageTextbookUser.getItemLocalStorage();
+      const localTextbook = localStorageTextbook.getItemLocalStorage();
+      if (localTextbookUser) {
+        console.log('user', localTextbookUser);
+        const words = await new List().words;
+        console.log('user',words);
+        
+        if (clickButton.tagName === 'BUTTON') {
+          this.clearVar();
+          this.clearPage();
+          const data = await Api.getUserAggregatedWords(
+          getUserId(),
+          getUserToken(),
+          [
+            { key: 'group', value: localTextbookUser[0].value },
+            { key: 'page', value: localTextbookUser[1].value  },
+          ]);
+          const arr = data[0].paginatedResults
+          this.words = Array.from(arr);
+          this.wordsTemp = Array.from(arr);
+          this.rand = Math.floor(Math.random() * this.words.length);
+          this.startGame();
+          
+          groupButtonsContainer.removeEventListener('click', groupButtonsContainerListener);
+        }
+      } else {
+        console.log('not user', localTextbook);
+        if (clickButton.tagName === 'BUTTON') {
+          this.clearVar();
+          this.clearPage();
+          const rand = Math.floor(Math.random() * 30);
+          const data = await Api.getWords([
+            { key: 'group', value: (Number(clickButton.textContent) - 1).toString() },
+            { key: 'page', value: rand },
+          ]);
+          this.words = Array.from(data);
+          this.wordsTemp = Array.from(data);
+          this.rand = Math.floor(Math.random() * this.words.length);
+          this.startGame();
+          groupButtonsContainer.removeEventListener('click', groupButtonsContainerListener);
+        }
+
       }
+      
     };
     groupButtonsContainer.addEventListener('click', groupButtonsContainerListener);
+  }
+
+  async runTextbook() {
+    this.initial();
+    const localTextbookUser = localStorageTextbookUser.getItemLocalStorage();
+    const localTextbook = localStorageTextbook.getItemLocalStorage();
+    this.clearVar();
+    this.clearPage();
+    if (localTextbookUser) {
+      const data = await Api.getUserAggregatedWords(
+        getUserId(),
+        getUserToken(),
+        [
+          { key: 'group', value: localTextbookUser[0].value },
+          { key: 'page', value: localTextbookUser[1].value },
+          { key: 'wordsPerPage', value: localTextbookUser[2].value },
+        ]
+      );
+      const arr = data[0].paginatedResults;
+      this.words = Array.from(arr);
+      this.wordsTemp = Array.from(arr);
+      this.rand = Math.floor(Math.random() * this.words.length);
+      this.startGame();
+      const words = await new List().words;
+    } else if (localTextbook) {
+      const data = await Api.getWords(
+        [
+          { key: 'group', value: localTextbook[0].value },
+          { key: 'page', value: localTextbook[1].value },
+          { key: 'wordsPerPage', value: localTextbook[2].value },
+        ]
+      );
+      this.words = Array.from(data);
+      this.wordsTemp = Array.from(data);
+      this.rand = Math.floor(Math.random() * this.words.length);
+      this.startGame();
+    }
   }
 
   run() {
