@@ -9,6 +9,7 @@ import { Pagination } from './pagination/index';
 import { PageId } from '../../../app/app';
 import { Filter } from './dictionary/filter/filter';
 import { GameBar } from './gamebar';
+import { Page } from '../template/index';
 
 export class Groups extends Block {
   static classNames = {
@@ -106,8 +107,8 @@ export class Groups extends Block {
           games,
           pagination,
         ] = [
-          <HTMLDivElement>document.querySelector(`.${Filter.textObject.containerClass}`),
-          <HTMLDivElement>document.querySelector(`.${GameBar.textObject.containerClass}`),
+          <HTMLDivElement>document.querySelector(`.${Page.MainClass.filter}`),
+          <HTMLDivElement>document.querySelector(`.${GameBar.textObject.mainContainerClass}`),
           Array.from(document.querySelectorAll(`.${Pagination.textObject.containerClass}`)),
         ];
         if (DictionaryLocal.getItemLocalStorage() === null) {
@@ -138,8 +139,8 @@ export class Groups extends Block {
             games,
             pagination,
           ] = [
-            <HTMLDivElement>document.querySelector(`.${Filter.textObject.containerClass}`),
-            <HTMLDivElement>document.querySelector(`.${GameBar.textObject.containerClass}`),
+            <HTMLDivElement>document.querySelector(`.${Page.MainClass.filter}`),
+            <HTMLDivElement>document.querySelector(`.${GameBar.textObject.mainContainerClass}`),
             Array.from(document.querySelectorAll(`.${Pagination.textObject.containerClass}`)),
           ];
           this.data.setGroup(group);
