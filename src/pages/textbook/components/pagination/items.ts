@@ -1,6 +1,7 @@
 import { groupData } from '../../../../common/groups';
 import { svg } from '../../../../common/svg';
 import { changeList } from '../../../../utils/changeList';
+import { Page } from '../../template/index';
 import { Block } from '../blockTemplate';
 
 export class Item extends Block {
@@ -20,7 +21,7 @@ export class Item extends Block {
     last: 'last',
   };
 
-  constructor(public pages: number) {
+  constructor(public pages: number = 30) {
     super();
     this.container = document.createElement('ul');
     this.pages = pages;
@@ -55,7 +56,19 @@ export class Item extends Block {
       default:
         li.innerHTML = `<span>${page}</span>`;
     }
-    li.addEventListener('click', () => {
+    li.addEventListener('click', (e) => {
+      const item = <HTMLLIElement>e.currentTarget;
+      const parentTop = item.closest(`.${Page.MainClass.paginationTop}`);
+      const parentBottom = item.closest(`.${Page.MainClass.paginationBottom}`);
+      const pagT = <HTMLDivElement>document.querySelector('.pagination-top')?.firstElementChild;
+      const pagB = <HTMLDivElement>document.querySelector('.pagination-bottom')?.firstElementChild;
+      if (parentTop) {
+        pagB.innerHTML = '';
+        pagB.append(new Item().createPagination(page));
+      } else if (parentBottom) {
+        pagT.innerHTML = '';
+        pagT.append(new Item().createPagination(page));
+      }
       this.container.innerHTML = '';
       this.createPagination(page, groupData[this.data.getGroupe()]);
       this.data.setPage(page! - 1);
