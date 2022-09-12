@@ -68,6 +68,7 @@ export abstract class Block {
     if (this.isLearnedPage() === true) {
       list?.forEach((el) => {
         el.classList.add(Block.modificationClass.bgDisabled);
+        el.setAttribute('disabled', 'disabled');
       });
       pagPage?.forEach((el) => {
         el.classList.add(Block.modificationClass.bgDisabled);
@@ -77,6 +78,7 @@ export abstract class Block {
     }
     list?.forEach((el) => {
       el.classList.remove(Block.modificationClass.bgDisabled);
+      el.removeAttribute('disabled');
     });
     pagPage?.forEach((el) => {
       el.classList.remove(Block.modificationClass.bgDisabled);

@@ -47,14 +47,14 @@ export class CardButtons extends Block {
             this.user,
             this.token,
             wordData._id,
-            { difficulty: (btn.textContent as string) },
+            { difficulty: btn.dataset.category! },
           );
         } else {
           await api.updateUserWord(
             this.user,
             wordData._id,
             this.token,
-            { difficulty: (btn.textContent as string) },
+            { difficulty: btn.dataset.category! },
           );
         }
       });
