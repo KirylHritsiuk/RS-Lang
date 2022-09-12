@@ -64,6 +64,7 @@ export class User extends Api {
         logPole.insertAdjacentElement('afterbegin', autorize);
         login.classList.add('hidden');
       }
+      this.hideBlockRemember()
     } else {
       if (login.classList.contains('hidden')) {
         login.classList.remove('hidden');
@@ -143,7 +144,14 @@ export class User extends Api {
     }
     return userToken;
   }
-  
+
+  hideBlockRemember(){
+    const wrapperRemember = <HTMLDivElement>document. querySelector('.wrapper-remember')
+    if(localStorage.getItem('rslang-user')){
+      wrapperRemember.style.display = 'none'
+    }
+  }
+
   logout() {
     const listenerLogout = (ev: MouseEvent) => {
       ev.preventDefault();
@@ -157,11 +165,14 @@ export class User extends Api {
         App.renderNewPage('main');
       }
       logout.removeEventListener('click', listenerLogout);
+      const wrapperRemember = <HTMLDivElement>document. querySelector('.wrapper-remember')
+      if(!localStorage.getItem('rslang-user')){
+      wrapperRemember.style.display = 'block'
+    }
     }
     const logout = document.querySelector('#logout') as HTMLElement;
     logout.addEventListener('click', listenerLogout);
   }
-  
 }
 
 export default new User();

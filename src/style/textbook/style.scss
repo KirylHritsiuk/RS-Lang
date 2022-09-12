@@ -4,14 +4,24 @@
   justify-content: center;
 }
 
+$sizes: ("xs":320px, "sm":576px, "md":768px, "lg":992px, "xl":1280px, "xxl": 1440px);
+
+@mixin media($minmax, $media) {
+  @each $size, $resolution in $sizes {
+    @if $media == $size {
+      @media only screen and (#{$minmax}-width: $resolution) {
+        @content;
+      }
+    }
+  }
+}
+
 .main_content {
   display: grid;
   grid-row-gap: 32px;
   grid-column-gap: 32px;
   padding: 2%;
   border-radius: 10px;
-}
-.textbook {
   grid-template-areas:
   "games games"
   "pagination-top pagination-top"
@@ -21,38 +31,48 @@
   grid-template-columns: 1fr 100px;
   grid-row-gap: 32px;
   grid-column-gap: 32px;
+  @include media('max', 'lg') {
+    grid-template-areas:
+  "games"
+  "pagination-top"
+  "groups"
+  "words-list"
+  "pagination-bottom ";
+  grid-template-rows: max-content max-content max-content 1fr 50px;
+  grid-template-columns: 1fr;
+  }
 }
 
-.dictionary {
-  grid-template-areas:
-  "games games"
-  "pagination-top pagination-top"
-  "filter filter"
-  "words-list groups"
-  "pagination-bottom pagination-bottom";
-  grid-template-rows: max-content max-content max-content 1fr 50px;
-  grid-template-columns: 1fr 100px;
- 
-}
-.filters {
-  grid-area: filter;
-}
-.filter-container {
+.filter {
   @include flexCenter();
   column-gap: 5%;
+  @include media('max', 'md' ){
+    flex-direction: column;
+  }
 }
 .filter__block {
-  border: 4px solid grey;
+  font-size: 1.6em;
+  font-family: 'Droid', sans-serif;
+  font-style: italic;
+  font-weight: 500;
+  border: 1px solid transparent;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   padding: 1%;
   text-transform: capitalize;
   font-size: 3em;
   cursor: pointer;
+  @include media('max', 'md' ){
+    margin-bottom: 3%
+  }
 }
 
 .game_bar {
   @include flexCenter();
   column-gap: 5%;
+  @include media('max', 'md' ){
+    flex-direction: column;
+  }
 }
 .game_link {
   border-radius: 10px;
@@ -62,6 +82,9 @@
   width: 270px;
   cursor: pointer;
   @include flexCenter();
+  @include media('max', 'md' ){
+    margin-bottom: 3%;
+  }
 }
 
 .game__icon {
@@ -82,6 +105,10 @@
   column-gap: 5%;
   width: 100%;
   height: 2.5em;
+}
+.game-button {
+  width: 100%;
+  height: 4em;
 }
 .games {
   grid-area: games;
@@ -109,13 +136,16 @@
     @include flexCenter();
     width: 45%;
     justify-content: space-between !important;
-    
+    @include media('max', 'lg' ){
+      width: 70%;
+    }
+    @include media('max', 'md' ){
+      width: 90%;
+      justify-content: center;
+      column-gap: 1%;
+    }
   }
-  
-}
-.game-button {
-  width: 100%;
-  height: 4em;
+
 }
 .pag-item {
   @include flexCenter();
@@ -129,6 +159,11 @@
   background: #f3f3f3;
   cursor: pointer;
   transition: 0.2s linear;
+  @include media('max', 'sm' ){
+    width: 90%;
+    width: 40px;
+    height: 40px;
+  }
 }
 
 //----------------------------------------------------
@@ -138,20 +173,32 @@
   top: 10px;
   flex-direction: column;
   row-gap: 2%;
+  @include media('max', 'lg') {
+    top: 0;
+    position: sticky;
+    z-index: 1;
+  }
 }
 .groups_title {
   font-size: 2.5em;
   font-weight: 500;
   margin-bottom: 10%;
+  @include media('max', 'lg') {
+   margin-bottom: 0;
+  }
 }
 
 .groups_list {
+  @include flexCenter();
   position: sticky;
   margin-left: 0;
   padding-left: 0;
-  @include flexCenter();
   flex-direction: column;
   row-gap: 3%;
+  @include media('max', 'lg') {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 
 .groups_item {
@@ -163,7 +210,6 @@
   border-color: transparent;
   width: 70px;
   height: 70px;
-  margin-bottom: 11%;
 }
 
 .groups__link {
@@ -194,187 +240,6 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-//------------------------------------------------------------------------
-.pag-item-hover-red{
-  &:hover {
-   color: red;
-   border-color: red;
-
-   svg {
-     fill: red;
-   }
- }
-}
-
-.pag-item-hover-orange{
-  &:hover {
-   color: orange;
-   border-color: orange;
-
-   svg {
-     fill: orange;
-   }
- }
-}
-.pag-item-hover-palevioletred{
- &:hover {
-   color: palevioletred;
-   border-color: palevioletred;
-
-   svg {
-     fill: palevioletred;
-   }
- }
-}
-.pag-item-hover-slateblue{
- &:hover {
-   color: slateblue;
-   border-color: slateblue;
-
-   svg {
-     fill: slateblue;
-   }
- }
-}
-.pag-item-hover-darkslateblue{
- &:hover {
-   color: darkslateblue;
-   border-color: darkslateblue;
-
-   svg {
-     fill: darkslateblue;
-   }
- }
-}
-.pag-item-hover-purple{
- &:hover {
-   color: purple;
-   border-color: purple;
-
-   svg {
-     fill: purple;
-   }
- }
-}
-
-.pag-item-disabled {
- cursor: auto;
- svg {
-   fill: gray;
- }
-}
-.bg-red {
-  background: red !important;
-}
-.bg-orange {
-  background: orange !important;
-}
-.bg-palevioletred {
-  background: palevioletred !important;
-}
-.bg-slateblue {
-  background: slateblue !important;
-}
-.bg-darkslateblue {
-  background: darkslateblue !important;
-}
-.bg-purple {
-  background: purple !important;
-}
-.border-red {
-  border-color: red !important;
-}
-.border-orange {
-  border-color: orange !important;
-}
-.border-palevioletred {
-  border-color: palevioletred !important;
-}
-.border-slateblue {
-  border-color: slateblue !important;
-}
-.border-darkslateblue {
-  border-color: darkslateblue !important;
-}
-.border-purple {
-  border-color: purple !important;
-}
-.color-purple {
-  color: purple !important;
-}
-.color-red {
-  color: red !important;
-}
-.color-orange {
-  color: orange !important;
-}
-.color-palevioletred {
-  color: palevioletred !important;
-}
-.color-slateblue {
-  color: slateblue !important;
-}
-.color-darkslateblue {
-  color: darkslateblue !important;
-}
-.color-purple {
-  color: purple !important;
-}
-.active-red {
-  color: red;
-  border-color: red;
-}
-.active-orange {
-  color: orange;
-  border-color: orange;
-}
-.active-palevioletred {
-  color: palevioletred;
-  border-color: palevioletred;
-}
-.active-slateblue {
-  color: slateblue;
-  border-color: slateblue;
-}
-.active-darkslateblue {
-  color: darkslateblue;
-  border-color: darkslateblue;
-}
-.active-purple {
-  color: purple;
-  border-color: purple;
-}
-
-.hover-red {
-  &:hover {
-    box-shadow: 0px 0px 10px red;
-  }
-}
-.hover-orange {
-  &:hover {
-    box-shadow: 0px 0px 10px orange;
-  }
-}
-.hover-palevioletred {
-  &:hover {
-    box-shadow: 0px 0px 10px palevioletred;
-  }
-}
-.hover-slateblue {
-  &:hover {
-    box-shadow: 0px 0px 10px slateblue;
-  }
-}
-.hover-darkslateblue {
-  &:hover {
-    box-shadow: 0px 0px 10px darkslateblue;
-  }
-}
-.hover-purple {
-  &:hover {
-    box-shadow: 0px 0px 10px purple;
-  }
 }
 
 .ds-none {

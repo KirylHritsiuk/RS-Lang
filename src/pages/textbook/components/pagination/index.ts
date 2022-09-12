@@ -15,7 +15,7 @@ export class Pagination extends Block {
   constructor(private pages: number = 30) {
     super();
     this.container.className = Pagination.textObject.containerClass;
-    this.items = new Item(pages).createPagination(this.page + 1);
+    this.items = new Item().createPagination(this.data.getPage() + 1, this.color);
     this.container.append(this.items);
   }
 }

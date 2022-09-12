@@ -30,12 +30,10 @@ export class Statistics {
             <div class="wrapp-sory">
             <img class="sory-img"src="./assets/jpg/inform.jpg" alt="jpg">
             <p class="sory">Упс!!!  произошла ошибка,<br> мы работаем над ее устранением</p>
-            </div>`
-            
+            </div>`;
+
     return container;
   }
-
-  
 
   render() {
     this.container.append(Statistics.createContainerToday());

@@ -1,5 +1,6 @@
 import { gamesData, IGames } from '../../../common/games';
 import { Block } from './blockTemplate';
+import audioChallenge from '../../../modules/minigames/audioChellenge';
 
 export class GameBar extends Block {
   static textObject = {
@@ -8,30 +9,33 @@ export class GameBar extends Block {
     iconClass: 'game__icon',
     titleClass: 'game__title',
     containerClass: 'game',
-    modificationClass: 'hover-',
   };
 
   constructor() {
     super();
     this.container.className = GameBar.textObject.mainContainerClass;
   }
-  protected create(game: IGames) {
-    console.log(game);
+  create(game: IGames) {
+    const button = document.createElement('button');
+    button.className = `${GameBar.textObject.linkClass} ${Block.modificationClass.hover}${this.color}`;
+    button.name = game.nameEn;
+    if (game.nameEn === gamesData[1].nameEn) {
+      button.addEventListener('click', () => audioChallenge.runTextbook());
+    }
     const element: string = `
-      <button class="${GameBar.textObject.linkClass} ${GameBar.textObject.modificationClass}${this.color}" name="game">
         <div class="${GameBar.textObject.containerClass}">
           <img 
             class="${GameBar.textObject.iconClass}"
             src="${game.img}" 
             alt="${game.name}"/>
           <span class="${GameBar.textObject.titleClass}">${game.name}</span>
-        </div>
-      </button>`;
-    return element;
+        </div>`;
+    button.innerHTML = element;
+    return button;
   }
 
   render() {
-    gamesData.forEach((game) => this.container.insertAdjacentHTML('afterbegin', this.create(game)));
+    gamesData.forEach((game) => this.container.prepend(this.create(game)));
     return this.container;
   }
 }

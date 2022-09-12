@@ -67,6 +67,9 @@
   .border-darkslateblue {
     border-color: darkslateblue !important;
   }
+  .border-purple {
+    border-color: purple !important;
+  }
   .border-coral {
     border-color: coral !important;
   }
@@ -132,38 +135,31 @@
   }
   .active-red {
     color: red;
-    border-color: red;
-    cursor: auto !important;
+    border-color: red !important;
   }
   .active-orange {
     color: orange;
-    border-color: orange;
-    cursor: auto !important;
+    border-color: orange !important;
   }
   .active-palevioletred {
     color: palevioletred;
-    border-color: palevioletred;
-    cursor: auto !important;
+    border-color: palevioletred !important;
   }
   .active-slateblue {
     color: slateblue;
-    border-color: slateblue;
-    cursor: auto !important;
+    border-color: slateblue !important;
   }
   .active-darkslateblue {
     color: darkslateblue;
-    border-color: darkslateblue;
-    cursor: auto !important;
+    border-color: darkslateblue !important;
   }
   .active-purple {
     color: purple;
-    border-color: purple;
-    cursor: auto !important;
+    border-color: purple !important;
   }
   .active-coral {
     color: coral;
-    border-color: coral;
-    cursor: auto !important ;
+    border-color: coral !important;
   }
   .active-all {
     color: purple;
@@ -177,5 +173,97 @@
     color: green;
     border-color: green;
   }
+  .hover-red:hover {
+    box-shadow: 0px 0px 10px red;
+  }
+  
+  .hover-orange:hover {
+    box-shadow: 0px 0px 10px orange;
+  }
+  
+  .hover-palevioletred:hover {
+    box-shadow: 0px 0px 10px palevioletred;
+  }
+  
+  .hover-slateblue:hover {
+    box-shadow: 0px 0px 10px slateblue;
+  }
+  
+  .hover-darkslateblue:hover {
+    box-shadow: 0px 0px 10px darkslateblue;
+  }
+  
+  .hover-purple:hover {
+    box-shadow: 0px 0px 10px purple;
+  }
+  
+  .hover-coral:hover {
+    box-shadow: 0px 0px 10px coral;
+  }
+
+.box-shadow-coral {
+  box-shadow: 0px 0px 10px coral !important;
+}
+.box-shadow-hard {
+  box-shadow: 0px 0px 10px red !important;
+}
+.box-shadow-easy {
+  box-shadow: 0px 0px 10px green !important;
+}
+
+.pag-item-hover-red:hover {
+  color: red;
+  border-color: red;
+}
+.pag-item-hover-red:hover svg {
+  fill: red;
+}
+
+.pag-item-hover-orange:hover {
+  color: orange;
+  border-color: orange;
+}
+.pag-item-hover-orange:hover svg {
+  fill: orange;
+}
+
+.pag-item-hover-palevioletred:hover {
+  color: palevioletred;
+  border-color: palevioletred;
+}
+.pag-item-hover-palevioletred:hover svg {
+  fill: palevioletred;
+}
+
+.pag-item-hover-slateblue:hover {
+  color: slateblue;
+  border-color: slateblue;
+}
+.pag-item-hover-slateblue:hover svg {
+  fill: slateblue;
+}
+
+.pag-item-hover-darkslateblue:hover {
+  color: darkslateblue;
+  border-color: darkslateblue;
+}
+.pag-item-hover-darkslateblue:hover svg {
+  fill: darkslateblue;
+}
+
+.pag-item-hover-purple:hover {
+  color: purple;
+  border-color: purple;
+}
+.pag-item-hover-purple:hover svg {
+  fill: purple;
+}
+
+.pag-item-disabled {
+  cursor: auto;
+}
+.pag-item-disabled svg {
+  fill: gray;
+}
 
   

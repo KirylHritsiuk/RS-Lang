@@ -11,10 +11,10 @@ export class CardButton extends Block {
 
   protected delete: HTMLElement;
 
-  constructor(protected data: IWord) {
+  constructor(protected wordData: IWord) {
     super();
     this.container.className = CardButtons.textObject.containerClass;
-    this.delete = new DeleteBtn(data, CardButton.textObject.difficultNormal).render();
+    this.delete = new DeleteBtn(wordData, CardButton.textObject.difficultNormal).render();
     this.container.append(this.delete);
   }
 }

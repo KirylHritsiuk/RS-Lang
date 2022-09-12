@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 import { groupData } from '../../../common/groups';
 import { changeList } from '../../../utils/changeList';
 import { Block } from './blockTemplate';
@@ -8,6 +7,9 @@ import { DictionaryQuery } from '../../../common/query';
 import { getUserId } from '../../../modules/user/getUserId';
 import { Pagination } from './pagination/index';
 import { PageId } from '../../../app/app';
+import { Filter } from './dictionary/filter/filter';
+import { GameBar } from './gamebar';
+import { Page } from '../template/index';
 
 export class Groups extends Block {
   static classNames = {
@@ -20,7 +22,6 @@ export class Groups extends Block {
 
   static textContent = {
     title: 'Уровень',
-    dictionary: 'D',
   };
 
   static toDefaultItem() {
@@ -31,19 +32,33 @@ export class Groups extends Block {
     }
   }
 
+  static replaceClasses(arr: Element[], color: string, modif: string) {
+    arr.forEach((item) => {
+      const pos = item.className.indexOf(modif);
+      if (item.className.indexOf(Pagination.textObject.disableMod) === -1) {
+        if (item.className.indexOf(`${Block.modificationClass.active}`) === -1) {
+          item.className = `${item.className.slice(0, pos)} ${modif}${color}`;
+        } else {
+          const pos = item.className.indexOf(modif);
+          item.className = `${item.className.slice(0, pos)} ${`${Block.modificationClass.active}`}${color}`;
+        }
+      }
+    });
+  }
+
   static changeColorTame(color: string) {
     const [
       games,
       pag,
       title,
     ] = [
-      Array.from(document.getElementsByName('game')),
+      Array.from(document.querySelectorAll(`.${GameBar.textObject.linkClass}`)),
       Array.from(document.querySelectorAll(`.${Pagination.textObject.itemClass}`)),
       document.querySelector(`.${Groups.classNames.titleClass}`),
     ];
 
-    replaceClasses(games, color, Block.modificationClass.hover);
-    replaceClasses(pag, color, Pagination.textObject.hoverMod);
+    Groups.replaceClasses(games, color, Block.modificationClass.hover);
+    Groups.replaceClasses(pag, color, Pagination.textObject.hoverMod);
     const pos = title!.className.indexOf(Groups.modificationClass.color);
     title!.className = `${title!.className.slice(0, pos)} ${Groups.modificationClass.color}${color}`;
   }
@@ -85,55 +100,65 @@ export class Groups extends Block {
     container.className = `${Groups.classNames.itemLinkClass} ${Block.modificationClass.bg}${color}`;
 
     if (group === 6) {
-      container.textContent = Groups.textContent.dictionary;
+      container.textContent = (group + 1).toString();
       container.addEventListener('click', () => {
+        const [
+          filter,
+          games,
+          pagination,
+        ] = [
+          <HTMLDivElement>document.querySelector(`.${Page.MainClass.filter}`),
+          <HTMLDivElement>document.querySelector(`.${GameBar.textObject.mainContainerClass}`),
+          Array.from(document.querySelectorAll(`.${Pagination.textObject.containerClass}`)),
+        ];
         if (DictionaryLocal.getItemLocalStorage() === null) {
           DictionaryLocal.addItemLocalStorage([DictionaryQuery]);
+          games.classList.add(Block.modificationClass.displayNone);
+          filter.classList.remove(Block.modificationClass.displayNone);
         }
-        this.color = groupData[group];
         changeList(new DictionaryList());
         Groups.toDefaultItem();
         container
           .parentElement?.classList
           .add(Block.modificationClass.border + color);
+
         Groups.changeColorTame(color);
-        Array.from(
-          document.querySelectorAll('.pagination'),
-        ).forEach((el) => {
-          el.classList.add(Block.modificationClass.displayNone);
-        });
-        Array.from(
-          document.querySelectorAll('.game_link'),
-        ).forEach((el) => {
+
+        pagination.forEach((el) => {
           el.classList.add(Block.modificationClass.displayNone);
         });
       });
       if (getUserId() === '') container.classList.add(Block.modificationClass.displayNone);
     } else {
       container.textContent = (group + 1).toString();
+
       if (window.location.hash.slice(1) !== PageId.minigames) {
         container.addEventListener('click', () => {
-          this.color = groupData[group];
-          Block.textbookQueryData.setGroup(group);
-          Block.textbookQueryData.updateLocal();
+          const [
+            filter,
+            games,
+            pagination,
+          ] = [
+            <HTMLDivElement>document.querySelector(`.${Page.MainClass.filter}`),
+            <HTMLDivElement>document.querySelector(`.${GameBar.textObject.mainContainerClass}`),
+            Array.from(document.querySelectorAll(`.${Pagination.textObject.containerClass}`)),
+          ];
+          this.data.setGroup(group);
+          this.data.updateLocal();
+          this.data.updateQuery();
           changeList();
           Groups.toDefaultItem();
           container
             .parentElement?.classList
             .add(Block.modificationClass.border + color);
           Groups.changeColorTame(color);
-          Array.from(
-            document.querySelectorAll('.pagination'),
-          ).forEach((el) => {
-            el.classList.remove(Block.modificationClass.displayNone);
-          });
-          Array.from(
-            document.querySelectorAll('.game_link'),
-          ).forEach((el) => {
+          pagination.forEach((el) => {
             el.classList.remove(Block.modificationClass.displayNone);
           });
           if (DictionaryLocal.getItemLocalStorage() !== null) {
             DictionaryLocal.clearItemLocalStorage();
+            filter?.classList.add(Block.modificationClass.displayNone);
+            games.classList.remove(Block.modificationClass.displayNone);
           }
         });
       }
@@ -146,19 +171,4 @@ export class Groups extends Block {
     this.container.append(this.createTitle(), this.createGroup());
     return this.container;
   }
-}
-// todo fix change active classs
-function replaceClasses(arr: Element[], color: string, modif: string) {
-  console.log('replace', arr);
-  arr.forEach((item) => {
-    const pos = item.className.indexOf(modif);
-    if (item.className.indexOf(Pagination.textObject.disableMod) === -1) {
-      if (item.className.indexOf('active-') === -1) {
-        item.className = `${item.className.slice(0, pos)} ${modif}${color}`;
-      } else {
-        const pos = item.className.indexOf(modif);
-        item.className = `${item.className.slice(0, pos)} ${'active-'}${color}`;
-      }
-    }
-  });
 }

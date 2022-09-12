@@ -427,6 +427,9 @@ html {
 }
 
 @media (max-width: 660px) {
+    .main {
+        padding: 0;
+    }
     .name-link {
         text-align: center;
         flex-wrap: wrap;

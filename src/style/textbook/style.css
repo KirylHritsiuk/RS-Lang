@@ -4,9 +4,6 @@
   grid-column-gap: 32px;
   padding: 2%;
   border-radius: 10px;
-}
-
-.textbook {
   grid-template-areas: "games games" "pagination-top pagination-top" "words-list groups" "pagination-bottom pagination-bottom";
   grid-template-rows: -webkit-max-content -webkit-max-content 1fr 50px;
   grid-template-rows: max-content max-content 1fr 50px;
@@ -14,33 +11,45 @@
   grid-row-gap: 32px;
   grid-column-gap: 32px;
 }
-
-.dictionary {
-  grid-template-areas: "games games" "pagination-top pagination-top" "filter filter" "words-list groups" "pagination-bottom pagination-bottom";
-  grid-template-rows: -webkit-max-content -webkit-max-content -webkit-max-content 1fr 50px;
-  grid-template-rows: max-content max-content max-content 1fr 50px;
-  grid-template-columns: 1fr 100px;
+@media only screen and (max-width: 992px) {
+  .main_content {
+    grid-template-areas: "games" "pagination-top" "groups" "words-list" "pagination-bottom ";
+    grid-template-rows: -webkit-max-content -webkit-max-content -webkit-max-content 1fr 50px;
+    grid-template-rows: max-content max-content max-content 1fr 50px;
+    grid-template-columns: 1fr;
+  }
 }
 
-.filters {
-  grid-area: filter;
-}
-
-.filter-container {
+.filter {
   display: flex;
   align-items: center;
   justify-content: center;
   -moz-column-gap: 5%;
        column-gap: 5%;
 }
+@media only screen and (max-width: 768px) {
+  .filter {
+    flex-direction: column;
+  }
+}
 
 .filter__block {
-  border: 4px solid grey;
+  font-size: 1.6em;
+  font-family: "Droid", sans-serif;
+  font-style: italic;
+  font-weight: 500;
+  border: 1px solid transparent;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   padding: 1%;
   text-transform: capitalize;
   font-size: 3em;
   cursor: pointer;
+}
+@media only screen and (max-width: 768px) {
+  .filter__block {
+    margin-bottom: 3%;
+  }
 }
 
 .game_bar {
@@ -49,6 +58,11 @@
   justify-content: center;
   -moz-column-gap: 5%;
        column-gap: 5%;
+}
+@media only screen and (max-width: 768px) {
+  .game_bar {
+    flex-direction: column;
+  }
 }
 
 .game_link {
@@ -61,6 +75,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+@media only screen and (max-width: 768px) {
+  .game_link {
+    margin-bottom: 3%;
+  }
 }
 
 .game__icon {
@@ -86,6 +105,11 @@
        column-gap: 5%;
   width: 100%;
   height: 2.5em;
+}
+
+.game-button {
+  width: 100%;
+  height: 4em;
 }
 
 .games {
@@ -124,10 +148,18 @@
   width: 45%;
   justify-content: space-between !important;
 }
-
-.game-button {
-  width: 100%;
-  height: 4em;
+@media only screen and (max-width: 992px) {
+  .pagination ul {
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .pagination ul {
+    width: 90%;
+    justify-content: center;
+    -moz-column-gap: 1%;
+         column-gap: 1%;
+  }
 }
 
 .pag-item {
@@ -145,6 +177,13 @@
   cursor: pointer;
   transition: 0.2s linear;
 }
+@media only screen and (max-width: 576px) {
+  .pag-item {
+    width: 90%;
+    width: 40px;
+    height: 40px;
+  }
+}
 
 .groups_container {
   display: flex;
@@ -156,23 +195,42 @@
   flex-direction: column;
   row-gap: 2%;
 }
+@media only screen and (max-width: 992px) {
+  .groups_container {
+    top: 0;
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 1;
+  }
+}
 
 .groups_title {
   font-size: 2.5em;
   font-weight: 500;
   margin-bottom: 10%;
 }
+@media only screen and (max-width: 992px) {
+  .groups_title {
+    margin-bottom: 0;
+  }
+}
 
 .groups_list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: -webkit-sticky;
   position: sticky;
   margin-left: 0;
   padding-left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
   row-gap: 3%;
+}
+@media only screen and (max-width: 992px) {
+  .groups_list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 
 .groups_item {
@@ -186,7 +244,6 @@
   border-color: transparent;
   width: 70px;
   height: 70px;
-  margin-bottom: 11%;
 }
 
 .groups__link {
@@ -234,191 +291,6 @@
     transform: rotate(360deg);
   }
 }
-.pag-item-hover-red:hover {
-  color: red;
-  border-color: red;
-}
-.pag-item-hover-red:hover svg {
-  fill: red;
-}
-
-.pag-item-hover-orange:hover {
-  color: orange;
-  border-color: orange;
-}
-.pag-item-hover-orange:hover svg {
-  fill: orange;
-}
-
-.pag-item-hover-palevioletred:hover {
-  color: palevioletred;
-  border-color: palevioletred;
-}
-.pag-item-hover-palevioletred:hover svg {
-  fill: palevioletred;
-}
-
-.pag-item-hover-slateblue:hover {
-  color: slateblue;
-  border-color: slateblue;
-}
-.pag-item-hover-slateblue:hover svg {
-  fill: slateblue;
-}
-
-.pag-item-hover-darkslateblue:hover {
-  color: darkslateblue;
-  border-color: darkslateblue;
-}
-.pag-item-hover-darkslateblue:hover svg {
-  fill: darkslateblue;
-}
-
-.pag-item-hover-purple:hover {
-  color: purple;
-  border-color: purple;
-}
-.pag-item-hover-purple:hover svg {
-  fill: purple;
-}
-
-.pag-item-disabled {
-  cursor: auto;
-}
-.pag-item-disabled svg {
-  fill: gray;
-}
-
-.bg-red {
-  background: red !important;
-}
-
-.bg-orange {
-  background: orange !important;
-}
-
-.bg-palevioletred {
-  background: palevioletred !important;
-}
-
-.bg-slateblue {
-  background: slateblue !important;
-}
-
-.bg-darkslateblue {
-  background: darkslateblue !important;
-}
-
-.bg-purple {
-  background: purple !important;
-}
-
-.border-red {
-  border-color: red !important;
-}
-
-.border-orange {
-  border-color: orange !important;
-}
-
-.border-palevioletred {
-  border-color: palevioletred !important;
-}
-
-.border-slateblue {
-  border-color: slateblue !important;
-}
-
-.border-darkslateblue {
-  border-color: darkslateblue !important;
-}
-
-.border-purple {
-  border-color: purple !important;
-}
-
-.color-purple {
-  color: purple !important;
-}
-
-.color-red {
-  color: red !important;
-}
-
-.color-orange {
-  color: orange !important;
-}
-
-.color-palevioletred {
-  color: palevioletred !important;
-}
-
-.color-slateblue {
-  color: slateblue !important;
-}
-
-.color-darkslateblue {
-  color: darkslateblue !important;
-}
-
-.color-purple {
-  color: purple !important;
-}
-
-.active-red {
-  color: red;
-  border-color: red;
-}
-
-.active-orange {
-  color: orange;
-  border-color: orange;
-}
-
-.active-palevioletred {
-  color: palevioletred;
-  border-color: palevioletred;
-}
-
-.active-slateblue {
-  color: slateblue;
-  border-color: slateblue;
-}
-
-.active-darkslateblue {
-  color: darkslateblue;
-  border-color: darkslateblue;
-}
-
-.active-purple {
-  color: purple;
-  border-color: purple;
-}
-
-.hover-red:hover {
-  box-shadow: 0px 0px 10px red;
-}
-
-.hover-orange:hover {
-  box-shadow: 0px 0px 10px orange;
-}
-
-.hover-palevioletred:hover {
-  box-shadow: 0px 0px 10px palevioletred;
-}
-
-.hover-slateblue:hover {
-  box-shadow: 0px 0px 10px slateblue;
-}
-
-.hover-darkslateblue:hover {
-  box-shadow: 0px 0px 10px darkslateblue;
-}
-
-.hover-purple:hover {
-  box-shadow: 0px 0px 10px purple;
-}
-
 .ds-none {
   display: none !important;
-}/*# sourceMappingURL=style.css.map */
+}

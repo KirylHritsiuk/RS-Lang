@@ -5,8 +5,44 @@ img {
 
 .list_container {
   display: grid;
+  grid-template-columns: 100%;
   gap: 20px;
   width: 100%;
+}
+@media only screen and (max-width: 1920px) {
+  .list_container {
+    grid-template-columns: 100%;
+  }
+}
+@media only screen and (max-width: 1400px) {
+  .list_container {
+    grid-template-columns: 100%;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .list_container {
+    grid-template-columns: 100%;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .list_container {
+    grid-template-columns: 100%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .list_container {
+    grid-template-columns: 100%;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .list_container {
+    grid-template-columns: 100%;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .list_container {
+    grid-template-columns: 100%;
+  }
 }
 
 .word-card {
@@ -17,7 +53,12 @@ img {
   padding: 2%;
   border-radius: 10px;
   box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
-  font-size: 2rem;
+  font-size: 1.8em;
+}
+@media only screen and (max-width: 992px) {
+  .word-card {
+    flex-direction: column;
+  }
 }
 
 .word-card_image {
@@ -29,12 +70,18 @@ img {
   -o-object-position: center center;
      object-position: center center;
 }
+@media only screen and (max-width: 992px) {
+  .word-card_image {
+    width: 100%;
+    margin-bottom: 1%;
+  }
+}
 
 .word-card-content {
   display: flex;
+  justify-content: space-between;
   flex: 1 1 auto;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .word-card-title {
@@ -42,6 +89,11 @@ img {
   justify-content: space-between;
   border-left: 4px solid black;
   margin-bottom: 1%;
+}
+@media only screen and (max-width: 992px) {
+  .word-card-title {
+    margin-bottom: 2%;
+  }
 }
 
 .word-group {
@@ -59,23 +111,43 @@ img {
   margin-left: 20px;
   margin-bottom: 3%;
 }
+@media only screen and (max-width: 992px) {
+  .title-word__item {
+    margin-bottom: 2%;
+  }
+}
 
 .title-word__item_transcription {
   text-transform: none;
   font-size: 1.6em;
   margin-left: 10px;
 }
+@media only screen and (max-width: 992px) {
+  .title-word__item_transcription {
+    margin-bottom: 2%;
+  }
+}
 
 .title-word__item_translate {
   text-transform: none;
   font-size: 1.9em;
 }
+@media only screen and (max-width: 992px) {
+  .title-word__item_translate {
+    margin-bottom: 2%;
+  }
+}
 
 .word__text {
   display: flex;
-  font-size: 2.4rem;
   justify-content: space-between;
+  font-size: 2.4rem;
   margin-bottom: 1%;
+}
+@media only screen and (max-width: 992px) {
+  .word__text {
+    margin-bottom: 2%;
+  }
 }
 
 .translate {
@@ -84,12 +156,22 @@ img {
   line-height: 18px;
   color: gray;
 }
+@media only screen and (max-width: 992px) {
+  .translate {
+    margin-bottom: 2%;
+  }
+}
 
 .word-audio {
   position: absolute;
   cursor: pointer;
   height: 1.5em;
   right: 1em;
+}
+@media only screen and (max-width: 992px) {
+  .word-audio {
+    top: 23.5em;
+  }
 }
 
 .word-meaning {
