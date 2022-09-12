@@ -28,10 +28,6 @@ export class List extends Block {
     }
   }
 
-  get words() {
-    return this.data; 
-  }
-
   render() {
     this.container.innerHTML = '';
     this.words

@@ -5,9 +5,8 @@ import { App } from '../../app/app';
 import { Api as API, baseUrl } from '../../utils/api';
 import { IWord, IStatisticGame } from '../../types/types';
 import { svgMethods } from '../../common/svg';
-import localStorageTextbookUser, { LocalStorageTextbookUser } from '../textbook/user/localStorageTextbookUser';
+import localStorageTextbookUser from '../textbook/user/localStorageTextbookUser';
 import localStorageTextbook from '../textbook/anonymous/localStorageTextbook';
-import { List } from '../../pages/textbook/components/list';
 import { getUserId } from '../user/getUserId';
 import { getUserToken } from '../user/getUserToken';
 
@@ -159,7 +158,6 @@ export class AudioChellenge {
     const changeButtons = document.querySelector('.audio-option') as HTMLDivElement;
     this.words = this.words.filter((line, index) => (index === this.rand ? false : line));
     if (!this.btnContainer) this.btnContainer = document.querySelector('.audio-button-container') as HTMLDivElement;
-    
     if (this.words.length === 0 || this.wrongWord >= 5) {
       this.removeListenerButtonNext();
       this.removeListenerButtons();
@@ -357,12 +355,7 @@ export class AudioChellenge {
     const groupButtonsContainerListener = async (event: MouseEvent) => {
       const clickButton = event.target as HTMLElement;
       const localTextbookUser = localStorageTextbookUser.getItemLocalStorage();
-      const localTextbook = localStorageTextbook.getItemLocalStorage();
       if (localTextbookUser) {
-        console.log('user', localTextbookUser);
-        const words = await new List().words;
-        console.log('user',words);
-        
         if (clickButton.tagName === 'BUTTON') {
           this.clearVar();
           this.clearPage();
@@ -382,7 +375,6 @@ export class AudioChellenge {
           groupButtonsContainer.removeEventListener('click', groupButtonsContainerListener);
         }
       } else {
-        console.log('not user', localTextbook);
         if (clickButton.tagName === 'BUTTON') {
           this.clearVar();
           this.clearPage();
@@ -397,9 +389,7 @@ export class AudioChellenge {
           this.startGame();
           groupButtonsContainer.removeEventListener('click', groupButtonsContainerListener);
         }
-
       }
-      
     };
     groupButtonsContainer.addEventListener('click', groupButtonsContainerListener);
   }
@@ -425,7 +415,6 @@ export class AudioChellenge {
       this.wordsTemp = Array.from(arr);
       this.rand = Math.floor(Math.random() * this.words.length);
       this.startGame();
-      const words = await new List().words;
     } else if (localTextbook) {
       const data = await Api.getWords(
         [
