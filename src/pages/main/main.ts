@@ -86,6 +86,7 @@ export class MainPage {
 
   static createNotForget() {
     const container = <HTMLDivElement>document.createElement('div');
+    container.className = 'wrapper-remember'
     container.innerHTML = `
                 <span class="big-text">Помните</span>
                 <div class="text-center">Если вы хотите видеть статистику за все время и иметь <br> доступ к словарю, сначала войдите или зарегистрируйтесь.</div>
@@ -93,16 +94,21 @@ export class MainPage {
                     <button id="login-bottom" class="button small new-color">Авторизоваться</button>
                     <button id="sing-up-bottom" class="button small">Регистрация</button></a>
                 </div>
-                <div class = "place-computer">
-                <img class="img-saze-computer" src="./assets/png/mans.png" alt="computer">
-                </div>`;
+                `;
     return container;
   }
+
+  
 
   static createTeamList() {
     const [container, listContainer] = [<HTMLDivElement>document.createElement('div'), <HTMLDivElement>document.createElement('div')];
     listContainer.className = 'wrapper-persons';
-    container.innerHTML = '<h2 class="style-h2">Наша команда</h2>';
+    container.innerHTML = `
+    <div class = "place-computer">
+      <img class="img-saze-computer" src="./assets/png/mans.png" alt="computer">
+    </div>
+    <h2 class="style-h2">Наша команда</h2>
+    `;
     team.forEach((el) => listContainer.append(MainPage.createTeam(el)));
     container.append(listContainer);
     return container;
