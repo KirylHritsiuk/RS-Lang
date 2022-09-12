@@ -210,4 +210,60 @@
 .box-shadow-easy {
   box-shadow: 0px 0px 10px green !important;
 }
+
+.pag-item-hover-red:hover {
+  color: red;
+  border-color: red;
+}
+.pag-item-hover-red:hover svg {
+  fill: red;
+}
+
+.pag-item-hover-orange:hover {
+  color: orange;
+  border-color: orange;
+}
+.pag-item-hover-orange:hover svg {
+  fill: orange;
+}
+
+.pag-item-hover-palevioletred:hover {
+  color: palevioletred;
+  border-color: palevioletred;
+}
+.pag-item-hover-palevioletred:hover svg {
+  fill: palevioletred;
+}
+
+.pag-item-hover-slateblue:hover {
+  color: slateblue;
+  border-color: slateblue;
+}
+.pag-item-hover-slateblue:hover svg {
+  fill: slateblue;
+}
+
+.pag-item-hover-darkslateblue:hover {
+  color: darkslateblue;
+  border-color: darkslateblue;
+}
+.pag-item-hover-darkslateblue:hover svg {
+  fill: darkslateblue;
+}
+
+.pag-item-hover-purple:hover {
+  color: purple;
+  border-color: purple;
+}
+.pag-item-hover-purple:hover svg {
+  fill: purple;
+}
+
+.pag-item-disabled {
+  cursor: auto;
+}
+.pag-item-disabled svg {
+  fill: gray;
+}
+
   
