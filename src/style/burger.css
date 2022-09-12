@@ -127,6 +127,7 @@
 .out{
     padding-bottom: 20px;
     white-space: nowrap;
+    display: none;
 }  
  
 

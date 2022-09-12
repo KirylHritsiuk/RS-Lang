@@ -147,12 +147,24 @@ export class User extends Api {
 
   hideBlockRemember(){
     const wrapperRemember = <HTMLDivElement>document. querySelector('.wrapper-remember')
+    const logUot = <HTMLDivElement>document. querySelector('#logout')
     if(wrapperRemember){
       if(localStorage.getItem('rslang-user')){
         wrapperRemember.style.display = 'none'
-      }
+       }
     }
-    
+    logUot.style.display = 'flex'
+  }
+
+  showBlockRemember(){
+    const logUot = <HTMLDivElement>document. querySelector('#logout')
+    const wrapperRemember = <HTMLDivElement>document. querySelector('.wrapper-remember')
+    if(wrapperRemember){
+      if(!localStorage.getItem('rslang-user')){
+        wrapperRemember.style.display = 'block'
+        }
+      }
+    logUot.style.display = 'none'
   }
 
   logout() {
@@ -168,14 +180,7 @@ export class User extends Api {
         App.renderNewPage('main');
       }
       logout.removeEventListener('click', listenerLogout);
-      
-      const wrapperRemember = <HTMLDivElement>document. querySelector('.wrapper-remember')
-      if(wrapperRemember){
-        if(!localStorage.getItem('rslang-user')){
-          wrapperRemember.style.display = 'block'
-      }
-      
-    }
+      this.showBlockRemember()
     }
     const logout = document.querySelector('#logout') as HTMLElement;
     logout.addEventListener('click', listenerLogout);
