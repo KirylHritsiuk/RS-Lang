@@ -256,7 +256,7 @@ export class AudioChellenge {
           if (el === this.word?.wordTranslate) {
             elem.classList.add('correct_word');
           }
-        })
+        });
         this.wrongWord += 1;
         this.mistakeWords.push(this.word);
         this.currentWord = 0;
@@ -360,35 +360,34 @@ export class AudioChellenge {
           this.clearVar();
           this.clearPage();
           const data = await Api.getUserAggregatedWords(
-          getUserId(),
-          getUserToken(),
-          [
-            { key: 'group', value: localTextbookUser[0].value },
-            { key: 'page', value: localTextbookUser[1].value  },
-          ]);
-          const arr = data[0].paginatedResults
+            getUserId(),
+            getUserToken(),
+            [
+              { key: 'group', value: localTextbookUser[0].value },
+              { key: 'page', value: localTextbookUser[1].value },
+            ],
+          );
+          const arr = data[0].paginatedResults;
           this.words = Array.from(arr);
           this.wordsTemp = Array.from(arr);
           this.rand = Math.floor(Math.random() * this.words.length);
           this.startGame();
-          
+
           groupButtonsContainer.removeEventListener('click', groupButtonsContainerListener);
         }
-      } else {
-        if (clickButton.tagName === 'BUTTON') {
-          this.clearVar();
-          this.clearPage();
-          const rand = Math.floor(Math.random() * 30);
-          const data = await Api.getWords([
-            { key: 'group', value: (Number(clickButton.textContent) - 1).toString() },
-            { key: 'page', value: rand },
-          ]);
-          this.words = Array.from(data);
-          this.wordsTemp = Array.from(data);
-          this.rand = Math.floor(Math.random() * this.words.length);
-          this.startGame();
-          groupButtonsContainer.removeEventListener('click', groupButtonsContainerListener);
-        }
+      } else if (clickButton.tagName === 'BUTTON') {
+        this.clearVar();
+        this.clearPage();
+        const rand = Math.floor(Math.random() * 30);
+        const data = await Api.getWords([
+          { key: 'group', value: (Number(clickButton.textContent) - 1).toString() },
+          { key: 'page', value: rand },
+        ]);
+        this.words = Array.from(data);
+        this.wordsTemp = Array.from(data);
+        this.rand = Math.floor(Math.random() * this.words.length);
+        this.startGame();
+        groupButtonsContainer.removeEventListener('click', groupButtonsContainerListener);
       }
     };
     groupButtonsContainer.addEventListener('click', groupButtonsContainerListener);
@@ -408,7 +407,7 @@ export class AudioChellenge {
           { key: 'group', value: localTextbookUser[0].value },
           { key: 'page', value: localTextbookUser[1].value },
           { key: 'wordsPerPage', value: localTextbookUser[2].value },
-        ]
+        ],
       );
       const arr = data[0].paginatedResults;
       this.words = Array.from(arr);
@@ -421,7 +420,7 @@ export class AudioChellenge {
           { key: 'group', value: localTextbook[0].value },
           { key: 'page', value: localTextbook[1].value },
           { key: 'wordsPerPage', value: localTextbook[2].value },
-        ]
+        ],
       );
       this.words = Array.from(data);
       this.wordsTemp = Array.from(data);

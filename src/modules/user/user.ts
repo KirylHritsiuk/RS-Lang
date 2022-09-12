@@ -1,10 +1,15 @@
 import { Api } from '../../utils/api';
 import localStorageUser, { LocalStorageUser } from './localStorageUser';
 import { IUserSchema, IGetUserToken } from '../../types/types';
-import { changeList } from '../../utils/changeList';
 import { App } from '../../app/app';
 import localStorageTextbookUser, { LocalStorageTextbookUser } from '../textbook/user/localStorageTextbookUser';
 import localStorageTextbook from '../textbook/anonymous/localStorageTextbook';
+import {
+  filterQuery,
+  groupQuery,
+  pageQuery,
+  wordsPerPageQuery,
+} from '../../common/query';
 
 export class User extends Api {
   protected client: IUserSchema;
@@ -18,8 +23,8 @@ export class User extends Api {
     this.client.password = '';
     this.client.email = '';
     this.client.avatar = '';
-    this.local.clearItemLocalStorage();
-    this.LocalUser.clearItemLocalStorage();
+    localStorage.clear();
+    localStorageTextbook.addItemLocalStorage([groupQuery, pageQuery]);
   }
 
   constructor() {
@@ -64,13 +69,11 @@ export class User extends Api {
         logPole.insertAdjacentElement('afterbegin', autorize);
         login.classList.add('hidden');
       }
-      this.hideBlockRemember()
-    } else {
-      if (login.classList.contains('hidden')) {
-        login.classList.remove('hidden');
-        const autorize: HTMLDivElement | null  = document.querySelector('.user-autorize') as HTMLDivElement;
-        if (autorize) autorize.remove();
-      }
+      this.hideBlockRemember();
+    } else if (login.classList.contains('hidden')) {
+      login.classList.remove('hidden');
+      const autorize: HTMLDivElement | null = document.querySelector('.user-autorize') as HTMLDivElement;
+      if (autorize) autorize.remove();
     }
   }
 
@@ -111,7 +114,7 @@ export class User extends Api {
       this.local.addItemLocalStorage(userToken);
       this.checkLogin();
       this.logout();
-      localStorageTextbook.clearItemLocalStorage()
+      localStorageTextbook.clearItemLocalStorage();
       const hash = window.location.hash.slice(1);
       if (hash === 'textbook') {
         App.renderNewPage(hash);
@@ -135,7 +138,10 @@ export class User extends Api {
       this.client.avatar = userData.avatar;
       this.checkLogin();
       this.logout();
-      localStorageTextbook.clearItemLocalStorage()
+      localStorageTextbook.clearItemLocalStorage();
+      localStorageTextbookUser.addItemLocalStorage(
+        [groupQuery, pageQuery, wordsPerPageQuery, filterQuery],
+      );
       const hash = window.location.hash.slice(1);
       if (hash === 'textbook') {
         App.renderNewPage(hash);
@@ -145,10 +151,10 @@ export class User extends Api {
     return userToken;
   }
 
-  hideBlockRemember(){
-    const wrapperRemember = <HTMLDivElement>document. querySelector('.wrapper-remember')
-    if(localStorage.getItem('rslang-user')){
-      wrapperRemember.style.display = 'none'
+  hideBlockRemember() {
+    const wrapperRemember = <HTMLDivElement>document.querySelector('.wrapper-remember');
+    if (localStorage.getItem('rslang-user')) {
+      wrapperRemember.style.display = 'none';
     }
   }
 
@@ -160,16 +166,18 @@ export class User extends Api {
       this.checkLogin();
       const hash = window.location.hash.slice(1);
       if (hash === 'textbook') {
+        console.log('textbook');
         App.renderNewPage(hash);
       } else {
+        console.log('main');
         App.renderNewPage('main');
       }
       logout.removeEventListener('click', listenerLogout);
-      const wrapperRemember = <HTMLDivElement>document. querySelector('.wrapper-remember')
-      if(!localStorage.getItem('rslang-user')){
-      wrapperRemember.style.display = 'block'
-    }
-    }
+      const wrapperRemember = <HTMLDivElement>document.querySelector('.wrapper-remember');
+      if (!localStorage.getItem('rslang-user')) {
+        wrapperRemember.style.display = 'block';
+      }
+    };
     const logout = document.querySelector('#logout') as HTMLElement;
     logout.addEventListener('click', listenerLogout);
   }

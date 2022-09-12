@@ -86,7 +86,7 @@ export class MainPage {
 
   static createNotForget() {
     const container = <HTMLDivElement>document.createElement('div');
-    container.className = 'wrapper-remember'
+    container.className = 'wrapper-remember';
     container.innerHTML = `
                 <span class="big-text">Помните</span>
                 <div class="text-center">Если вы хотите видеть статистику за все время и иметь <br> доступ к словарю, сначала войдите или зарегистрируйтесь.</div>
@@ -97,8 +97,6 @@ export class MainPage {
                 `;
     return container;
   }
-
-  
 
   static createTeamList() {
     const [container, listContainer] = [<HTMLDivElement>document.createElement('div'), <HTMLDivElement>document.createElement('div')];

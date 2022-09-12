@@ -20,7 +20,6 @@ export class Modal {
 
   user: User;
 
-
   constructor() {
     this.modal = document.createElement('div');
     this.avatar = ' ';
@@ -253,7 +252,6 @@ export class Modal {
       }
     });
 
-
     signUp.addEventListener('click', (ev) => {
       ev.preventDefault();
       if (forms.length === 2) {
@@ -315,7 +313,6 @@ export class Modal {
       });
     }
   }
-
 
   loginBottomListener() {
     if (this.loginBottom) {

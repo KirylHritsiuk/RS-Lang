@@ -31,28 +31,28 @@ export class TextbookQueryData {
 
   getGroupe() {
     if (this.localData !== null) {
-      return Number(this.local.getItemLocalStorage()![0].value);
+      return Number(this.localData[0].value);
     }
     return 0;
   }
 
   getPage() {
     if (this.localData !== null) {
-      return Number(this.local.getItemLocalStorage()![1].value);
+      return Number(this.localData[1].value);
     }
     return 0;
   }
 
   getWordsPerPage() {
     if (this.localData !== null && this.local instanceof LocalStorageTextbookUser) {
-      return Number(this.local.getItemLocalStorage()![2].value);
+      return Number(this.localData[2].value);
     }
     return 0;
   }
 
   getFilter() {
     if (this.localData !== null && this.local instanceof LocalStorageTextbookUser) {
-      return this.local.getItemLocalStorage()![3].value;
+      return this.localData[3].value;
     }
     return '';
   }
