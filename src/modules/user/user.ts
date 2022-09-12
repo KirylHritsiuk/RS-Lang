@@ -151,11 +151,15 @@ export class User extends Api {
     return userToken;
   }
 
-  hideBlockRemember() {
-    const wrapperRemember = <HTMLDivElement>document.querySelector('.wrapper-remember');
-    if (localStorage.getItem('rslang-user')) {
-      wrapperRemember.style.display = 'none';
+
+  hideBlockRemember(){
+    const wrapperRemember = <HTMLDivElement>document. querySelector('.wrapper-remember')
+    if(wrapperRemember){
+      if(localStorage.getItem('rslang-user')){
+        wrapperRemember.style.display = 'none'
+      }
     }
+    
   }
 
   logout() {
@@ -173,11 +177,16 @@ export class User extends Api {
         App.renderNewPage('main');
       }
       logout.removeEventListener('click', listenerLogout);
-      const wrapperRemember = <HTMLDivElement>document.querySelector('.wrapper-remember');
-      if (!localStorage.getItem('rslang-user')) {
-        wrapperRemember.style.display = 'block';
+
+      
+      const wrapperRemember = <HTMLDivElement>document. querySelector('.wrapper-remember')
+      if(wrapperRemember){
+        if(!localStorage.getItem('rslang-user')){
+          wrapperRemember.style.display = 'block'
       }
-    };
+      
+    }
+    }
     const logout = document.querySelector('#logout') as HTMLElement;
     logout.addEventListener('click', listenerLogout);
   }
