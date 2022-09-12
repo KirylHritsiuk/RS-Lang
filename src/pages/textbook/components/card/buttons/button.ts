@@ -11,6 +11,7 @@ export class Button extends Block {
     this.container = document.createElement('button');
     this.container.id = `${wordData.word}-${name}`;
     this.container.textContent = text;
+    this.container.dataset.category = name;
     this.container.className = Button.textObject.containerClass;
     this.container.classList.add(`${Button.textObject.containerClass}-${name}`);
     this.container.classList.add(`${Button.textObject.containerClass}_${Block.modificationClass.sizeL}`);
