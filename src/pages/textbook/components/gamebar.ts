@@ -15,6 +15,7 @@ export class GameBar extends Block {
     super();
     this.container.className = GameBar.textObject.mainContainerClass;
   }
+
   create(game: IGames) {
     const button = document.createElement('button');
     button.className = `${GameBar.textObject.linkClass} ${Block.modificationClass.hover}${this.color}`;

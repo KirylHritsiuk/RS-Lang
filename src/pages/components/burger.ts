@@ -4,12 +4,11 @@ import {
 } from '../components/dataPageMain';
 
 class Burger {
-
   // hideBlockRemember(){
   //   const btnLogin = <HTMLDivElement>document.querySelector('btn-login btn-sign')
   //   const wrapperRemember = <HTMLDivElement>document. querySelector('.wrapper-remember')
   //   btnLogin.addEventListener('click', ()=>{
-    
+
   //   console.log(wrapperRemember)
   //   console.log('sssssssssssssssssssssssss')
   //   if(localStorage.getItem('rslang-user') === null){
@@ -20,7 +19,7 @@ class Burger {
 
   //   })
   // }
-  
+
   closeSmallBurger() {
     modal.classList.add('hide');
     icon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>';
