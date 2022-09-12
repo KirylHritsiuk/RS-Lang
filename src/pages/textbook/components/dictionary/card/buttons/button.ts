@@ -7,20 +7,21 @@ import { Block } from '../../../blockTemplate';
 export class DeleteBtn extends Block {
   static textObject = {
     containerClass: 'button-card',
-    contentText: 'delete',
+    contentText: 'удалить',
+    contentClass: 'delete',
   };
 
-  constructor(protected data: IWord, protected name: string) {
+  constructor(protected wordData: IWord, protected name: string) {
     super();
     this.container = document.createElement('button');
     this.container.textContent = DeleteBtn.textObject.contentText;
     this.container.className = DeleteBtn.textObject.containerClass;
-    this.container.classList.add(`${DeleteBtn.textObject.containerClass}-${DeleteBtn.textObject.contentText}`);
+    this.container.classList.add(`${DeleteBtn.textObject.containerClass}-${DeleteBtn.textObject.contentClass}`);
     this.container.classList.add(`${DeleteBtn.textObject.containerClass}_${DeleteBtn.modificationClass.sizeL}`);
     this.container.addEventListener('click', () => {
-      const card = <HTMLDivElement>document.getElementById(data.word);
+      const card = <HTMLDivElement>document.getElementById(wordData.word);
       card.remove();
-      api.updateUserWord(getUserId(), data._id, getUserToken(), { difficulty: name });
+      api.updateUserWord(getUserId(), wordData._id, getUserToken(), { difficulty: name });
     });
   }
 }

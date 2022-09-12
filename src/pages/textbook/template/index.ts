@@ -48,10 +48,10 @@ export abstract class Page {
     this.groups = new Groups().render();
   }
 
-  protected createBlock(className: string, block: HTMLElement) {
+  protected createBlock(className: string, ...block: HTMLElement[]) {
     const container = document.createElement('div');
-    container.className = className;
-    container.append(block);
+    container.classList.add(className);
+    container.append(...block);
     return container;
   }
 }

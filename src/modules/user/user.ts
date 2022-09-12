@@ -127,7 +127,7 @@ export class User extends Api {
     }
     return userToken;
   }
-  
+
   hideBlockRemember(){
     const wrapperRemember = <HTMLDivElement>document. querySelector('.wrapper-remember')
     if(localStorage.getItem('rslang-user')){
@@ -150,7 +150,6 @@ export class User extends Api {
     const logout = document.querySelector('#logout') as HTMLElement;
     logout.addEventListener('click', listenerLogout);
   }
-  
 }
 
 export default new User();

@@ -19,14 +19,15 @@ export class Filter extends Block {
 
   constructor() {
     super();
-    this.container.className = 'filter-container';
-
+    this.container.className = 'filter';
+    if (dictionaryLocal.getItemLocalStorage() === null) {
+      this.container.classList.add(Block.modificationClass.displayNone);
+    }
     [Filter.hard, Filter.easy].forEach((el) => {
       el.addEventListener('click', (e) => {
         const btn = <HTMLButtonElement>e.target;
         const cardsEasy = document.querySelectorAll(`.bg-${Filter.textObject.categoryEasy}`);
         const cardsHard = document.querySelectorAll(`.bg-${Filter.textObject.categoryHard}`);
-        const list = <HTMLDivElement>document.querySelector(`.${List.textObject.containerClass}`);
         btn.setAttribute('disabled', 'disabled');
         switch (btn.dataset.name) {
           case (Filter.textObject.categoryHard):

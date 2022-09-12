@@ -23,7 +23,7 @@ export abstract class Block {
     containerClass: '',
   };
 
-  static textbookQueryData: TextbookQueryData = textbookQueryData;
+  protected data: TextbookQueryData;
 
   static modificationClass = {
     bg: 'bg-',
@@ -31,6 +31,7 @@ export abstract class Block {
     border: 'border-',
     borderLeft: 'border-left-',
     borderTop: 'border-top-',
+    boxShadow: 'box-shadow-',
     hover: 'hover-',
     displayNone: 'ds-none',
     bgDisabled: 'bg-disabled',
@@ -41,16 +42,16 @@ export abstract class Block {
   constructor() {
     this.container = document.createElement('div');
     this.container.className = Block.textObject.containerClass;
-    this.group = Block.textbookQueryData.getGroupe();
-    this.page = Block.textbookQueryData.getPage();
-    this.filter = Block.textbookQueryData.getFilter();
+    this.data = textbookQueryData;
+    this.group = this.data.getGroupe();
+    this.page = this.data.getPage();
+    this.filter = this.data.getFilter();
     this.user = getUserId();
     this.token = getUserToken();
     if (dictionaryLocal.getItemLocalStorage() === null) this.color = groupData[this.group];
     else this.color = groupData[groupData.length - 1];
-    console.log(this.color, this.group)
   }
- 
+
   isLearnedPage() {
     const cards = Array.from(document.querySelectorAll('.word-card'));
     const styleArr = cards.map((el) => el.className).filter((el) => el.includes('hard') || el.includes('easy'));
@@ -61,14 +62,14 @@ export abstract class Block {
   }
 
   changeLearnPage() {
-    const pagPAge = document.querySelectorAll(`.active-${this.color}`);
+    const pagPage = document.querySelectorAll(`.active-${this.color}`);
     const list = document.querySelectorAll('.game_link');
     const main = document.querySelector('.main_content');
     if (this.isLearnedPage() === true) {
       list?.forEach((el) => {
         el.classList.add(Block.modificationClass.bgDisabled);
       });
-      pagPAge?.forEach((el) => {
+      pagPage?.forEach((el) => {
         el.classList.add(Block.modificationClass.bgDisabled);
       });
       main?.classList.add(`bg-textbook-${this.color}`);
@@ -77,7 +78,7 @@ export abstract class Block {
     list?.forEach((el) => {
       el.classList.remove(Block.modificationClass.bgDisabled);
     });
-    pagPAge?.forEach((el) => {
+    pagPage?.forEach((el) => {
       el.classList.remove(Block.modificationClass.bgDisabled);
     });
     main?.classList.remove(`bg-textbook-${this.color}`);

@@ -1,6 +1,7 @@
+import { groupData } from '../../../../common/groups';
 import { svg } from '../../../../common/svg';
-import textbookQuery from '../../../../modules/textbook/textbookQueryData';
 import { changeList } from '../../../../utils/changeList';
+import { Page } from '../../template/index';
 import { Block } from '../blockTemplate';
 
 export class Item extends Block {
@@ -20,31 +21,31 @@ export class Item extends Block {
     last: 'last',
   };
 
-  constructor(public pages: number) {
+  constructor(public pages: number = 30) {
     super();
     this.container = document.createElement('ul');
     this.pages = pages;
   }
 
-  createItem(btn: string, page?: number) {
+  createItem(btn: string, page?: number, color: string = 'red') {
     const li = document.createElement('li');
-    li.className = `${Item.textObject.itemClass} ${Item.textObject.itemClass}-${Item.modificationClass.hover}${this.color}`;
+    li.className = `${Item.textObject.itemClass} ${Item.textObject.itemClass}-${Item.modificationClass.hover}${color}`;
     switch (btn.trim()) {
       case Item.textObject.prev:
         li.innerHTML = svg.chevron_left;
         break;
       case Item.textObject.first:
-        li.innerHTML = '<span>1</span></li>';
+        li.innerHTML = '<span>1</span>';
         break;
       case Item.textObject.dots:
         li.innerHTML = '<span>...</span>';
         break;
       case `${Item.textObject.numb} ${Item.textObject.active}`:
-        li.innerHTML = `<span>${page}</span></li>`;
-        li.classList.add(`${Block.modificationClass.active}${this.color}`);
+        li.innerHTML = `<span>${page}</span>`;
+        li.classList.add(`${Block.modificationClass.active}${color}`);
         break;
       case Item.textObject.numb:
-        li.innerHTML = `<span>${page}</span></li>`;
+        li.innerHTML = `<span>${page}</span>`;
         break;
       case Item.textObject.last:
         li.innerHTML = `<span>${this.pages}</span>`;
@@ -55,29 +56,40 @@ export class Item extends Block {
       default:
         li.innerHTML = `<span>${page}</span>`;
     }
-    if (btn !== `${Item.textObject.numb} ${Item.textObject.active}`) {
-      li.addEventListener('click', () => {
-        this.container.innerHTML = '';
-        this.createPagination(page);
-        textbookQuery.setPage(page! - 1);
-        textbookQuery.updateLocal();
-        changeList();
-      });
-    }
+    li.addEventListener('click', (e) => {
+      const item = <HTMLLIElement>e.currentTarget;
+      const parentTop = item.closest(`.${Page.MainClass.paginationTop}`);
+      const parentBottom = item.closest(`.${Page.MainClass.paginationBottom}`);
+      const pagT = <HTMLDivElement>document.querySelector('.pagination-top')?.firstElementChild;
+      const pagB = <HTMLDivElement>document.querySelector('.pagination-bottom')?.firstElementChild;
+      if (parentTop) {
+        pagB.innerHTML = '';
+        pagB.append(new Item().createPagination(page));
+      } else if (parentBottom) {
+        pagT.innerHTML = '';
+        pagT.append(new Item().createPagination(page));
+      }
+      this.container.innerHTML = '';
+      this.createPagination(page, groupData[this.data.getGroupe()]);
+      this.data.setPage(page! - 1);
+      this.data.updateLocal();
+      this.data.updateQuery();
+      changeList();
+    });
     return li;
   }
 
-  createPagination(page: number = this.page) {
+  createPagination(page: number = this.page, color: string = 'red') {
     let active: string;
     let beforePage = page - 1;
     let afterPage = page + 1;
     if (page > 1) {
-      this.container.append(this.createItem(Item.textObject.prev, page - 1));
+      this.container.append(this.createItem(Item.textObject.prev, page - 1, color));
     }
     if (page > 2) {
-      this.container.append(this.createItem(Item.textObject.first, 1));
+      this.container.append(this.createItem(Item.textObject.first, 1, color));
       if (page > 3) {
-        this.container.append(this.createItem(Item.textObject.dots, page - 2));
+        this.container.append(this.createItem(Item.textObject.dots, page - 2, color));
       }
     }
 
@@ -104,18 +116,18 @@ export class Item extends Block {
       } else {
         active = '';
       }
-      this.container.append(this.createItem(`numb ${active}`, pagLength));
+      this.container.append(this.createItem(`${Item.textObject.numb} ${active}`, pagLength, color));
     }
 
     if (page < this.pages - 1) {
       if (page < this.pages - 2) {
-        this.container.append(this.createItem(Item.textObject.dots, page + 2));
+        this.container.append(this.createItem(Item.textObject.dots, page + 2, color));
       }
-      this.container.append(this.createItem(Item.textObject.last, this.pages));
+      this.container.append(this.createItem(Item.textObject.last, this.pages, color));
     }
 
     if (page < this.pages) {
-      this.container.append(this.createItem(Item.textObject.next, page + 1));
+      this.container.append(this.createItem(Item.textObject.next, page + 1, color));
     }
     return this.container;
   }
