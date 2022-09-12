@@ -131,14 +131,14 @@
  
 
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
 
     .ul-wrapper {
         display: none;
     }
 
     .naw-wrapper {
-        background-color: white;
+        background-color: #efecec;
     }
 
     .svg-burger {
@@ -155,7 +155,7 @@
     }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
     .naw-wrapper{
         position: fixed;
     }
