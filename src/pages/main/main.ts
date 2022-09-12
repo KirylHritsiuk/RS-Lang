@@ -129,15 +129,6 @@ export class MainPage {
     return container;
   }
 
-  hideRemember(){
-    const wrapperRemember = <HTMLDivElement>document. querySelector('.wrapper-remember')
-    if(localStorage.getItem('rslang-user') === null){
-      wrapperRemember.style.display = 'block'
-    }else{
-      wrapperRemember.style.display = 'none'
-    }
-  }
-
   render() {
     this.container.append(
       MainPage.createManAndLang(),
@@ -146,7 +137,6 @@ export class MainPage {
       MainPage.createNotForget(),
       MainPage.createTeamList(),
     );
-    // this.hideRemember();
     return this.container;
   }
 }
