@@ -720,3 +720,7 @@ audio:not([controls]) {
 .audio-option-word:hover {
   background-color: rgba(250, 252, 254, 0.3);
 }
+
+.correct_word {
+  background-color: #88BFB0;
+}
