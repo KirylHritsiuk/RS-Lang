@@ -2,3 +2,17 @@
     height: 50px;
     width: 50px;
 }
+
+@media (max-width: 680px) {
+    
+.link-person{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.footer{
+    height: 150px;
+}
+
+}
