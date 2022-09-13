@@ -168,6 +168,11 @@ img {
   height: 1.5em;
   right: 1em;
 }
+@media only screen and (max-width: 1200px) {
+  .word-audio {
+    top: 2.6em;
+  }
+}
 @media only screen and (max-width: 992px) {
   .word-audio {
     top: 23.5em;
