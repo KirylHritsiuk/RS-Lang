@@ -1,5 +1,5 @@
 import user from '../user/localStorageUser';
-import textbook from './anonymous/localStorageTextbook';
+import textbook, { LocalStorageTextbook } from './anonymous/localStorageTextbook';
 import textbookUser, { LocalStorageTextbookUser } from './user/localStorageTextbookUser';
 import { IQueryParameters } from '../../types/types';
 import { LocalStorage } from '../../utils/localStorage';
@@ -31,14 +31,14 @@ export class TextbookQueryData {
 
   getGroupe() {
     if (this.localData !== null) {
-      return Number(this.localData[0].value);
+      return Number(this.local.getItemLocalStorage()![0].value);
     }
     return 0;
   }
 
   getPage() {
     if (this.localData !== null) {
-      return Number(this.localData[1].value);
+      return Number(this.local.getItemLocalStorage()![1].value);
     }
     return 0;
   }
@@ -93,11 +93,21 @@ export class TextbookQueryData {
   }
 
   updateLocal() {
-    if (this.local instanceof LocalStorageTextbookUser) {
+    if (this.local instanceof LocalStorageTextbookUser
+      && this.local.getItemLocalStorage() !== null) {
       this.local.addItemLocalStorage([groupQuery, pageQuery, wordsPerPageQuery, filterQuery]);
-      return;
+    } else if (this.local instanceof LocalStorageTextbookUser
+      && this.local.getItemLocalStorage() === null) {
+      this.local = textbook;
+      this.local.addItemLocalStorage([groupQuery, pageQuery]);
+    } else if (this.local instanceof LocalStorageTextbook
+      && this.local.getItemLocalStorage() !== null) {
+      this.local.addItemLocalStorage([groupQuery, pageQuery]);
+    } else if (this.local instanceof LocalStorageTextbook
+      && this.local.getItemLocalStorage() === null) {
+      this.local = textbookUser;
+      this.local.addItemLocalStorage([groupQuery, pageQuery, wordsPerPageQuery, filterQuery]);
     }
-    this.local.addItemLocalStorage([groupQuery, pageQuery]);
   }
 }
 
