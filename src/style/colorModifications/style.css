@@ -1,0 +1,269 @@
+.bg-red {
+    background: red !important;
+  }
+  .bg-orange {
+    background: orange !important;
+  }
+  .bg-palevioletred {
+    background: palevioletred !important;
+  }
+  .bg-slateblue {
+    background: slateblue !important;
+  }
+  .bg-darkslateblue {
+    background: darkslateblue !important;
+  }
+  .bg-purple {
+    background: purple !important;
+  }
+  .bg-coral {
+    background: coral !important;
+  }
+  .bg-textbook-red {
+    background: rgba(255, 0, 0, 0.1) !important;
+  }
+  .bg-textbook-orange {
+    background: rgba(255, 166, 0, 0.1) !important;
+  }
+  .bg-textbook-palevioletred {
+    background: rgba(216, 112, 147, 0.1) !important;
+  }
+  .bg-textbook-slateblue {
+    background: rgba(105, 90, 205, 0.1) !important;
+  }
+  .bg-textbook-darkslateblue {
+    background: rgba(71, 61, 139, 0.1) !important;
+  }
+  .bg-textbook-purple {
+    background: rgba(128, 0, 128, 0.1) !important;
+  }
+  .bg-hard {
+    background: rgba(173, 5, 5, 0.1) !important;
+  }
+  .bg-easy {
+    background: #0080002b !important;
+  }
+  .bg-delete {
+    background: #334e333a !important;
+  }
+  .bg-disabled {
+    background: gray !important;
+    opacity: 0.8;
+    cursor: auto !important;
+    box-shadow: none !important;
+  }
+  .border-red {
+    border-color: red !important;
+  }
+  .border-orange {
+    border-color: orange !important;
+  }
+  .border-palevioletred {
+    border-color: palevioletred !important;
+  }
+  .border-slateblue {
+    border-color: slateblue !important;
+  }
+  .border-darkslateblue {
+    border-color: darkslateblue !important;
+  }
+  .border-purple {
+    border-color: purple !important;
+  }
+  .border-coral {
+    border-color: coral !important;
+  }
+  .border-left-red {
+    border-color: red !important;
+  }
+  .border-left-orange {
+    border-color: orange !important;
+  }
+  .border-left-palevioletred {
+    border-color: palevioletred !important;
+  }
+  .border-left-slateblue {
+    border-color: slateblue !important;
+  }
+  .border-left-darkslateblue {
+    border-color: darkslateblue !important;
+  }
+  .border-left-coral {
+    border-color: coral !important;
+  }
+  .border-top-red {
+    border-top: 16px solid red !important;
+  }
+  .border-top-orange {
+    border-top: 16px solid orange !important;
+  }
+  .border-top-palevioletred {
+    border-top: 16px solid palevioletred !important;
+  }
+  .border-top-slateblue {
+    border-top: 16px solid slateblue !important;
+  }
+  .border-top-darkslateblue {
+    border-top: 16px solid darkslateblue !important;
+  }
+  .border-top-purple {
+    border-top: 16px solid purple !important;
+  }
+  .border-top-coral {
+    border-top: 16px solid coral !important;
+  }  
+  .color-red {
+    color: red !important;
+  }
+  .color-orange {
+    color: orange !important;
+  }
+  .color-palevioletred {
+    color: palevioletred !important;
+  }
+  .color-slateblue {
+    color: slateblue !important;
+  }
+  .color-darkslateblue {
+    color: darkslateblue !important;
+  }
+  .color-purple {
+    color: purple !important;
+  }
+  .color-coral {
+    color: coral !important;
+  }
+  .active-red {
+    color: red;
+    border-color: red !important;
+  }
+  .active-orange {
+    color: orange;
+    border-color: orange !important;
+  }
+  .active-palevioletred {
+    color: palevioletred;
+    border-color: palevioletred !important;
+  }
+  .active-slateblue {
+    color: slateblue;
+    border-color: slateblue !important;
+  }
+  .active-darkslateblue {
+    color: darkslateblue;
+    border-color: darkslateblue !important;
+  }
+  .active-purple {
+    color: purple;
+    border-color: purple !important;
+  }
+  .active-coral {
+    color: coral;
+    border-color: coral !important;
+  }
+  .active-all {
+    color: purple;
+    border-color: purple;
+  }
+  .active-hard {
+    color: red;
+    border-color: red;
+  }
+  .active-easy {
+    color: green;
+    border-color: green;
+  }
+  .hover-red:hover {
+    box-shadow: 0px 0px 10px red;
+  }
+  
+  .hover-orange:hover {
+    box-shadow: 0px 0px 10px orange;
+  }
+  
+  .hover-palevioletred:hover {
+    box-shadow: 0px 0px 10px palevioletred;
+  }
+  
+  .hover-slateblue:hover {
+    box-shadow: 0px 0px 10px slateblue;
+  }
+  
+  .hover-darkslateblue:hover {
+    box-shadow: 0px 0px 10px darkslateblue;
+  }
+  
+  .hover-purple:hover {
+    box-shadow: 0px 0px 10px purple;
+  }
+  
+  .hover-coral:hover {
+    box-shadow: 0px 0px 10px coral;
+  }
+
+.box-shadow-coral {
+  box-shadow: 0px 0px 10px coral !important;
+}
+.box-shadow-hard {
+  box-shadow: 0px 0px 10px red !important;
+}
+.box-shadow-easy {
+  box-shadow: 0px 0px 10px green !important;
+}
+
+.pag-item-hover-red:hover {
+  color: red;
+  border-color: red;
+}
+.pag-item-hover-red:hover svg {
+  fill: red;
+}
+
+.pag-item-hover-orange:hover {
+  color: orange;
+  border-color: orange;
+}
+.pag-item-hover-orange:hover svg {
+  fill: orange;
+}
+
+.pag-item-hover-palevioletred:hover {
+  color: palevioletred;
+  border-color: palevioletred;
+}
+.pag-item-hover-palevioletred:hover svg {
+  fill: palevioletred;
+}
+
+.pag-item-hover-slateblue:hover {
+  color: slateblue;
+  border-color: slateblue;
+}
+.pag-item-hover-slateblue:hover svg {
+  fill: slateblue;
+}
+
+.pag-item-hover-darkslateblue:hover {
+  color: darkslateblue;
+  border-color: darkslateblue;
+}
+.pag-item-hover-darkslateblue:hover svg {
+  fill: darkslateblue;
+}
+
+.pag-item-hover-purple:hover {
+  color: purple;
+  border-color: purple;
+}
+.pag-item-hover-purple:hover svg {
+  fill: purple;
+}
+
+.pag-item-disabled {
+  cursor: auto;
+}
+.pag-item-disabled svg {
+  fill: gray;
+}
+
+  

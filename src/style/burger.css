@@ -1,0 +1,167 @@
+.naw-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+    background: #474965;
+    transition: 1s;
+    overflow-x: hidden;
+    z-index: 4;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+.burger-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.plase-burger {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    z-index: 2;
+}
+
+.hide-plase-burger {
+    display: none;
+}
+
+.svg-burger-cross {
+    margin-top: 10px;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    fill: #C4C4C4;
+}
+
+.burger-rs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px;
+    background: #474965;
+}
+
+.svg-burger {
+    margin-top: 10px;
+    width: 34px;
+    cursor: pointer;
+    fill: #C4C4C4;
+}
+
+.scroll{
+    width: 240px;
+   }
+
+.span-rs {
+    margin-top: 15px;
+    color: #C4C4C4;
+        word-wrap: normal;
+    width: 120px;
+}
+
+.li-wrapper{
+    display: flex;
+}
+
+.li-wrapper-log{
+    display: flex;
+}
+
+.li-wrapper-log:active{
+    background-color: antiquewhite;
+}
+
+.li-nav {
+    display: flex;
+    font-size: 1.7rem;
+    align-items: center;
+    color: #C4C4C4;
+}
+
+.wrapper-log-out {
+    cursor: pointer;
+}
+
+.a-nav{
+    width: 240px;
+}
+
+.svg-nav {
+    width: 28px;
+    height: 28px;
+    fill: #C4C4C4;
+    margin: 10px 0;
+}
+
+.margin{
+    margin-left:  10px;
+}
+
+.burger__title {
+    font-size: 2.4rem;
+    text-align: center;
+}
+
+.align-nav {
+    justify-content: start;
+    padding-left: 40px;
+}
+
+.modal{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dark-burger {
+    background-color: rgb(2, 82, 204);
+}
+
+.out{
+    padding-bottom: 20px;
+    white-space: nowrap;
+    display: none;
+}  
+ 
+
+
+@media (max-width: 768px) {
+
+    .ul-wrapper {
+        display: none;
+    }
+
+    .naw-wrapper {
+        background-color: #efecec;
+    }
+
+    .svg-burger {
+        fill: black;
+    }
+
+    .nav-text {
+        font-size: 1.8rem;
+        text-decoration: none;
+    }
+
+    .li-wrapper-log{
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .naw-wrapper{
+        position: fixed;
+    }
+
+    .page-content{
+        padding-left: 49px;
+    }
+}
