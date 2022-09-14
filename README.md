@@ -1,4 +1,4 @@
-##Stack##
+**Stack**
  - HTML/CSS/SCSS
  - TypeScript
  - Webpack
