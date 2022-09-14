@@ -1,5 +1,5 @@
-##Stack
-HTML/CSS/SCSS
-TypeScript
-Webpack
-ESLint
+##Stack##
+ - HTML/CSS/SCSS
+ - TypeScript
+ - Webpack
+ - ESLint
