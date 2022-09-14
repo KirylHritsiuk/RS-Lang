@@ -13,8 +13,6 @@ export abstract class Block {
 
   protected page: number;
 
-  protected filter: string | number;
-
   protected user: string;
 
   protected token: string;
@@ -45,7 +43,6 @@ export abstract class Block {
     this.data = textbookQueryData;
     this.group = this.data.getGroupe();
     this.page = this.data.getPage();
-    this.filter = this.data.getFilter();
     this.user = getUserId();
     this.token = getUserToken();
     if (dictionaryLocal.getItemLocalStorage() === null) this.color = groupData[this.group];

@@ -145,6 +145,9 @@ img {
   cursor: pointer;
   height: 1.5em;
   right: 1em;
+  @include media('max', 'xl' ){
+    top: 2.6em;
+  }
   @include media('max', 'lg' ){
     top: 23.5em;
   }

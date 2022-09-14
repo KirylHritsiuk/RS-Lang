@@ -10,6 +10,7 @@ import {
   pageQuery,
   wordsPerPageQuery,
 } from '../../common/query';
+import textbookQueryData from '../textbook/textbookQueryData';
 
 export class User extends Api {
   protected client: IUserSchema;
@@ -139,9 +140,10 @@ export class User extends Api {
       this.checkLogin();
       this.logout();
       localStorageTextbook.clearItemLocalStorage();
-      localStorageTextbookUser.addItemLocalStorage(
-        [groupQuery, pageQuery, wordsPerPageQuery, filterQuery],
-      );
+      textbookQueryData.updateLocal(); 
+      // localStorageTextbookUser.addItemLocalStorage(
+      //   [groupQuery, pageQuery, wordsPerPageQuery, filterQuery],
+      // );
       const hash = window.location.hash.slice(1);
       if (hash === 'textbook') {
         App.renderNewPage(hash);
@@ -151,27 +153,26 @@ export class User extends Api {
     return userToken;
   }
 
-
-  hideBlockRemember(){
-    const wrapperRemember = <HTMLDivElement>document. querySelector('.wrapper-remember')
-    const logUot = <HTMLDivElement>document. querySelector('#logout')
-    if(wrapperRemember){
-      if(localStorage.getItem('rslang-user')){
-        wrapperRemember.style.display = 'none'
-       }
+  hideBlockRemember() {
+    const wrapperRemember = <HTMLDivElement>document.querySelector('.wrapper-remember');
+    const logUot = <HTMLDivElement>document.querySelector('#logout');
+    if (wrapperRemember) {
+      if (localStorage.getItem('rslang-user')) {
+        wrapperRemember.style.display = 'none';
+      }
     }
-    logUot.style.display = 'flex'
+    logUot.style.display = 'flex';
   }
 
-  showBlockRemember(){
-    const logUot = <HTMLDivElement>document. querySelector('#logout')
-    const wrapperRemember = <HTMLDivElement>document. querySelector('.wrapper-remember')
-    if(wrapperRemember){
-      if(!localStorage.getItem('rslang-user')){
-        wrapperRemember.style.display = 'block'
-        }
+  showBlockRemember() {
+    const logUot = <HTMLDivElement>document.querySelector('#logout');
+    const wrapperRemember = <HTMLDivElement>document.querySelector('.wrapper-remember');
+    if (wrapperRemember) {
+      if (!localStorage.getItem('rslang-user')) {
+        wrapperRemember.style.display = 'block';
       }
-    logUot.style.display = 'none'
+    }
+    logUot.style.display = 'none';
   }
 
   logout() {
@@ -180,17 +181,16 @@ export class User extends Api {
       this.logoutUserTemp();
       const logout = document.querySelector('#logout') as HTMLElement;
       this.checkLogin();
+      textbookQueryData.updateLocal();
       const hash = window.location.hash.slice(1);
       if (hash === 'textbook') {
-        console.log('textbook');
         App.renderNewPage(hash);
       } else {
-        console.log('main');
         App.renderNewPage('main');
       }
       logout.removeEventListener('click', listenerLogout);
-      this.showBlockRemember()
-    }
+      this.showBlockRemember();
+    };
     const logout = document.querySelector('#logout') as HTMLElement;
     logout.addEventListener('click', listenerLogout);
   }
